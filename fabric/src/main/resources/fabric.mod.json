@@ -12,7 +12,11 @@
   "icon": "icon.png",
 
   "environment": "*",
-  "entrypoints": {},
+  "entrypoints": {
+    "main": [
+      "me.restonic4.restapi.fabric.RestApiFabric"
+    ]
+  },
   "depends": {
     "fabricloader": ">=0.14.22",
     "minecraft": ">=1.20"
