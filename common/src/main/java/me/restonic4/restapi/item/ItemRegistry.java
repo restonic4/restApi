@@ -11,14 +11,12 @@ import dev.architectury.registry.registries.DeferredSupplier;
 
 @SuppressWarnings("unchecked")
 public class ItemRegistry {
-
     /**
      * This creates a registry for your mod
      * @param ModId Your mod id.
      */
     public static void CreateRegistry(String ModId) {
         RestApi.Log("Creating item registry", ModId);
-
         //1.20 - 1.20.2
         ItemRegistrySet1.createRegistry(ModId);
 
@@ -39,8 +37,17 @@ public class ItemRegistry {
         return ItemRegistrySet1.createSimple(ModId, ItemId, (DeferredSupplier<CreativeModeTab>)CreativeTab);
     }
 
-    public static Object CreateAdvanced(String ModId, String ItemId, Object CreativeTab, AdvancedItemType.Type ItemType, String[] ItemData) {
-        RestApi.Log("Creating simple item", ModId);
+    /**
+     * This creates an advanced item, like a sword, axe, shield..
+     * @param ModId The mod id.
+     * @param ItemId The item id.
+     * @param CreativeTab Creative tab/null
+     * @param ItemType The item type. Use AdvancedItemType.Type.
+     * @param ItemData A string array with the item's data.
+     * @return Returns the item as Object type.
+     */
+    public static Object CreateAdvanced(String ModId, String ItemId, Object CreativeTab, AdvancedItemType ItemType, String[] ItemData) {
+        RestApi.Log("Creating advanced item", ModId);
 
         //1.20 - 1.20.2
         return ItemRegistrySet1.createAdvanced(ModId, ItemId, (DeferredSupplier<CreativeModeTab>)CreativeTab, ItemType, ItemData);

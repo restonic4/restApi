@@ -2,10 +2,12 @@ package me.restonic4.restapi.template;
 
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
+import me.restonic4.restapi.creative_tab.CreativeTabRegistry;
 import me.restonic4.restapi.item.AdvancedItemType;
 import me.restonic4.restapi.item.ItemRegistry;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
 @SuppressWarnings("unchecked")
@@ -19,10 +21,12 @@ public class Testing {
                 null
         );
 
+        Object tab = CreativeTabRegistry.CreateCreativeTab(RestApi.MOD_ID, "test_tab", item.get());
+
         RegistrySupplier<Item> food_simple = (RegistrySupplier<Item>) ItemRegistry.CreateFood(
                 RestApi.MOD_ID,
                 "test_simple_food",
-                null,
+                tab,
                 1,
                 2
         );
@@ -36,7 +40,7 @@ public class Testing {
         RegistrySupplier<Item> food_effect = (RegistrySupplier<Item>) ItemRegistry.CreateFoodWithEffect(
                 RestApi.MOD_ID,
                 "test_effect_food",
-                null,
+                tab,
                 1,
                 2,
                 effect,
@@ -46,12 +50,13 @@ public class Testing {
         RegistrySupplier<Item> test_sword = (RegistrySupplier<Item>) ItemRegistry.CreateAdvanced(
                 RestApi.MOD_ID,
                 "test_sword",
-                null,
-                AdvancedItemType.Type.SWORD,
+                tab,
+                AdvancedItemType.SWORD,
                 new String[]{"IRON", "2", " -2"}
         );
 
         ItemRegistry.Register(RestApi.MOD_ID);
+        CreativeTabRegistry.Register(RestApi.MOD_ID);
 
         RestApi.Log("Testing things created");
     }

@@ -2,6 +2,7 @@ package me.restonic4.restapi;
 
 import dev.architectury.registry.registries.DeferredSupplier;
 import dev.architectury.registry.registries.RegistrySupplier;
+import me.restonic4.restapi.creative_tab.CreativeTabRegistry;
 import me.restonic4.restapi.item.ItemRegistry;
 import me.restonic4.restapi.template.Testing;
 import net.minecraft.world.effect.MobEffect;
@@ -37,11 +38,12 @@ public class RestApi
 	 * Executed when the mod/api starts
 	 */
 	public static void init() {
-		Log("Api started");
+		Log("Api started, creating default registries");
 
 		ItemRegistry.CreateRegistry(MOD_ID);
+		CreativeTabRegistry.CreateRegistry(MOD_ID);
 
-		Log("Default registry created");
+		Log("Default registries created");
 
 		Testing.init();
 	}

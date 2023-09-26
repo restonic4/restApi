@@ -11,6 +11,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,8 @@ public class ItemRegistrySet1 {//1.20 - 1.20.2
         if (ITEMS == null) {
             //If there is no default registry, then create it and get it.
             if (DEFAULT == null) {
+                RestApi.Log("Registry not found, try creating one with ItemRegistry.CreateRegistry(ModID).");
+
                 createRegistry(RestApi.MOD_ID);
             }
 
@@ -55,44 +58,41 @@ public class ItemRegistrySet1 {//1.20 - 1.20.2
     }
 
     public static RegistrySupplier<Item> createSimple(String ModId, String ItemId, DeferredSupplier<CreativeModeTab> CreativeTab) {
-        Item item;
-        Item.Properties properties = new Item.Properties();
-
-        if (CreativeTab != null) {
-            item = new Item(properties.arch$tab(CreativeTab));
-        }
-        else {
-            item = new Item(properties);
-        }
-
-        final Item finalItem = item;
-        return getModRegistry(ModId).register(
-                ItemId,
-                () -> finalItem
-        );
-    }
-
-    public static RegistrySupplier<Item> createAdvanced(String ModId, String ItemId, DeferredSupplier<CreativeModeTab> CreativeTab, AdvancedItemType.Type ItemType, String[] Data) {
-        Item item;
         Item.Properties properties = new Item.Properties();
 
         if (CreativeTab != null) {
             properties = properties.arch$tab(CreativeTab);
         }
 
-        switch (ItemType) {
-            case SWORD:
-                item = new SwordItem(Tiers.valueOf(Data[0]), Integer.parseInt(Data[1]), Float.parseFloat(Data[2]), properties);
-
-            default:
-                item = null;
-        }
-
-        final Item finalItem = item;
+        Item.Properties finalProperties = properties;
         return getModRegistry(ModId).register(
                 ItemId,
-                () -> finalItem
+                () -> newItem(finalProperties, AdvancedItemType.SIMPLE, null)
         );
+    }
+
+    public static RegistrySupplier<Item> createAdvanced(String ModId, String ItemId, DeferredSupplier<CreativeModeTab> CreativeTab, AdvancedItemType ItemType, String[] Data) {
+        Item.Properties properties = new Item.Properties();
+
+        if (CreativeTab != null) {
+            properties = properties.arch$tab(CreativeTab);
+        }
+
+        Item.Properties finalProperties = properties;
+        return getModRegistry(ModId).register(
+                ItemId,
+                () -> newItem(finalProperties, ItemType, Data)
+        );
+    }
+
+    static Item newItem(Item.Properties properties, AdvancedItemType itemType, String[] data) {
+        switch (itemType) {
+            case SWORD:
+                return new SwordItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
+
+            default:
+                return new Item(properties);
+        }
     }
 
     public static MobEffectInstance createEffect(MobEffect Effect, int Ticks, int Level) {
@@ -110,20 +110,16 @@ public class ItemRegistrySet1 {//1.20 - 1.20.2
     }
 
     public static RegistrySupplier<Item> createFood(String ModId, String ItemId, DeferredSupplier<CreativeModeTab> CreativeTab, FoodProperties FoodProperties) {
-        Item item;
         Item.Properties properties = new Item.Properties().food(FoodProperties);
 
         if (CreativeTab != null) {
-            item = new Item(properties.arch$tab(CreativeTab));
-        }
-        else {
-            item = new Item(properties);
+            properties = properties.arch$tab(CreativeTab);
         }
 
-        final Item finalItem = item;
+        Item.Properties finalProperties = properties;
         return getModRegistry(ModId).register(
                 ItemId,
-                () -> finalItem
+                () -> newItem(finalProperties, AdvancedItemType.SIMPLE, null)
         );
     }
 
