@@ -15,12 +15,12 @@ public class ItemRegistry {
      * This creates a registry for your mod
      * @param ModId Your mod id.
      */
-    public static void CreateRegistry(String ModId) {
+    public static Object CreateRegistry(String ModId) {
         RestApi.Log("Creating item registry", ModId);
         //1.20 - 1.20.2
-        ItemRegistrySet1.createRegistry(ModId);
+        return ItemRegistrySet1.createRegistry(ModId);
 
-        RestApi.Log("Item registry created", ModId);
+        //RestApi.Log("Item registry created", ModId);
     }
 
     /**

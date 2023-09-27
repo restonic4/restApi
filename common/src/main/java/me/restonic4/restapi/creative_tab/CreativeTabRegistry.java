@@ -8,12 +8,12 @@ public class CreativeTabRegistry {
      * This creates a registry for your mod.
      * @param ModId The mod id.
      */
-    public static void CreateRegistry(String ModId) {
+    public static Object CreateRegistry(String ModId) {
         RestApi.Log("Creating creative tab registry", ModId);
         //1.20 - 1.20.2
-        CreativeTabRegistrySet1.createRegistry(ModId);
+        return CreativeTabRegistrySet1.createRegistry(ModId);
 
-        RestApi.Log("Creative tab registry created", ModId);
+        //RestApi.Log("Creative tab registry created", ModId);
     }
 
     /**
@@ -24,6 +24,7 @@ public class CreativeTabRegistry {
      * @return Returns the creative tab as Object type.
      */
     public static Object CreateCreativeTab(String ModId, String TabId, Object Item) {
+        //1.20 - 1.20.2
         return CreativeTabRegistrySet1.createCreativeTab(ModId, TabId, Item);
     }
 

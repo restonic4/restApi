@@ -7,56 +7,14 @@ import me.restonic4.restapi.item.AdvancedItemType;
 import me.restonic4.restapi.item.ItemRegistry;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
-@SuppressWarnings("unchecked")
 public class Testing {
     public static void init() {
         RestApi.Log("Testing class started");
 
-        RegistrySupplier<Item> item = (RegistrySupplier<Item>) ItemRegistry.CreateSimple(
-                RestApi.MOD_ID,
-                "test_item",
-                null
-        );
-
-        Object tab = CreativeTabRegistry.CreateCreativeTab(RestApi.MOD_ID, "test_tab", item.get());
-
-        RegistrySupplier<Item> food_simple = (RegistrySupplier<Item>) ItemRegistry.CreateFood(
-                RestApi.MOD_ID,
-                "test_simple_food",
-                tab,
-                1,
-                2
-        );
-
-        MobEffectInstance effect = (MobEffectInstance) ItemRegistry.CreateExistingEffect(
-                MobEffects.GLOWING,
-                20*60*2,
-                1
-        );
-
-        RegistrySupplier<Item> food_effect = (RegistrySupplier<Item>) ItemRegistry.CreateFoodWithEffect(
-                RestApi.MOD_ID,
-                "test_effect_food",
-                tab,
-                1,
-                2,
-                effect,
-                1
-        );
-
-        RegistrySupplier<Item> test_sword = (RegistrySupplier<Item>) ItemRegistry.CreateAdvanced(
-                RestApi.MOD_ID,
-                "test_sword",
-                tab,
-                AdvancedItemType.SWORD,
-                new String[]{"IRON", "2", " -2"}
-        );
-
-        ItemRegistry.Register(RestApi.MOD_ID);
-        CreativeTabRegistry.Register(RestApi.MOD_ID);
+        TestItems.register();
+        TestTabs.register();
 
         RestApi.Log("Testing things created");
     }

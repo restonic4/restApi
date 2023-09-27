@@ -22,10 +22,13 @@ public class ItemRegistrySet1 {//1.20 - 1.20.2
     static List<DeferredRegister<Item>> REGISTRIES = new ArrayList<>();
     static DeferredRegister<Item> DEFAULT;
 
-    public static void createRegistry(String ModId) {
+    public static Object createRegistry(String ModId) {
         DeferredRegister<Item> ITEMS = DeferredRegister.create(ModId, Registries.ITEM);
+        ITEMS.register();
 
         REGISTRIES.add(ITEMS);
+
+        return ITEMS;
     }
 
     //Gets the registry for the client's mod, if you didn't create it, it will create one for you located here, in this mod.
