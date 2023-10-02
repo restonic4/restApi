@@ -48,7 +48,49 @@ public class TestItems {
             new String[]{"IRON", "2", " -2"}
     );
 
+    public static final RegistrySupplier<Item> test_axe = (RegistrySupplier<Item>) ItemRegistry.CreateAdvanced(
+            RestApi.MOD_ID,
+            "test_axe",
+            TestTabs.tab,
+            AdvancedItemType.AXE,
+            new String[]{"IRON", "2", " -2"}
+    );
+
+    public static final RegistrySupplier<Item> test_pickaxe = (RegistrySupplier<Item>) ItemRegistry.CreateAdvanced(
+            RestApi.MOD_ID,
+            "test_pickaxe",
+            TestTabs.tab,
+            AdvancedItemType.PICKAXE,
+            new String[]{"IRON", "2", " -2"}
+    );
+
+    public static final RegistrySupplier<Item> test_hoe = (RegistrySupplier<Item>) ItemRegistry.CreateAdvanced(
+            RestApi.MOD_ID,
+            "test_hoe",
+            TestTabs.tab,
+            AdvancedItemType.HOE,
+            new String[]{"IRON", "2", " -2"}
+    );
+
+    public static final RegistrySupplier<Item> test_shovel = (RegistrySupplier<Item>) ItemRegistry.CreateAdvanced(
+            RestApi.MOD_ID,
+            "test_shovel",
+            TestTabs.tab,
+            AdvancedItemType.SHOVEL,
+            new String[]{"IRON", "2", " -2"}
+    );
+
+    public static final RegistrySupplier<Item> test_flint= (RegistrySupplier<Item>) ItemRegistry.CreateAdvanced(
+            RestApi.MOD_ID,
+            "test_flint",
+            TestTabs.tab,
+            AdvancedItemType.FLINT_AND_STEEL,
+            new String[]{"IRON", "2", " -2"}
+    );
+
     public static void register() {
+        ItemRegistry.Register(RestApi.MOD_ID);
+
         RestApi.Log("Items added");
     }
 }

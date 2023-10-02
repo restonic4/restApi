@@ -1,16 +1,11 @@
 package me.restonic4.restapi;
 
-import dev.architectury.registry.registries.DeferredRegister;
-import dev.architectury.registry.registries.DeferredSupplier;
-import dev.architectury.registry.registries.RegistrySupplier;
+import me.restonic4.restapi.block.BlockRegistry;
 import me.restonic4.restapi.creative_tab.CreativeTabRegistry;
 import me.restonic4.restapi.item.ItemRegistry;
+import me.restonic4.restapi.sound.SoundRegistry;
 import me.restonic4.restapi.template.Testing;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -36,6 +31,11 @@ public class RestApi
 		LOGGER.info("[restApi + " + mod + "] " + message);
 	}
 
+	public static boolean CheckObject(Object object) {
+		Log(object);
+		return (object != null);
+	}
+
 	/**
 	 * Executed when the mod/api starts
 	 */
@@ -43,7 +43,9 @@ public class RestApi
 		Log("Api started");
 
 		ItemRegistry.CreateRegistry(MOD_ID);
+		BlockRegistry.CreateRegistry(MOD_ID);
 		CreativeTabRegistry.CreateRegistry(MOD_ID);
+		SoundRegistry.CreateRegistry(MOD_ID);
 
 		Log("Default registries created");
 

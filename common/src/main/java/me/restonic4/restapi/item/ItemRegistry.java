@@ -1,6 +1,7 @@
 package me.restonic4.restapi.item;
 
 import dev.architectury.registry.registries.DeferredRegister;
+import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
 import me.restonic4.restapi.item.RegistryVersions.ItemRegistrySet1;
 import net.minecraft.core.registries.Registries;
@@ -8,6 +9,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import dev.architectury.registry.registries.DeferredSupplier;
+import net.minecraft.world.level.block.Block;
 
 @SuppressWarnings("unchecked")
 public class ItemRegistry {
@@ -21,6 +23,16 @@ public class ItemRegistry {
         return ItemRegistrySet1.createRegistry(ModId);
 
         //RestApi.Log("Item registry created", ModId);
+    }
+
+    /**
+     * Get the registry of item.
+     * @param ModId The mod id.
+     * @return Returns the registry as Object type.
+     */
+    public static Object GetRegistry(String ModId) {
+        //1.20 -> 1.20.2
+        return ItemRegistrySet1.getModRegistry(ModId);
     }
 
     /**
@@ -51,6 +63,13 @@ public class ItemRegistry {
 
         //1.20 - 1.20.2
         return ItemRegistrySet1.createAdvanced(ModId, ItemId, (DeferredSupplier<CreativeModeTab>)CreativeTab, ItemType, ItemData);
+    }
+
+    public static Object CreateBlockItem(String ModId, String ItemId, Object CreativeTab, Object Block) {
+        RestApi.Log("Creating block item", ModId);
+
+        //1.20 - 1.20.2
+        return ItemRegistrySet1.createBlockItem(ModId, ItemId, (DeferredSupplier<CreativeModeTab>)CreativeTab,  (RegistrySupplier<Block>) Block);
     }
 
     /**

@@ -11,6 +11,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -24,7 +25,6 @@ public class ItemRegistrySet1 {//1.20 - 1.20.2
 
     public static Object createRegistry(String ModId) {
         DeferredRegister<Item> ITEMS = DeferredRegister.create(ModId, Registries.ITEM);
-        ITEMS.register();
 
         REGISTRIES.add(ITEMS);
 
@@ -89,13 +89,38 @@ public class ItemRegistrySet1 {//1.20 - 1.20.2
     }
 
     static Item newItem(Item.Properties properties, AdvancedItemType itemType, String[] data) {
-        switch (itemType) {
-            case SWORD:
-                return new SwordItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
+        return switch (itemType) {
+            case SWORD ->
+                    new SwordItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
+            case AXE ->
+                    new AxeItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
+            case PICKAXE ->
+                    new PickaxeItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
+            case HOE ->
+                    new HoeItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
+            case SHOVEL ->
+                    new ShovelItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
+            case FLINT_AND_STEEL ->
+                    new FlintAndSteelItem(properties);
+            case COMPASS ->
+                    new CompassItem(properties);
+            case LEAD ->
+                    new LeadItem(properties);
+            case BRUSH ->
+                    new BrushItem(properties);
+            case SPYGLASS ->
+                    new SpyglassItem(properties);
+            case FISHING_ROD ->
+                    new FishingRodItem(properties);
+            case SHEARS ->
+                    new ShearsItem(properties);
+            default ->
+                    new Item(properties);
+        };
+    }
 
-            default:
-                return new Item(properties);
-        }
+    public static <T extends Block> RegistrySupplier<Item> createBlockItem(String ModId, String itemId, DeferredSupplier<CreativeModeTab> CreativeTab, RegistrySupplier<T> block) {
+        return getModRegistry(ModId).register(itemId, () -> new BlockItem(block.get(), new Item.Properties().arch$tab(CreativeTab)));
     }
 
     public static MobEffectInstance createEffect(MobEffect Effect, int Ticks, int Level) {

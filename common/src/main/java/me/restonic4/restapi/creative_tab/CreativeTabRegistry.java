@@ -10,22 +10,31 @@ public class CreativeTabRegistry {
      */
     public static Object CreateRegistry(String ModId) {
         RestApi.Log("Creating creative tab registry", ModId);
+
         //1.20 - 1.20.2
         return CreativeTabRegistrySet1.createRegistry(ModId);
+    }
 
-        //RestApi.Log("Creative tab registry created", ModId);
+    /**
+     * Get the registry of creative tabs.
+     * @param ModId The mod id.
+     * @return Returns the registry as Object type.
+     */
+    public static Object GetRegistry(String ModId) {
+        //1.20 -> 1.20.2
+        return CreativeTabRegistrySet1.getModRegistry(ModId);
     }
 
     /**
      * This creates a creative tab.
      * @param ModId The mod id.
      * @param TabId The tab id.
-     * @param Item The item for the icon.
+     * @param ItemId The item id for the icon.
      * @return Returns the creative tab as Object type.
      */
-    public static Object CreateCreativeTab(String ModId, String TabId, Object Item) {
+    public static Object CreateCreativeTab(String ModId, String TabId, String ItemId) {
         //1.20 - 1.20.2
-        return CreativeTabRegistrySet1.createCreativeTab(ModId, TabId, Item);
+        return CreativeTabRegistrySet1.createCreativeTab(ModId, TabId, ItemId);
     }
 
     /**

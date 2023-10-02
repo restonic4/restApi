@@ -1,0 +1,8 @@
+{
+  "sound_test": {
+    "subtitle": "sounds.restapi.sound_test",
+    "sounds": [
+      "restapi:sound_test"
+    ]
+  }
+}
