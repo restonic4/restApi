@@ -1,8 +1,8 @@
 package me.restonic4.restapi.item.RegistryVersions;
 
 import dev.architectury.platform.Platform;
+import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
-import dev.architectury.registry.registries.DeferredSupplier;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
 import me.restonic4.restapi.item.AdvancedItemType;
@@ -20,7 +20,7 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 @SuppressWarnings({"UnstableApiUsage","unchecked"})
-public class ItemRegistrySet1 {//1.20 - 1.20.2
+public class ItemRegistrySet2 {//1.20 - 1.20.2
     static List<DeferredRegister<Item>> REGISTRIES = new ArrayList<>();
     static DeferredRegister<Item> DEFAULT;
 
@@ -65,7 +65,7 @@ public class ItemRegistrySet1 {//1.20 - 1.20.2
         Item.Properties properties = new Item.Properties();
 
         if (CreativeTab != null) {
-            properties = properties.arch$tab((DeferredSupplier<CreativeModeTab>) CreativeTab);
+            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) CreativeTab);
         }
 
         Item.Properties finalProperties = properties;
@@ -79,7 +79,7 @@ public class ItemRegistrySet1 {//1.20 - 1.20.2
         Item.Properties properties = new Item.Properties();
 
         if (CreativeTab != null) {
-            properties = properties.arch$tab((DeferredSupplier<CreativeModeTab>) CreativeTab);
+            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) CreativeTab);
         }
 
         Item.Properties finalProperties = properties;
@@ -107,8 +107,6 @@ public class ItemRegistrySet1 {//1.20 - 1.20.2
                     new CompassItem(properties);
             case LEAD ->
                     new LeadItem(properties);
-            case BRUSH ->
-                    new BrushItem(properties);
             case SPYGLASS ->
                     new SpyglassItem(properties);
             case FISHING_ROD ->
@@ -120,25 +118,11 @@ public class ItemRegistrySet1 {//1.20 - 1.20.2
         };
     }
 
-    public static <T extends Item> RegistrySupplier<T> createCustom(String ModId, String ItemId, Object CreativeTab, T item) {
-        Item.Properties properties = new Item.Properties();
-
-        if (CreativeTab != null) {
-            properties = properties.arch$tab((DeferredSupplier<CreativeModeTab>) CreativeTab);
-        }
-
-        Item.Properties finalProperties = properties;
-        return getModRegistry(ModId).register(
-                ItemId,
-                () -> item
-        );
-    }
-
     public static <T extends Block> RegistrySupplier<Item> createBlockItem(String ModId, Object toReturn, String blockId, Object CreativeTab) {
         Item.Properties properties = new Item.Properties();
 
         if (CreativeTab != null) {
-            properties = properties.arch$tab((DeferredSupplier<CreativeModeTab>) CreativeTab);
+            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) CreativeTab);
         }
 
         Item.Properties finalProperties = properties;
@@ -174,7 +158,7 @@ public class ItemRegistrySet1 {//1.20 - 1.20.2
         Item.Properties properties = new Item.Properties().food(FoodProperties);
 
         if (CreativeTab != null) {
-            properties = properties.arch$tab((DeferredSupplier<CreativeModeTab>) CreativeTab);
+            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) CreativeTab);
         }
 
         Item.Properties finalProperties = properties;

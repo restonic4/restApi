@@ -7,7 +7,7 @@ import net.minecraft.world.item.CreativeModeTab;
 
 @SuppressWarnings("unchecked")
 public class TestTabs {
-    public static final RegistrySupplier<CreativeModeTab> tab = (RegistrySupplier<CreativeModeTab>) CreativeTabRegistry.CreateCreativeTab(
+    public static final Object tab = CreativeTabRegistry.CreateCreativeTab(
             RestApi.MOD_ID,
             "test_tab",
             "test_item");

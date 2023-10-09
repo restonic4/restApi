@@ -17,7 +17,7 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 @SuppressWarnings({"UnstableApiUsage", "unchecked"})
-public class SoundRegistrySet1 {
+public class SoundRegistrySet2 {
     static List<DeferredRegister<SoundEvent>> REGISTRIES = new ArrayList<>();
     static DeferredRegister<SoundEvent> DEFAULT;
 
@@ -67,7 +67,7 @@ public class SoundRegistrySet1 {
         RegistrySupplier<SoundEvent> soundFixed = (RegistrySupplier<SoundEvent>) sound;
         SoundSource soundSourceFixed = (SoundSource) source;
 
-        player.level().playSound(player, player.getX(), player.getY(), player.getZ(), soundFixed.get(), soundSourceFixed, volume, pitch);
+        player.level.playSound(player, player.getX(), player.getY(), player.getZ(), soundFixed.get(), soundSourceFixed, volume, pitch);
     }
 
     public static SoundType createCustomSoundType(float volume, float pitch, Object breakSound, Object stepSound, Object placeSound, Object hitSound, Object fallSound) {

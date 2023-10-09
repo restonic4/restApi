@@ -1,20 +1,15 @@
 package me.restonic4.restapi.block.RegistryVersions;
 
 import dev.architectury.platform.Platform;
+import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
-import dev.architectury.registry.registries.DeferredSupplier;
-import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
-import me.restonic4.restapi.block.BlockRegistry;
 import me.restonic4.restapi.item.ItemRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
@@ -23,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-public class BlockRegistrySet1 {
+public class BlockRegistrySet2 {
     static List<DeferredRegister<Block>> REGISTRIES = new ArrayList<>();
     static DeferredRegister<Block> DEFAULT;
 
@@ -68,23 +63,23 @@ public class BlockRegistrySet1 {
         BlockBehaviour.Properties properties = BlockBehaviour.Properties.copy(base).strength(hardness, blastResistance).sound(soundType).strength(soundsStrength);
 
         if (requireToolForDrop) { properties = properties.requiresCorrectToolForDrops(); }
-        if (isIgnitedByLava) { properties = properties.ignitedByLava(); }
+        //isIgnitedByLava does not exists
 
         return properties;
     }
 
-    public static RegistrySupplier<Block> createBlock(String ModId, String blockId, BlockBehaviour.Properties properties, Object creativeTab) {
+    public static RegistrySupplier<Block> createBlock(String ModId, String blockId, BlockBehaviour.Properties properties, Object CreativeTab) {
         return registerBlock(
                 ModId,
                 blockId,
                 () -> new Block(properties),
-                creativeTab
+                (CreativeTabRegistry.TabSupplier) CreativeTab
         );
     }
 
-    public static <T extends Block> RegistrySupplier<T> registerBlock(String ModId, String blockId, Supplier<T> block, Object creativeTab) {
+    public static <T extends Block> RegistrySupplier<T> registerBlock(String ModId, String blockId, Supplier<T> block, Object CreativeTab) {
         RegistrySupplier<T> toReturn = registerInDesiredPlatform(ModId, new ResourceLocation(ModId, blockId), block);
-        ItemRegistry.CreateBlockItem(ModId, toReturn, blockId, creativeTab);
+        ItemRegistry.CreateBlockItem(ModId, toReturn, blockId, CreativeTab);
 
         return toReturn;
     }

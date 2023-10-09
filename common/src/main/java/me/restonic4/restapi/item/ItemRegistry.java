@@ -1,14 +1,11 @@
 package me.restonic4.restapi.item;
 
-import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
 import me.restonic4.restapi.item.RegistryVersions.ItemRegistrySet1;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import dev.architectury.registry.registries.DeferredSupplier;
 import net.minecraft.world.level.block.Block;
 
 @SuppressWarnings("unchecked")
@@ -19,10 +16,8 @@ public class ItemRegistry {
      */
     public static Object CreateRegistry(String ModId) {
         RestApi.Log("Creating item registry", ModId);
-        //1.20 - 1.20.2
-        return ItemRegistrySet1.createRegistry(ModId);
 
-        //RestApi.Log("Item registry created", ModId);
+        return ItemRegistrySet1.createRegistry(ModId);
     }
 
     /**
@@ -31,7 +26,6 @@ public class ItemRegistry {
      * @return Returns the registry as Object type.
      */
     public static Object GetRegistry(String ModId) {
-        //1.20 -> 1.20.2
         return ItemRegistrySet1.getModRegistry(ModId);
     }
 
@@ -45,8 +39,7 @@ public class ItemRegistry {
     public static Object CreateSimple(String ModId, String ItemId, Object CreativeTab) {
         RestApi.Log("Creating simple item", ModId);
 
-        //1.20 - 1.20.2
-        return ItemRegistrySet1.createSimple(ModId, ItemId, (DeferredSupplier<CreativeModeTab>)CreativeTab);
+        return ItemRegistrySet1.createSimple(ModId, ItemId, CreativeTab);
     }
 
     /**
@@ -61,15 +54,26 @@ public class ItemRegistry {
     public static Object CreateAdvanced(String ModId, String ItemId, Object CreativeTab, AdvancedItemType ItemType, String[] ItemData) {
         RestApi.Log("Creating advanced item", ModId);
 
-        //1.20 - 1.20.2
-        return ItemRegistrySet1.createAdvanced(ModId, ItemId, (DeferredSupplier<CreativeModeTab>)CreativeTab, ItemType, ItemData);
+        return ItemRegistrySet1.createAdvanced(ModId, ItemId, CreativeTab, ItemType, ItemData);
     }
 
-    public static Object CreateBlockItem(String ModId, String ItemId, Object CreativeTab, Object Block) {
+    /**
+     * This creates a custom item based on a custom class.
+     * @param ModId The mod id.
+     * @param ItemId The item id.
+     * @param CreativeTab The creative tab/null.
+     * @param ItemClass Your custom class that extends the Item class.
+     * @return Returns your custom item.
+     * @param <T> Your class.
+     */
+    public static <T extends Item> Object CreateCustom(String ModId, String ItemId, Object CreativeTab, T ItemClass) {
+        return ItemRegistrySet1.createCustom(ModId, ItemId, CreativeTab, ItemClass);
+    }
+
+    public static Object CreateBlockItem(String ModId, Object Block, String BlockId, Object CreativeTab) {
         RestApi.Log("Creating block item", ModId);
 
-        //1.20 - 1.20.2
-        return ItemRegistrySet1.createBlockItem(ModId, ItemId, (DeferredSupplier<CreativeModeTab>)CreativeTab,  (RegistrySupplier<Block>) Block);
+        return ItemRegistrySet1.createBlockItem(ModId, Block, BlockId, CreativeTab);
     }
 
     /**
@@ -84,8 +88,7 @@ public class ItemRegistry {
     public static Object CreateFood(String ModId, String ItemId, Object CreativeTab, int Nutrition, float SaturationMod) {
         RestApi.Log("Creating food item", ModId);
 
-        //1.20 - 1.20.2
-        return ItemRegistrySet1.createFood(ModId, ItemId, (DeferredSupplier<CreativeModeTab>)CreativeTab, ItemRegistrySet1.createFoodProperties(2, 1, null, 0));
+        return ItemRegistrySet1.createFood(ModId, ItemId, CreativeTab, ItemRegistrySet1.createFoodProperties(2, 1, null, 0));
     }
 
     /**
@@ -102,8 +105,7 @@ public class ItemRegistry {
     public static Object CreateFoodWithEffect(String ModId, String ItemId, Object CreativeTab, int Nutrition, float SaturationMod, Object Effect, float Chance) {
         RestApi.Log("Creating food item with effect", ModId);
 
-        //1.20 - 1.20.2
-        return ItemRegistrySet1.createFood(ModId, ItemId, (DeferredSupplier<CreativeModeTab>)CreativeTab, ItemRegistrySet1.createFoodProperties(2, 1, Effect, Chance));
+        return ItemRegistrySet1.createFood(ModId, ItemId, CreativeTab, ItemRegistrySet1.createFoodProperties(2, 1, Effect, Chance));
     }
 
     /**
@@ -124,7 +126,6 @@ public class ItemRegistry {
     public static void Register(String ModId) {
         RestApi.Log("Trying to register items", ModId);
 
-        //1.20 - 1.20.2
         ItemRegistrySet1.register(ModId);
 
         RestApi.Log("Items registered", ModId);

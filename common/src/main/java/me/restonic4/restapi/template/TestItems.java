@@ -10,13 +10,13 @@ import net.minecraft.world.item.Item;
 
 @SuppressWarnings("unchecked")
 public class TestItems {
-    public static final RegistrySupplier<Item> item = (RegistrySupplier<Item>) ItemRegistry.CreateSimple(
+    public static final Object item = ItemRegistry.CreateSimple(
             RestApi.MOD_ID,
             "test_item",
             TestTabs.tab
     );
 
-    public static final RegistrySupplier<Item> food_simple = (RegistrySupplier<Item>) ItemRegistry.CreateFood(
+    public static final Object food_simple = ItemRegistry.CreateFood(
             RestApi.MOD_ID,
             "test_simple_food",
             TestTabs.tab,
@@ -30,7 +30,7 @@ public class TestItems {
             1
     );
 
-    public static final RegistrySupplier<Item> food_effect = (RegistrySupplier<Item>) ItemRegistry.CreateFoodWithEffect(
+    public static final Object food_effect = ItemRegistry.CreateFoodWithEffect(
             RestApi.MOD_ID,
             "test_effect_food",
             TestTabs.tab,
@@ -40,7 +40,7 @@ public class TestItems {
             1
     );
 
-    public static final RegistrySupplier<Item> test_sword = (RegistrySupplier<Item>) ItemRegistry.CreateAdvanced(
+    public static final Object test_sword = ItemRegistry.CreateAdvanced(
             RestApi.MOD_ID,
             "test_sword",
             TestTabs.tab,
@@ -48,7 +48,7 @@ public class TestItems {
             new String[]{"IRON", "2", " -2"}
     );
 
-    public static final RegistrySupplier<Item> test_axe = (RegistrySupplier<Item>) ItemRegistry.CreateAdvanced(
+    public static final Object test_axe = ItemRegistry.CreateAdvanced(
             RestApi.MOD_ID,
             "test_axe",
             TestTabs.tab,
@@ -56,7 +56,7 @@ public class TestItems {
             new String[]{"IRON", "2", " -2"}
     );
 
-    public static final RegistrySupplier<Item> test_pickaxe = (RegistrySupplier<Item>) ItemRegistry.CreateAdvanced(
+    public static final Object test_pickaxe = ItemRegistry.CreateAdvanced(
             RestApi.MOD_ID,
             "test_pickaxe",
             TestTabs.tab,
@@ -64,7 +64,7 @@ public class TestItems {
             new String[]{"IRON", "2", " -2"}
     );
 
-    public static final RegistrySupplier<Item> test_hoe = (RegistrySupplier<Item>) ItemRegistry.CreateAdvanced(
+    public static final Object test_hoe = ItemRegistry.CreateAdvanced(
             RestApi.MOD_ID,
             "test_hoe",
             TestTabs.tab,
@@ -72,7 +72,7 @@ public class TestItems {
             new String[]{"IRON", "2", " -2"}
     );
 
-    public static final RegistrySupplier<Item> test_shovel = (RegistrySupplier<Item>) ItemRegistry.CreateAdvanced(
+    public static final Object test_shovel = ItemRegistry.CreateAdvanced(
             RestApi.MOD_ID,
             "test_shovel",
             TestTabs.tab,
@@ -80,7 +80,7 @@ public class TestItems {
             new String[]{"IRON", "2", " -2"}
     );
 
-    public static final RegistrySupplier<Item> test_flint= (RegistrySupplier<Item>) ItemRegistry.CreateAdvanced(
+    public static final Object test_flint= ItemRegistry.CreateAdvanced(
             RestApi.MOD_ID,
             "test_flint",
             TestTabs.tab,

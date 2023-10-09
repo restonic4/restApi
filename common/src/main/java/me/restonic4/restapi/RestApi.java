@@ -49,6 +49,6 @@ public class RestApi
 
 		Log("Default registries created");
 
-		Testing.init();
+		//Testing.init();
 	}
 }
