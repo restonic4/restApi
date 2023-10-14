@@ -1,12 +1,11 @@
 package me.restonic4.restapi.item;
 
-import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
-import me.restonic4.restapi.item.RegistryVersions.ItemRegistrySet1;
+import me.restonic4.restapi.item.RegistryVersions.ItemRegistrySet3;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+
+import java.util.function.Supplier;
 
 @SuppressWarnings("unchecked")
 public class ItemRegistry {
@@ -17,7 +16,7 @@ public class ItemRegistry {
     public static Object CreateRegistry(String ModId) {
         RestApi.Log("Creating item registry", ModId);
 
-        return ItemRegistrySet1.createRegistry(ModId);
+        return ItemRegistrySet3.createRegistry(ModId);
     }
 
     /**
@@ -26,7 +25,7 @@ public class ItemRegistry {
      * @return Returns the registry as Object type.
      */
     public static Object GetRegistry(String ModId) {
-        return ItemRegistrySet1.getModRegistry(ModId);
+        return ItemRegistrySet3.getModRegistry(ModId);
     }
 
     /**
@@ -39,41 +38,25 @@ public class ItemRegistry {
     public static Object CreateSimple(String ModId, String ItemId, Object CreativeTab) {
         RestApi.Log("Creating simple item", ModId);
 
-        return ItemRegistrySet1.createSimple(ModId, ItemId, CreativeTab);
-    }
-
-    /**
-     * This creates an advanced item, like a sword, axe, shield..
-     * @param ModId The mod id.
-     * @param ItemId The item id.
-     * @param CreativeTab Creative tab/null
-     * @param ItemType The item type. Use AdvancedItemType.Type.
-     * @param ItemData A string array with the item's data.
-     * @return Returns the item as Object type.
-     */
-    public static Object CreateAdvanced(String ModId, String ItemId, Object CreativeTab, AdvancedItemType ItemType, String[] ItemData) {
-        RestApi.Log("Creating advanced item", ModId);
-
-        return ItemRegistrySet1.createAdvanced(ModId, ItemId, CreativeTab, ItemType, ItemData);
+        return ItemRegistrySet3.createSimple(ModId, ItemId, CreativeTab);
     }
 
     /**
      * This creates a custom item based on a custom class.
      * @param ModId The mod id.
      * @param ItemId The item id.
-     * @param CreativeTab The creative tab/null.
-     * @param ItemClass Your custom class that extends the Item class.
+     * @param ItemClass Your custom class that extends the Item class in a supplier.
      * @return Returns your custom item.
      * @param <T> Your class.
      */
-    public static <T extends Item> Object CreateCustom(String ModId, String ItemId, Object CreativeTab, T ItemClass) {
-        return ItemRegistrySet1.createCustom(ModId, ItemId, CreativeTab, ItemClass);
+    public static <T extends Item> Object CreateCustom(String ModId, String ItemId, Supplier<T> ItemClass) {
+        return ItemRegistrySet3.createCustom(ModId, ItemId, ItemClass);
     }
 
     public static Object CreateBlockItem(String ModId, Object Block, String BlockId, Object CreativeTab) {
         RestApi.Log("Creating block item", ModId);
 
-        return ItemRegistrySet1.createBlockItem(ModId, Block, BlockId, CreativeTab);
+        return ItemRegistrySet3.createBlockItem(ModId, Block, BlockId, CreativeTab);
     }
 
     /**
@@ -88,7 +71,7 @@ public class ItemRegistry {
     public static Object CreateFood(String ModId, String ItemId, Object CreativeTab, int Nutrition, float SaturationMod) {
         RestApi.Log("Creating food item", ModId);
 
-        return ItemRegistrySet1.createFood(ModId, ItemId, CreativeTab, ItemRegistrySet1.createFoodProperties(2, 1, null, 0));
+        return ItemRegistrySet3.createFood(ModId, ItemId, CreativeTab, ItemRegistrySet3.createFoodProperties(2, 1, null, 0));
     }
 
     /**
@@ -105,7 +88,7 @@ public class ItemRegistry {
     public static Object CreateFoodWithEffect(String ModId, String ItemId, Object CreativeTab, int Nutrition, float SaturationMod, Object Effect, float Chance) {
         RestApi.Log("Creating food item with effect", ModId);
 
-        return ItemRegistrySet1.createFood(ModId, ItemId, CreativeTab, ItemRegistrySet1.createFoodProperties(2, 1, Effect, Chance));
+        return ItemRegistrySet3.createFood(ModId, ItemId, CreativeTab, ItemRegistrySet3.createFoodProperties(2, 1, Effect, Chance));
     }
 
     /**
@@ -116,7 +99,7 @@ public class ItemRegistry {
      * @return Returns the effect as Object type.
      */
     public static Object CreateExistingEffect(Object EffectType, int Duration, int Level) {
-        return ItemRegistrySet1.createEffect((MobEffect) EffectType, Duration, Level);
+        return ItemRegistrySet3.createEffect((MobEffect) EffectType, Duration, Level);
     }
 
     /**
@@ -126,7 +109,7 @@ public class ItemRegistry {
     public static void Register(String ModId) {
         RestApi.Log("Trying to register items", ModId);
 
-        ItemRegistrySet1.register(ModId);
+        ItemRegistrySet3.register(ModId);
 
         RestApi.Log("Items registered", ModId);
     }

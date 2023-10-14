@@ -1,10 +1,7 @@
 package me.restonic4.restapi.block;
 
 import me.restonic4.restapi.RestApi;
-import me.restonic4.restapi.block.RegistryVersions.BlockRegistrySet1;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
+import me.restonic4.restapi.block.RegistryVersions.BlockRegistrySet3;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 @SuppressWarnings("unchecked")
@@ -15,7 +12,7 @@ public class BlockRegistry {
      */
     public static Object CreateRegistry(String ModId) {
         RestApi.Log("Creating block registry", ModId);
-        return BlockRegistrySet1.createRegistry(ModId);
+        return BlockRegistrySet3.createRegistry(ModId);
     }
 
     /**
@@ -24,7 +21,7 @@ public class BlockRegistry {
      * @return Returns the registry as Object type.
      */
     public static Object GetRegistry(String ModId) {
-        return BlockRegistrySet1.getModRegistry(ModId);
+        return BlockRegistrySet3.getModRegistry(ModId);
     }
 
     /**
@@ -36,21 +33,11 @@ public class BlockRegistry {
      * @return Returns the block.
      */
     public static Object CreateBlock(String ModId, String BlockId, Object Properties, Object CreativeTab) {
-        return BlockRegistrySet1.createBlock(ModId, BlockId, (BlockBehaviour.Properties) Properties, CreativeTab);
+        return BlockRegistrySet3.createBlock(ModId, BlockId, (BlockBehaviour.Properties) Properties, CreativeTab);
     }
 
-    /**
-     * This creates properties for blocks.
-     * @param BlockBase This is the base of your block.
-     * @param Hardness How long does it take to break with your hand/tool.
-     * @param BlastResistance How much it resists to explosions.
-     * @param SoundBase The sounds it makes. This makes a copy.
-     * @param RequireToolForDrop If the block requires a tool to drop items from the loot-table.
-     * @param IsIgnitedByLava If the catch on fire if it is near lava.
-     * @return Returns the properties.
-     */
-    public static Object CreateBasicProperties(Object BlockBase, float Hardness, float BlastResistance, Object SoundBase, float SoundsStrength, boolean RequireToolForDrop, boolean IsIgnitedByLava) {
-        return BlockRegistrySet1.createBlockProperties((Block) BlockBase, Hardness, BlastResistance, (SoundType) SoundBase, SoundsStrength, RequireToolForDrop, IsIgnitedByLava);
+    public static Object CreateExperienceBlock(String ModId, String BlockId, Object Properties, Object CreativeTab, int MinXP, int MaxXP) {
+        return BlockRegistrySet3.createExperienceBlock(ModId, BlockId, (BlockBehaviour.Properties) Properties, CreativeTab, MinXP, MaxXP);
     }
 
     /**
@@ -60,7 +47,7 @@ public class BlockRegistry {
     public static void Register(String ModId) {
         RestApi.Log("Trying to register blocks", ModId);
 
-        BlockRegistrySet1.register(ModId);
+        BlockRegistrySet3.register(ModId);
 
         RestApi.Log("Blocks registered", ModId);
     }

@@ -5,7 +5,6 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.DeferredSupplier;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
-import me.restonic4.restapi.item.AdvancedItemType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
@@ -71,66 +70,14 @@ public class ItemRegistrySet1 {//1.20 - 1.20.2
         Item.Properties finalProperties = properties;
         return getModRegistry(ModId).register(
                 ItemId,
-                () -> newItem(finalProperties, AdvancedItemType.SIMPLE, null)
+                () -> new Item(finalProperties)
         );
     }
 
-    public static RegistrySupplier<Item> createAdvanced(String ModId, String ItemId, Object CreativeTab, AdvancedItemType ItemType, String[] Data) {
-        Item.Properties properties = new Item.Properties();
-
-        if (CreativeTab != null) {
-            properties = properties.arch$tab((DeferredSupplier<CreativeModeTab>) CreativeTab);
-        }
-
-        Item.Properties finalProperties = properties;
+    public static <T extends Item> RegistrySupplier<T> createCustom(String ModId, String ItemId, Supplier<T> itemSupplier) {
         return getModRegistry(ModId).register(
                 ItemId,
-                () -> newItem(finalProperties, ItemType, Data)
-        );
-    }
-
-    static Item newItem(Item.Properties properties, AdvancedItemType itemType, String[] data) {
-        return switch (itemType) {
-            case SWORD ->
-                    new SwordItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
-            case AXE ->
-                    new AxeItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
-            case PICKAXE ->
-                    new PickaxeItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
-            case HOE ->
-                    new HoeItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
-            case SHOVEL ->
-                    new ShovelItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
-            case FLINT_AND_STEEL ->
-                    new FlintAndSteelItem(properties);
-            case COMPASS ->
-                    new CompassItem(properties);
-            case LEAD ->
-                    new LeadItem(properties);
-            case BRUSH ->
-                    new BrushItem(properties);
-            case SPYGLASS ->
-                    new SpyglassItem(properties);
-            case FISHING_ROD ->
-                    new FishingRodItem(properties);
-            case SHEARS ->
-                    new ShearsItem(properties);
-            default ->
-                    new Item(properties);
-        };
-    }
-
-    public static <T extends Item> RegistrySupplier<T> createCustom(String ModId, String ItemId, Object CreativeTab, T item) {
-        Item.Properties properties = new Item.Properties();
-
-        if (CreativeTab != null) {
-            properties = properties.arch$tab((DeferredSupplier<CreativeModeTab>) CreativeTab);
-        }
-
-        Item.Properties finalProperties = properties;
-        return getModRegistry(ModId).register(
-                ItemId,
-                () -> item
+                itemSupplier
         );
     }
 
@@ -180,7 +127,7 @@ public class ItemRegistrySet1 {//1.20 - 1.20.2
         Item.Properties finalProperties = properties;
         return getModRegistry(ModId).register(
                 ItemId,
-                () -> newItem(finalProperties, AdvancedItemType.SIMPLE, null)
+                () -> new Item(finalProperties)
         );
     }
 
@@ -188,3 +135,4 @@ public class ItemRegistrySet1 {//1.20 - 1.20.2
         getModRegistry(ModId).register();
     }
 }
+

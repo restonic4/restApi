@@ -1,41 +1,69 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "1.1-SNAPSHOT" apply false
+    id 'java'
 }
 
 ext {
     mcVersion = rootProject.minecraft_version
+    apiVersion = rootProject.mod_version
 }
 
 architectury {
     minecraft = rootProject.minecraft_version
 }
 
+sourceSets {
+    main {
+        java.srcDirs = ['src/main/java']
+    }
+}
+
+static def addExclusionsForVersion(int version, Set<String> excludePatterns) {
+    for (int i = 1; i <= 3; i++) {
+        if (i != version) {
+            for (String category : Arrays.asList(
+                    "BlockRegistry", "CreativeTabRegistry", "SoundRegistry",
+                    "ItemRegistry", "CustomBlockProperties", "CustomItemProperties",
+                    "CustomToolTier")) {
+                excludePatterns.add(String.format("**/%sSet%d.java", category, i));
+            }
+        }
+    }
+}
+
+def versionSet3 = ["1.20.2"]
+def versionSet1 = ["1.20", "1.20.1"]
+def versionSet2 = ["1.19.3", "1.19.4"]
+
+List<String[]> versionSets = new ArrayList<>()
+
+versionSets.add(versionSet3 as String[])
+versionSets.add(versionSet1 as String[])
+versionSets.add(versionSet2 as String[])
+
 subprojects {
     apply plugin: "dev.architectury.loom"
+    apply plugin: "java"
 
     sourceSets {
         main {
+            java.srcDirs = ['src/main/java']
+
             java {
-                //srcDirs 'src/main/java'
-
-                def versionSet1 = ["1.20", "1.20.1", "1.20.2"]
-                def versionSet2 = ["1.19.3", "1.19.4"]
-
                 include '**/*.java'
 
-                if (versionSet1.contains(mcVersion)) {
-                    exclude '**/BlockRegistrySet2.java'
-                    exclude '**/CreativeTabRegistrySet2.java'
-                    exclude '**/SoundRegistrySet2.java'
-                    exclude '**/ItemRegistrySet2.java'
+                Set<String> excludePatterns = new HashSet<>()
+
+                for (int i = 0; i < versionSets.size(); i++) {
+                    String[] versionSet = versionSets.get(i)
+                    if (Arrays.asList(versionSet).contains(mcVersion)) {
+                        addExclusionsForVersion(i + 1, excludePatterns)
+                        break
+                    }
                 }
-                else if (versionSet2.contains(mcVersion)) {
-                    exclude '**/BlockRegistrySet1.java'
-                    exclude '**/CreativeTabRegistrySet1.java'
-                    exclude '**/SoundRegistrySet1.java'
-                    exclude '**/ItemRegistrySet1.java'
-                }
+
+                excludePatterns.forEach(exclusion -> exclude(exclusion))
             }
         }
     }
@@ -46,10 +74,7 @@ subprojects {
 
     dependencies {
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
-        // The following line declares the mojmap mappings, you may use other mappings as well
         mappings loom.officialMojangMappings()
-        // The following line declares the yarn mappings you may select this one as well.
-        // mappings "net.fabricmc:yarn:@YARN_MAPPINGS@:v2"
     }
 }
 
@@ -62,13 +87,7 @@ allprojects {
     version = rootProject.mod_version
     group = rootProject.maven_group
 
-    repositories {
-        // Add repositories to retrieve artifacts from in here.
-        // You should only use this when depending on other mods because
-        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-        // for more information about repositories.
-    }
+    repositories { }
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"

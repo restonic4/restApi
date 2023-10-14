@@ -1,8 +1,8 @@
 package me.restonic4.restapi.item.RegistryVersions;
 
 import dev.architectury.platform.Platform;
-import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
+import dev.architectury.registry.registries.DeferredSupplier;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
 import net.minecraft.core.registries.Registries;
@@ -10,7 +10,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 @SuppressWarnings({"UnstableApiUsage","unchecked"})
-public class ItemRegistrySet2 {//1.20 - 1.20.2
+public class ItemRegistrySet3 {//1.20 - 1.20.2
     static List<DeferredRegister<Item>> REGISTRIES = new ArrayList<>();
     static DeferredRegister<Item> DEFAULT;
 
@@ -64,64 +66,28 @@ public class ItemRegistrySet2 {//1.20 - 1.20.2
         Item.Properties properties = new Item.Properties();
 
         if (CreativeTab != null) {
-            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) CreativeTab);
+            properties = properties.arch$tab((DeferredSupplier<CreativeModeTab>) CreativeTab);
         }
 
         Item.Properties finalProperties = properties;
         return getModRegistry(ModId).register(
                 ItemId,
-                () -> newItem(finalProperties, AdvancedItemType.SIMPLE, null)
+                () -> new Item(finalProperties)
         );
     }
 
-    public static RegistrySupplier<Item> createAdvanced(String ModId, String ItemId, Object CreativeTab, AdvancedItemType ItemType, String[] Data) {
-        Item.Properties properties = new Item.Properties();
-
-        if (CreativeTab != null) {
-            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) CreativeTab);
-        }
-
-        Item.Properties finalProperties = properties;
+    public static <T extends Item> RegistrySupplier<T> createCustom(String ModId, String ItemId, Supplier<T> itemSupplier) {
         return getModRegistry(ModId).register(
                 ItemId,
-                () -> newItem(finalProperties, ItemType, Data)
+                itemSupplier
         );
-    }
-
-    static Item newItem(Item.Properties properties, AdvancedItemType itemType, String[] data) {
-        return switch (itemType) {
-            case SWORD ->
-                    new SwordItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
-            case AXE ->
-                    new AxeItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
-            case PICKAXE ->
-                    new PickaxeItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
-            case HOE ->
-                    new HoeItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
-            case SHOVEL ->
-                    new ShovelItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
-            case FLINT_AND_STEEL ->
-                    new FlintAndSteelItem(properties);
-            case COMPASS ->
-                    new CompassItem(properties);
-            case LEAD ->
-                    new LeadItem(properties);
-            case SPYGLASS ->
-                    new SpyglassItem(properties);
-            case FISHING_ROD ->
-                    new FishingRodItem(properties);
-            case SHEARS ->
-                    new ShearsItem(properties);
-            default ->
-                    new Item(properties);
-        };
     }
 
     public static <T extends Block> RegistrySupplier<Item> createBlockItem(String ModId, Object toReturn, String blockId, Object CreativeTab) {
         Item.Properties properties = new Item.Properties();
 
         if (CreativeTab != null) {
-            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) CreativeTab);
+            properties = properties.arch$tab((DeferredSupplier<CreativeModeTab>) CreativeTab);
         }
 
         Item.Properties finalProperties = properties;
@@ -157,13 +123,13 @@ public class ItemRegistrySet2 {//1.20 - 1.20.2
         Item.Properties properties = new Item.Properties().food(FoodProperties);
 
         if (CreativeTab != null) {
-            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) CreativeTab);
+            properties = properties.arch$tab((DeferredSupplier<CreativeModeTab>) CreativeTab);
         }
 
         Item.Properties finalProperties = properties;
         return getModRegistry(ModId).register(
                 ItemId,
-                () -> newItem(finalProperties, AdvancedItemType.SIMPLE, null)
+                () -> new Item(finalProperties)
         );
     }
 
@@ -171,3 +137,4 @@ public class ItemRegistrySet2 {//1.20 - 1.20.2
         getModRegistry(ModId).register();
     }
 }
+

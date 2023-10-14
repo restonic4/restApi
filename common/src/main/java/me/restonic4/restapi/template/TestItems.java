@@ -1,12 +1,13 @@
 package me.restonic4.restapi.template;
 
-import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
-import me.restonic4.restapi.item.AdvancedItemType;
+import me.restonic4.restapi.util.CustomItemProperties;
+import me.restonic4.restapi.util.CustomToolTier;
 import me.restonic4.restapi.item.ItemRegistry;
+import me.restonic4.restapi.template.custom.CustomPickaxe;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.*;
 
 @SuppressWarnings("unchecked")
 public class TestItems {
@@ -40,52 +41,29 @@ public class TestItems {
             1
     );
 
-    public static final Object test_sword = ItemRegistry.CreateAdvanced(
+    public static final Object custom_item = ItemRegistry.CreateCustom(
             RestApi.MOD_ID,
-            "test_sword",
-            TestTabs.tab,
-            AdvancedItemType.SWORD,
-            new String[]{"IRON", "2", " -2"}
+            "custom_item",
+            () -> new CustomPickaxe(
+                    new CustomToolTier(750, 7, 3, 5, 15, item),
+                    1,
+                    1,
+                    new CustomItemProperties()
+                            .tab(TestTabs.tab)
+                            .food(1,1, null, 0)
+                            .durability(50)
+                            .fireResistant()
+                            .rarity(Rarity.EPIC)
+                            .build()
+            )
     );
 
-    public static final Object test_axe = ItemRegistry.CreateAdvanced(
+    public static final Object way = ItemRegistry.CreateCustom(
             RestApi.MOD_ID,
-            "test_axe",
-            TestTabs.tab,
-            AdvancedItemType.AXE,
-            new String[]{"IRON", "2", " -2"}
-    );
-
-    public static final Object test_pickaxe = ItemRegistry.CreateAdvanced(
-            RestApi.MOD_ID,
-            "test_pickaxe",
-            TestTabs.tab,
-            AdvancedItemType.PICKAXE,
-            new String[]{"IRON", "2", " -2"}
-    );
-
-    public static final Object test_hoe = ItemRegistry.CreateAdvanced(
-            RestApi.MOD_ID,
-            "test_hoe",
-            TestTabs.tab,
-            AdvancedItemType.HOE,
-            new String[]{"IRON", "2", " -2"}
-    );
-
-    public static final Object test_shovel = ItemRegistry.CreateAdvanced(
-            RestApi.MOD_ID,
-            "test_shovel",
-            TestTabs.tab,
-            AdvancedItemType.SHOVEL,
-            new String[]{"IRON", "2", " -2"}
-    );
-
-    public static final Object test_flint= ItemRegistry.CreateAdvanced(
-            RestApi.MOD_ID,
-            "test_flint",
-            TestTabs.tab,
-            AdvancedItemType.FLINT_AND_STEEL,
-            new String[]{"IRON", "2", " -2"}
+            "way",
+            () -> new SnowballItem(
+                    new CustomItemProperties().tab(TestTabs.tab).stacksTo(3).build()
+            )
     );
 
     public static void register() {

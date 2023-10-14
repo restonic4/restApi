@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-public class BlockRegistrySet1 {
+public class BlockRegistrySet3 {
     static List<DeferredRegister<Block>> REGISTRIES = new ArrayList<>();
     static DeferredRegister<Block> DEFAULT;
 

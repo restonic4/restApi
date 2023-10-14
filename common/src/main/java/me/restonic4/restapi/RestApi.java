@@ -14,6 +14,9 @@ public class RestApi
 	public static final String MOD_ID = "restapi";
 	public static final Logger LOGGER = LogManager.getLogger("restApi");
 
+	//THIS VARIABLE IS MODIFIED BY BUILD.GRADLE
+	public static boolean isATestBuild = false;
+
 	/**
 	 * This logs a message in the console.
 	 * @param message Message shown in the console.
@@ -40,7 +43,7 @@ public class RestApi
 	 * Executed when the mod/api starts
 	 */
 	public static void init() {
-		Log("Api started");
+		Log("Api starting.");
 
 		ItemRegistry.CreateRegistry(MOD_ID);
 		BlockRegistry.CreateRegistry(MOD_ID);
@@ -49,6 +52,12 @@ public class RestApi
 
 		Log("Default registries created");
 
-		//Testing.init();
+		if (isATestBuild) {
+			Log("THIS VERSION OF THE API IS FOR TESTING, IF YOU SEE THIS, THEN TELL THE DEV ABOUT THIS.");
+			Testing.init();
+		}
+		else {
+			Log("Loading API without testing classes");
+		}
 	}
 }
