@@ -49,7 +49,7 @@ public class TestItems {
             MOD_ID,
             "custom_item",
             () -> new CustomPickaxe(
-                    new CustomToolTier(750, 7, 3, 5, 15, item),
+                    Tiers.DIAMOND,
                     1,
                     1,
                     new CustomItemProperties()
@@ -70,12 +70,12 @@ public class TestItems {
             )
     );
 
-    public static final CustomToolTier AMETHYST_TIER = new CustomToolTier(750, 7, 3, 5, 15, Items.AMETHYST_SHARD);
-    public static final CustomToolTier AZURE_TIER = new CustomToolTier(1500, 20, 3, 6, 18, Items.DIAMOND_ORE);
-
     public static final CustomItemProperties DEFAULT_PROPERTIES = new CustomItemProperties().tab(TestTabs.tab);
 
     public static final Object AZURE = ItemRegistry.CreateSimple(MOD_ID, "azure", TestTabs.tab);
+
+    public static final CustomToolTier AMETHYST_TIER = new CustomToolTier(750, 7, 3, 5, 15, Items.AMETHYST_SHARD);
+    public static final CustomToolTier AZURE_TIER = new CustomToolTier(1500, 20, 3, 6, 18, AZURE);
 
     public static final Object AMETHYST_PICKAXE = ItemRegistry.CreateCustom(
             MOD_ID,
@@ -83,7 +83,7 @@ public class TestItems {
             () -> new PickaxeItem(
                     AMETHYST_TIER,
                     1, -2.8f,
-                    DEFAULT_PROPERTIES.build()
+                    DEFAULT_PROPERTIES.durability(750).build()
             )
     );
 
@@ -93,7 +93,7 @@ public class TestItems {
             () -> new PickaxeItem(
                     AZURE_TIER,
                     1, -2.8f,
-                    DEFAULT_PROPERTIES.build()
+                    DEFAULT_PROPERTIES.durability(1500).build()
             )
     );
 
@@ -107,6 +107,10 @@ public class TestItems {
         else {
             RestApi.Log("NOT THE SAME TOOL TIER");
         }
+
+        RestApi.Log(AMETHYST_TIER.getUses() + " - " + AZURE_TIER.getUses());
+        RestApi.Log(AMETHYST_TIER.getSpeed() + " - " + AZURE_TIER.getSpeed());
+        RestApi.Log(AMETHYST_TIER.getLevel() + " - " + AZURE_TIER.getLevel());
 
         RestApi.Log("Items added");
     }

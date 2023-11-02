@@ -21,9 +21,18 @@ public class CustomToolTierSet4 implements Tier {
         this.attackDamageBonus = attackDamageBonus;
         this.level = level;
         this.enchantmentValue = enchantmentValue;
-        this.repairIngredient = Lazy.of(() -> Ingredient.of(
-                ((RegistrySupplier<Item>)repairIngredient).get()
-        ));
+
+        if (repairIngredient instanceof Item) {
+            this.repairIngredient = Lazy.of(() -> Ingredient.of((Item) repairIngredient));
+        }
+        else if (repairIngredient instanceof RegistrySupplier<?>) {
+            this.repairIngredient = Lazy.of(() -> Ingredient.of(
+                    ((RegistrySupplier<Item>)repairIngredient).get()
+            ));
+        }
+        else {
+            this.repairIngredient = null;
+        }
     }
 
     @Override
