@@ -11,7 +11,6 @@ public class CreativeTabRegistry {
     public static Object CreateRegistry(String ModId) {
         RestApi.Log("Creating creative tab registry", ModId);
 
-        //1.20 - 1.20.2
         return CreativeTabRegistrySet3.createRegistry(ModId);
     }
 
@@ -21,7 +20,6 @@ public class CreativeTabRegistry {
      * @return Returns the registry as Object type.
      */
     public static Object GetRegistry(String ModId) {
-        //1.20 -> 1.20.2
         return CreativeTabRegistrySet3.getModRegistry(ModId);
     }
 
@@ -33,7 +31,6 @@ public class CreativeTabRegistry {
      * @return Returns the creative tab as Object type.
      */
     public static Object CreateCreativeTab(String ModId, String TabId, String ItemId) {
-        //1.20 - 1.20.2
         return CreativeTabRegistrySet3.createCreativeTab(ModId, TabId, ItemId);
     }
 
@@ -44,7 +41,6 @@ public class CreativeTabRegistry {
     public static void Register(String ModId) {
         RestApi.Log("Trying to register creative tabs", ModId);
 
-        //1.20 - 1.20.2
         CreativeTabRegistrySet3.register(ModId);
 
         RestApi.Log("Creative tabs registered", ModId);

@@ -4,6 +4,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.PushReaction;
 
 @SuppressWarnings({"UnstableApiUsage","unchecked"})
 public class CustomBlockPropertiesSet1 {
@@ -137,6 +138,12 @@ public class CustomBlockPropertiesSet1 {
 
     public CustomBlockPropertiesSet1 speedFactor(float speedFactor) {
         properties = properties.speedFactor(speedFactor);
+
+        return this;
+    }
+
+    public CustomBlockPropertiesSet1 pushReaction(Object pushReaction) {
+        properties = properties.pushReaction((PushReaction) pushReaction);
 
         return this;
     }

@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import static me.restonic4.restapi.RestApiVariables.MOD_ID;
+
 @SuppressWarnings({"UnstableApiUsage","unchecked"})
 public class ItemRegistrySet2 {//1.20 - 1.20.2
     static List<DeferredRegister<Item>> REGISTRIES = new ArrayList<>();
@@ -40,7 +42,7 @@ public class ItemRegistrySet2 {//1.20 - 1.20.2
                 ITEMS = REGISTRIES.get(i);
             }
 
-            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), RestApi.MOD_ID)) {
+            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), MOD_ID)) {
                 DEFAULT = REGISTRIES.get(i);
             }
         }
@@ -51,10 +53,10 @@ public class ItemRegistrySet2 {//1.20 - 1.20.2
             if (DEFAULT == null) {
                 RestApi.Log("Registry not found, try creating one with ItemRegistry.CreateRegistry(ModID).");
 
-                createRegistry(RestApi.MOD_ID);
+                createRegistry(MOD_ID);
             }
 
-            ITEMS = getModRegistry(RestApi.MOD_ID);
+            ITEMS = getModRegistry(MOD_ID);
         }
 
         return ITEMS;
@@ -70,51 +72,15 @@ public class ItemRegistrySet2 {//1.20 - 1.20.2
         Item.Properties finalProperties = properties;
         return getModRegistry(ModId).register(
                 ItemId,
-                () -> newItem(finalProperties, AdvancedItemType.SIMPLE, null)
+                () -> new Item(finalProperties)
         );
     }
 
-    public static RegistrySupplier<Item> createAdvanced(String ModId, String ItemId, Object CreativeTab, AdvancedItemType ItemType, String[] Data) {
-        Item.Properties properties = new Item.Properties();
-
-        if (CreativeTab != null) {
-            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) CreativeTab);
-        }
-
-        Item.Properties finalProperties = properties;
+    public static <T extends Item> RegistrySupplier<T> createCustom(String ModId, String ItemId, Supplier<T> itemSupplier) {
         return getModRegistry(ModId).register(
                 ItemId,
-                () -> newItem(finalProperties, ItemType, Data)
+                itemSupplier
         );
-    }
-
-    static Item newItem(Item.Properties properties, AdvancedItemType itemType, String[] data) {
-        return switch (itemType) {
-            case SWORD ->
-                    new SwordItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
-            case AXE ->
-                    new AxeItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
-            case PICKAXE ->
-                    new PickaxeItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
-            case HOE ->
-                    new HoeItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
-            case SHOVEL ->
-                    new ShovelItem(Tiers.valueOf(data[0]), Integer.parseInt(data[1]), Float.parseFloat(data[2]), properties);
-            case FLINT_AND_STEEL ->
-                    new FlintAndSteelItem(properties);
-            case COMPASS ->
-                    new CompassItem(properties);
-            case LEAD ->
-                    new LeadItem(properties);
-            case SPYGLASS ->
-                    new SpyglassItem(properties);
-            case FISHING_ROD ->
-                    new FishingRodItem(properties);
-            case SHEARS ->
-                    new ShearsItem(properties);
-            default ->
-                    new Item(properties);
-        };
     }
 
     public static <T extends Block> RegistrySupplier<Item> createBlockItem(String ModId, Object toReturn, String blockId, Object CreativeTab) {
@@ -163,7 +129,7 @@ public class ItemRegistrySet2 {//1.20 - 1.20.2
         Item.Properties finalProperties = properties;
         return getModRegistry(ModId).register(
                 ItemId,
-                () -> newItem(finalProperties, AdvancedItemType.SIMPLE, null)
+                () -> new Item(finalProperties)
         );
     }
 

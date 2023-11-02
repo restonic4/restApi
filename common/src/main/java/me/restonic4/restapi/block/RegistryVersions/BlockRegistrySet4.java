@@ -5,7 +5,7 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
 import me.restonic4.restapi.item.ItemRegistry;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
@@ -17,14 +17,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import static me.restonic4.restapi.RestApiVariables.*;
+import static me.restonic4.restapi.RestApiVariables.MOD_ID;
 
-public class BlockRegistrySet3 {
+public class BlockRegistrySet4 {
     static List<DeferredRegister<Block>> REGISTRIES = new ArrayList<>();
     static DeferredRegister<Block> DEFAULT;
 
     public static Object createRegistry(String ModId) {
-        DeferredRegister<Block> BLOCKS = DeferredRegister.create(ModId, Registries.BLOCK);
+        DeferredRegister<Block> BLOCKS = DeferredRegister.create(ModId, Registry.BLOCK_REGISTRY);
 
         REGISTRIES.add(BLOCKS);
 
@@ -36,11 +36,11 @@ public class BlockRegistrySet3 {
         DeferredRegister<Block> BLOCKS = null;
 
         for (int i = 0; i < REGISTRIES.size(); i++) {
-            if (Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), ModId)) {
+            if (Objects.equals(REGISTRIES.get(i).getRegistries().getModId(), ModId)) {
                 BLOCKS = REGISTRIES.get(i);
             }
 
-            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), MOD_ID)) {
+            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistries().getModId(), MOD_ID)) {
                 DEFAULT = REGISTRIES.get(i);
             }
         }

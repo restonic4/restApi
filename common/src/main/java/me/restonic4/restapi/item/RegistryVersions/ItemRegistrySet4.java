@@ -2,10 +2,9 @@ package me.restonic4.restapi.item.RegistryVersions;
 
 import dev.architectury.platform.Platform;
 import dev.architectury.registry.registries.DeferredRegister;
-import dev.architectury.registry.registries.DeferredSupplier;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -20,15 +19,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import static me.restonic4.restapi.RestApiVariables.*;
+import static me.restonic4.restapi.RestApiVariables.MOD_ID;
 
 @SuppressWarnings({"UnstableApiUsage","unchecked"})
-public class ItemRegistrySet3 {//1.20 - 1.20.2
+public class ItemRegistrySet4 {//1.20 - 1.20.2
     static List<DeferredRegister<Item>> REGISTRIES = new ArrayList<>();
     static DeferredRegister<Item> DEFAULT;
 
     public static Object createRegistry(String ModId) {
-        DeferredRegister<Item> ITEMS = DeferredRegister.create(ModId, Registries.ITEM);
+        DeferredRegister<Item> ITEMS = DeferredRegister.create(ModId, Registry.ITEM_REGISTRY);
 
         REGISTRIES.add(ITEMS);
 
@@ -40,11 +39,11 @@ public class ItemRegistrySet3 {//1.20 - 1.20.2
         DeferredRegister<Item> ITEMS = null;
 
         for (int i = 0; i < REGISTRIES.size(); i++) {
-            if (Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), ModId)) {
+            if (Objects.equals(REGISTRIES.get(i).getRegistries().getModId(), ModId)) {
                 ITEMS = REGISTRIES.get(i);
             }
 
-            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), MOD_ID)) {
+            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistries().getModId(), MOD_ID)) {
                 DEFAULT = REGISTRIES.get(i);
             }
         }
@@ -68,7 +67,7 @@ public class ItemRegistrySet3 {//1.20 - 1.20.2
         Item.Properties properties = new Item.Properties();
 
         if (CreativeTab != null) {
-            properties = properties.arch$tab((DeferredSupplier<CreativeModeTab>) CreativeTab);
+            properties = properties.tab((CreativeModeTab) CreativeTab);
         }
 
         Item.Properties finalProperties = properties;
@@ -89,7 +88,7 @@ public class ItemRegistrySet3 {//1.20 - 1.20.2
         Item.Properties properties = new Item.Properties();
 
         if (CreativeTab != null) {
-            properties = properties.arch$tab((DeferredSupplier<CreativeModeTab>) CreativeTab);
+            properties = properties.tab((CreativeModeTab) CreativeTab);
         }
 
         Item.Properties finalProperties = properties;
@@ -125,7 +124,7 @@ public class ItemRegistrySet3 {//1.20 - 1.20.2
         Item.Properties properties = new Item.Properties().food(FoodProperties);
 
         if (CreativeTab != null) {
-            properties = properties.arch$tab((DeferredSupplier<CreativeModeTab>) CreativeTab);
+            properties = properties.tab((CreativeModeTab) CreativeTab);
         }
 
         Item.Properties finalProperties = properties;
@@ -139,4 +138,3 @@ public class ItemRegistrySet3 {//1.20 - 1.20.2
         getModRegistry(ModId).register();
     }
 }
-

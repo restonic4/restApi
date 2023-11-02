@@ -4,7 +4,7 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
 import me.restonic4.restapi.sound.RestSoundType;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -19,12 +19,12 @@ import java.util.function.Supplier;
 import static me.restonic4.restapi.RestApiVariables.MOD_ID;
 
 @SuppressWarnings({"UnstableApiUsage", "unchecked"})
-public class SoundRegistrySet1 {
+public class SoundRegistrySet4 {
     static List<DeferredRegister<SoundEvent>> REGISTRIES = new ArrayList<>();
     static DeferredRegister<SoundEvent> DEFAULT;
 
     public static Object createRegistry(String ModId) {
-        DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ModId, Registries.SOUND_EVENT);
+        DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ModId, Registry.SOUND_EVENT_REGISTRY);
 
         REGISTRIES.add(SOUNDS);
 
@@ -36,11 +36,11 @@ public class SoundRegistrySet1 {
         DeferredRegister<SoundEvent> SOUNDS = null;
 
         for (int i = 0; i < REGISTRIES.size(); i++) {
-            if (Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), ModId)) {
+            if (Objects.equals(REGISTRIES.get(i).getRegistries().getModId(), ModId)) {
                 SOUNDS = REGISTRIES.get(i);
             }
 
-            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), MOD_ID)) {
+            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistries().getModId(), MOD_ID)) {
                 DEFAULT = REGISTRIES.get(i);
             }
         }
@@ -62,14 +62,14 @@ public class SoundRegistrySet1 {
 
     public static Object registerSound(String ModId, String SoundId) {
         ResourceLocation id = new ResourceLocation(ModId, SoundId);
-        return getModRegistry(ModId).register(SoundId, () -> SoundEvent.createVariableRangeEvent(id));
+        return getModRegistry(ModId).register(SoundId, () -> new SoundEvent(id));
     }
 
     public static void playSound(Player player, Object sound, Object source, float volume, float pitch) {
         RegistrySupplier<SoundEvent> soundFixed = (RegistrySupplier<SoundEvent>) sound;
         SoundSource soundSourceFixed = (SoundSource) source;
 
-        player.level().playSound(player, player.getX(), player.getY(), player.getZ(), soundFixed.get(), soundSourceFixed, volume, pitch);
+        player.level.playSound(player, player.getX(), player.getY(), player.getZ(), soundFixed.get(), soundSourceFixed, volume, pitch);
     }
 
     public static SoundType createCustomSoundType(float volume, float pitch, Object breakSound, Object stepSound, Object placeSound, Object hitSound, Object fallSound) {

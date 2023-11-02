@@ -2,24 +2,21 @@ package me.restonic4.restapi.creative_tab.RegistryVersions;
 
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
-import dev.architectury.registry.registries.RegistrarBuilder;
-import dev.architectury.registry.registries.RegistrarManager;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
 import me.restonic4.restapi.item.ItemRegistry;
-import net.minecraft.core.Registry;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ItemLike;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import static me.restonic4.restapi.RestApiVariables.MOD_ID;
 
 @SuppressWarnings({"UnstableApiUsage","unchecked"})
 public class CreativeTabRegistrySet1 {
@@ -42,7 +39,7 @@ public class CreativeTabRegistrySet1 {
                 TABS = REGISTRIES.get(i);
             }
 
-            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), RestApi.MOD_ID)) {
+            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), MOD_ID)) {
                 DEFAULT = REGISTRIES.get(i);
             }
         }
@@ -53,10 +50,10 @@ public class CreativeTabRegistrySet1 {
             if (DEFAULT == null) {
                 RestApi.Log("Registry not found, try creating one with CreativeTabRegistry.CreateRegistry(ModID).");
 
-                createRegistry(RestApi.MOD_ID);
+                createRegistry(MOD_ID);
             }
 
-            TABS = getModRegistry(RestApi.MOD_ID);
+            TABS = getModRegistry(MOD_ID);
         }
 
         return TABS;

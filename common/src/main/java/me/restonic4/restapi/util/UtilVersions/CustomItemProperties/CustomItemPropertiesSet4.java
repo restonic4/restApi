@@ -4,22 +4,23 @@ import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 
 @SuppressWarnings({"UnstableApiUsage","unchecked"})
-public class CustomItemPropertiesSet2 {
+public class CustomItemPropertiesSet4 {
     private Item.Properties properties = new Item.Properties();
 
-    public CustomItemPropertiesSet2 tab(Object creativeTab) {
+    public CustomItemPropertiesSet4 tab(Object creativeTab) {
         if (creativeTab != null) {
-            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) creativeTab);
+            properties = properties.tab((CreativeModeTab) creativeTab);
         }
 
         return this;
     }
 
-    public CustomItemPropertiesSet2 food(int Nutrition, float SaturationMod, Object Effect, float EffectChance) {
+    public CustomItemPropertiesSet4 food(int Nutrition, float SaturationMod, Object Effect, float EffectChance) {
         FoodProperties.Builder foodBuilder = new FoodProperties.Builder();
 
         if (Effect != null) {
@@ -31,25 +32,25 @@ public class CustomItemPropertiesSet2 {
         return this;
     }
 
-    public CustomItemPropertiesSet2 durability(int durability) {
+    public CustomItemPropertiesSet4 durability(int durability) {
         properties = properties.durability(durability);
 
         return this;
     }
 
-    public CustomItemPropertiesSet2 defaultDurability(int defaultDurability) {
+    public CustomItemPropertiesSet4 defaultDurability(int defaultDurability) {
         properties = properties.defaultDurability(defaultDurability);
 
         return this;
     }
 
-    public CustomItemPropertiesSet2 stacksTo(int stackLimit) {
+    public CustomItemPropertiesSet4 stacksTo(int stackLimit) {
         properties = properties.stacksTo(stackLimit);
 
         return this;
     }
 
-    public CustomItemPropertiesSet2 craftRemainder(Object item) {
+    public CustomItemPropertiesSet4 craftRemainder(Object item) {
         properties = properties.craftRemainder(
                 ((RegistrySupplier<Item>)item).get()
         );
@@ -57,13 +58,13 @@ public class CustomItemPropertiesSet2 {
         return this;
     }
 
-    public CustomItemPropertiesSet2 rarity(Object rarity) {
+    public CustomItemPropertiesSet4 rarity(Object rarity) {
         properties = properties.rarity((Rarity) rarity);
 
         return this;
     }
 
-    public CustomItemPropertiesSet2 fireResistant() {
+    public CustomItemPropertiesSet4 fireResistant() {
         properties = properties.fireResistant();
 
         return this;

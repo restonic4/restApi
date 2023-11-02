@@ -1,22 +1,23 @@
 package me.restonic4.restapi.block.RegistryVersions;
 
 import dev.architectury.platform.Platform;
-import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
 import me.restonic4.restapi.item.ItemRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
+
+import static me.restonic4.restapi.RestApiVariables.*;
 
 public class BlockRegistrySet2 {
     static List<DeferredRegister<Block>> REGISTRIES = new ArrayList<>();
@@ -39,7 +40,7 @@ public class BlockRegistrySet2 {
                 BLOCKS = REGISTRIES.get(i);
             }
 
-            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), RestApi.MOD_ID)) {
+            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), MOD_ID)) {
                 DEFAULT = REGISTRIES.get(i);
             }
         }
@@ -50,36 +51,36 @@ public class BlockRegistrySet2 {
             if (DEFAULT == null) {
                 RestApi.Log("Registry not found, try creating one with BlockRegistry.CreateRegistry(ModID).");
 
-                createRegistry(RestApi.MOD_ID);
+                createRegistry(MOD_ID);
             }
 
-            BLOCKS = getModRegistry(RestApi.MOD_ID);
+            BLOCKS = getModRegistry(MOD_ID);
         }
 
         return BLOCKS;
     }
 
-    public static BlockBehaviour.Properties createBlockProperties(Block base, float hardness, float blastResistance, SoundType soundType, float soundsStrength, boolean requireToolForDrop, boolean isIgnitedByLava) {
-        BlockBehaviour.Properties properties = BlockBehaviour.Properties.copy(base).strength(hardness, blastResistance).sound(soundType).strength(soundsStrength);
-
-        if (requireToolForDrop) { properties = properties.requiresCorrectToolForDrops(); }
-        //isIgnitedByLava does not exists
-
-        return properties;
-    }
-
-    public static RegistrySupplier<Block> createBlock(String ModId, String blockId, BlockBehaviour.Properties properties, Object CreativeTab) {
+    public static RegistrySupplier<Block> createBlock(String ModId, String blockId, BlockBehaviour.Properties properties, Object creativeTab) {
         return registerBlock(
                 ModId,
                 blockId,
                 () -> new Block(properties),
-                (CreativeTabRegistry.TabSupplier) CreativeTab
+                creativeTab
         );
     }
 
-    public static <T extends Block> RegistrySupplier<T> registerBlock(String ModId, String blockId, Supplier<T> block, Object CreativeTab) {
+    public static RegistrySupplier<Block> createExperienceBlock(String ModId, String blockId, BlockBehaviour.Properties properties, Object creativeTab, int minXP, int maxXP) {
+        return registerBlock(
+                ModId,
+                blockId,
+                () -> new DropExperienceBlock(properties, UniformInt.of(minXP, maxXP)),
+                creativeTab
+        );
+    }
+
+    public static <T extends Block> RegistrySupplier<T> registerBlock(String ModId, String blockId, Supplier<T> block, Object creativeTab) {
         RegistrySupplier<T> toReturn = registerInDesiredPlatform(ModId, new ResourceLocation(ModId, blockId), block);
-        ItemRegistry.CreateBlockItem(ModId, toReturn, blockId, CreativeTab);
+        ItemRegistry.CreateBlockItem(ModId, toReturn, blockId, creativeTab);
 
         return toReturn;
     }

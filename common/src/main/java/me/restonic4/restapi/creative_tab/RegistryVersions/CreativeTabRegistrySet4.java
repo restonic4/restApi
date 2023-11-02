@@ -1,10 +1,10 @@
 package me.restonic4.restapi.creative_tab.RegistryVersions;
-import dev.architectury.registry.registries.RegistrySupplier;
-import me.restonic4.restapi.RestApi;
-import me.restonic4.restapi.item.ItemRegistry;
 
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
+import dev.architectury.registry.registries.RegistrySupplier;
+import me.restonic4.restapi.RestApi;
+import me.restonic4.restapi.item.ItemRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings({"UnstableApiUsage","unchecked"})
-public class CreativeTabRegistrySet2 {
+public class CreativeTabRegistrySet4 {
     static List<DeferredRegister<CreativeModeTab>> REGISTRIES = new ArrayList<>();
     static DeferredRegister<CreativeModeTab> DEFAULT;
 

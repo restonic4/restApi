@@ -7,9 +7,7 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
-public class CustomToolTierSet3 implements Tier {
-
-
+public class CustomToolTierSet4 implements Tier {
     private final int uses;
     private final float speed;
     private final float attackDamageBonus;
@@ -17,7 +15,7 @@ public class CustomToolTierSet3 implements Tier {
     private final int enchantmentValue;
     private final Lazy<Ingredient> repairIngredient;
 
-    public CustomToolTierSet3(int uses, float speed, float attackDamageBonus, int level, int enchantmentValue, Object repairIngredient) {
+    public CustomToolTierSet4(int uses, float speed, float attackDamageBonus, int level, int enchantmentValue, Object repairIngredient) {
         this.uses = uses;
         this.speed = speed;
         this.attackDamageBonus = attackDamageBonus;

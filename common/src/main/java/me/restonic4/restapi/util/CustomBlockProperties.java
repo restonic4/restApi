@@ -15,8 +15,8 @@ public class CustomBlockProperties extends CustomBlockPropertiesSet3 {
         return this;
     }
 
-    public CustomBlockProperties strength(float soundsStrength) {
-        super.strength(soundsStrength);
+    public CustomBlockProperties strength(float hardness) {
+        super.strength(hardness);
         return this;
     }
 
@@ -112,6 +112,11 @@ public class CustomBlockProperties extends CustomBlockPropertiesSet3 {
 
     public CustomBlockProperties speedFactor(float speedFactor) {
         super.speedFactor(speedFactor);
+        return this;
+    }
+
+    public CustomBlockProperties pushReaction(Object pushReaction) {
+        super.pushReaction(pushReaction);
         return this;
     }
 
