@@ -5,6 +5,7 @@ import me.restonic4.restapi.block.BlockRegistry;
 import me.restonic4.restapi.item.ItemRegistry;
 import me.restonic4.restapi.sound.SoundRegistry;
 import me.restonic4.restapi.util.BiomeConditions;
+import me.restonic4.restapi.util.CustomBiomeTags;
 import me.restonic4.restapi.util.CustomBlockProperties;
 import me.restonic4.restapi.worldgen.ore.OreGenerator;
 import net.minecraft.world.level.block.Blocks;

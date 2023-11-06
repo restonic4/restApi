@@ -1,7 +1,7 @@
 package me.restonic4.restapi.creative_tab;
 
 import me.restonic4.restapi.RestApi;
-import me.restonic4.restapi.creative_tab.RegistryVersions.CreativeTabRegistrySet3;
+import me.restonic4.restapi.creative_tab.RegistryVersions.CreativeTabRegistrySet4;
 
 public class CreativeTabRegistry {
     /**
@@ -11,7 +11,7 @@ public class CreativeTabRegistry {
     public static Object CreateRegistry(String ModId) {
         RestApi.Log("Creating creative tab registry", ModId);
 
-        return CreativeTabRegistrySet3.createRegistry(ModId);
+        return CreativeTabRegistrySet4.createRegistry(ModId);
     }
 
     /**
@@ -20,7 +20,7 @@ public class CreativeTabRegistry {
      * @return Returns the registry as Object type.
      */
     public static Object GetRegistry(String ModId) {
-        return CreativeTabRegistrySet3.getModRegistry(ModId);
+        return CreativeTabRegistrySet4.getModRegistry(ModId);
     }
 
     /**
@@ -31,7 +31,7 @@ public class CreativeTabRegistry {
      * @return Returns the creative tab as Object type.
      */
     public static Object CreateCreativeTab(String ModId, String TabId, String ItemId) {
-        return CreativeTabRegistrySet3.createCreativeTab(ModId, TabId, ItemId);
+        return CreativeTabRegistrySet4.createCreativeTab(ModId, TabId, ItemId);
     }
 
     /**
@@ -41,7 +41,7 @@ public class CreativeTabRegistry {
     public static void Register(String ModId) {
         RestApi.Log("Trying to register creative tabs", ModId);
 
-        CreativeTabRegistrySet3.register(ModId);
+        CreativeTabRegistrySet4.register(ModId);
 
         RestApi.Log("Creative tabs registered", ModId);
     }

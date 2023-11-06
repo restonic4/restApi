@@ -120,7 +120,7 @@ public class CustomBlockPropertiesSet4 {
     }
 
     public CustomBlockPropertiesSet4 noParticlesOnBreak() {
-        RestApi.Log(RestApiVariables.NOT_IMPLEMENTED_MC);
+        properties = properties.noParticlesOnBreak();
 
         return this;
     }

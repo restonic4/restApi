@@ -3,14 +3,17 @@ package me.restonic4.restapi.util.UtilVersions.BiomeConditions;
 import dev.architectury.registry.level.biome.BiomeModifications;
 import me.restonic4.restapi.RestApi;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.biome.Biome;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static me.restonic4.restapi.RestApiVariables.*;
+import static me.restonic4.restapi.RestApiVariables.NOT_IMPLEMENTED_MC;
 
 public class BiomeConditionsSet4 {
     private List<String> biomes = new ArrayList<>();
+    private List<TagKey<Biome>> customBiomes = new ArrayList<>();
 
     //Dims
     public BiomeConditionsSet4 isOverworld() {
@@ -487,6 +490,14 @@ public class BiomeConditionsSet4 {
         return this;
     }
 
+    //Custom
+    public BiomeConditionsSet4 addCustomBiomeTagKey(TagKey<Biome> tagKey) {
+        if (!customBiomes.contains(tagKey)) {
+            customBiomes.add(tagKey);
+        }
+        return this;
+    }
+
     public boolean get(BiomeModifications.BiomeContext ctx) {
         //Dims
         boolean inOverworldBiome = biomes.contains("Overworld") && ctx.hasTag(BiomeTags.IS_OVERWORLD);
@@ -564,6 +575,16 @@ public class BiomeConditionsSet4 {
         boolean moreFrequentDrownedSpawns = biomes.contains("MoreFrequentDrownedSpawns") && ctx.hasTag(BiomeTags.MORE_FREQUENT_DROWNED_SPAWNS);
         boolean allowsSurfaceSlimeSpawns = biomes.contains("AllowsSurfaceSlimeSpawns") && ctx.hasTag(BiomeTags.ALLOWS_SURFACE_SLIME_SPAWNS);
         //boolean spawnsSnowFoxes = biomes.contains("SpawnsSnowFoxes") && ctx.hasTag(BiomeTags.SPAWNS_SNOW_FOXES);
+
+        //Custom
+        boolean isCustomBiome = false;
+
+        for (TagKey<Biome> customBiome : customBiomes) {
+            if (ctx.hasTag(customBiome)) {//Tag found, so the biome is one of the custom ones
+                isCustomBiome = true;
+                break;
+            }
+        }
 
         return inOverworldBiome || inNetherBiome || inEndBiome || inDeepOcean || inOcean || inBeach
                 || inRiver || inMountain || inBadlands || inHill || inTaiga || inJungle || inForest

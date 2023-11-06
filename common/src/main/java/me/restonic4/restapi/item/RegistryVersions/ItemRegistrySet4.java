@@ -1,16 +1,16 @@
 package me.restonic4.restapi.item.RegistryVersions;
 
 import dev.architectury.platform.Platform;
+import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
@@ -27,7 +27,7 @@ public class ItemRegistrySet4 {//1.20 - 1.20.2
     static DeferredRegister<Item> DEFAULT;
 
     public static Object createRegistry(String ModId) {
-        DeferredRegister<Item> ITEMS = DeferredRegister.create(ModId, Registry.ITEM_REGISTRY);
+        DeferredRegister<Item> ITEMS = DeferredRegister.create(ModId, Registries.ITEM);
 
         REGISTRIES.add(ITEMS);
 
@@ -39,11 +39,11 @@ public class ItemRegistrySet4 {//1.20 - 1.20.2
         DeferredRegister<Item> ITEMS = null;
 
         for (int i = 0; i < REGISTRIES.size(); i++) {
-            if (Objects.equals(REGISTRIES.get(i).getRegistries().getModId(), ModId)) {
+            if (Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), ModId)) {
                 ITEMS = REGISTRIES.get(i);
             }
 
-            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistries().getModId(), MOD_ID)) {
+            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), MOD_ID)) {
                 DEFAULT = REGISTRIES.get(i);
             }
         }
@@ -67,7 +67,7 @@ public class ItemRegistrySet4 {//1.20 - 1.20.2
         Item.Properties properties = new Item.Properties();
 
         if (CreativeTab != null) {
-            properties = properties.tab((CreativeModeTab) CreativeTab);
+            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) CreativeTab);
         }
 
         Item.Properties finalProperties = properties;
@@ -88,7 +88,7 @@ public class ItemRegistrySet4 {//1.20 - 1.20.2
         Item.Properties properties = new Item.Properties();
 
         if (CreativeTab != null) {
-            properties = properties.tab((CreativeModeTab) CreativeTab);
+            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) CreativeTab);
         }
 
         Item.Properties finalProperties = properties;
@@ -124,7 +124,7 @@ public class ItemRegistrySet4 {//1.20 - 1.20.2
         Item.Properties properties = new Item.Properties().food(FoodProperties);
 
         if (CreativeTab != null) {
-            properties = properties.tab((CreativeModeTab) CreativeTab);
+            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) CreativeTab);
         }
 
         Item.Properties finalProperties = properties;

@@ -17,8 +17,8 @@ String replaceIgnore(def name, def toIgnore, def fileData) {
 int getVersionIndex() {
     def versionSet3 = ["1.20.2"]
     def versionSet1 = ["1.20", "1.20.1"]
-    def versionSet2 = ["1.19.3", "1.19.4"]
-    def versionSet4 = ["1.19", "1.19.1", "1.19.2"]
+    def versionSet2 = ["1.19.4"]
+    def versionSet4 = ["1.19.3"]
 
     int versionIndex = 0
 
@@ -80,7 +80,9 @@ task FixRegistries {
                         '../common/src/main/java/me/restonic4/restapi/util/CustomItemProperties.java',
                         '../common/src/main/java/me/restonic4/restapi/util/CustomToolTier.java',
                         "../common/src/main/java/me/restonic4/restapi/worldgen/ore/OreGenerator.java",
-                        "../common/src/main/java/me/restonic4/restapi/util/BiomeConditions.java"
+                        "../common/src/main/java/me/restonic4/restapi/util/BiomeConditions.java",
+                        "../common/src/main/java/me/restonic4/restapi/util/CustomBiomeTags.java",
+                        "../common/src/main/java/me/restonic4/restapi/util/CustomArmorMaterial.java"
                 ]
 
                 javaFilesToModify.each { filePath ->

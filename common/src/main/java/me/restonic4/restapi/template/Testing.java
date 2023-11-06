@@ -7,6 +7,7 @@ import dev.architectury.event.events.common.InteractionEvent;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
 import me.restonic4.restapi.sound.SoundRegistry;
+import me.restonic4.restapi.util.CustomArmorMaterial;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;

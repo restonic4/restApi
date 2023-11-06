@@ -1,7 +1,7 @@
 package me.restonic4.restapi.block;
 
 import me.restonic4.restapi.RestApi;
-import me.restonic4.restapi.block.RegistryVersions.BlockRegistrySet3;
+import me.restonic4.restapi.block.RegistryVersions.BlockRegistrySet4;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 @SuppressWarnings("unchecked")
@@ -12,7 +12,7 @@ public class BlockRegistry {
      */
     public static Object CreateRegistry(String ModId) {
         RestApi.Log("Creating block registry", ModId);
-        return BlockRegistrySet3.createRegistry(ModId);
+        return BlockRegistrySet4.createRegistry(ModId);
     }
 
     /**
@@ -21,7 +21,7 @@ public class BlockRegistry {
      * @return Returns the registry as Object type.
      */
     public static Object GetRegistry(String ModId) {
-        return BlockRegistrySet3.getModRegistry(ModId);
+        return BlockRegistrySet4.getModRegistry(ModId);
     }
 
     /**
@@ -33,11 +33,11 @@ public class BlockRegistry {
      * @return Returns the block.
      */
     public static Object CreateBlock(String ModId, String BlockId, Object Properties, Object CreativeTab) {
-        return BlockRegistrySet3.createBlock(ModId, BlockId, (BlockBehaviour.Properties) Properties, CreativeTab);
+        return BlockRegistrySet4.createBlock(ModId, BlockId, (BlockBehaviour.Properties) Properties, CreativeTab);
     }
 
     public static Object CreateExperienceBlock(String ModId, String BlockId, Object Properties, Object CreativeTab, int MinXP, int MaxXP) {
-        return BlockRegistrySet3.createExperienceBlock(ModId, BlockId, (BlockBehaviour.Properties) Properties, CreativeTab, MinXP, MaxXP);
+        return BlockRegistrySet4.createExperienceBlock(ModId, BlockId, (BlockBehaviour.Properties) Properties, CreativeTab, MinXP, MaxXP);
     }
 
     /**
@@ -47,7 +47,7 @@ public class BlockRegistry {
     public static void Register(String ModId) {
         RestApi.Log("Trying to register blocks", ModId);
 
-        BlockRegistrySet3.register(ModId);
+        BlockRegistrySet4.register(ModId);
 
         RestApi.Log("Blocks registered", ModId);
     }

@@ -10,8 +10,6 @@ import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.NotNull;
 
 public class CustomToolTierSet3 implements Tier {
-
-
     private final int uses;
     private final float speed;
     private final float attackDamageBonus;

@@ -2,12 +2,15 @@ package me.restonic4.restapi.util.UtilVersions.BiomeConditions;
 
 import dev.architectury.registry.level.biome.BiomeModifications;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.biome.Biome;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BiomeConditionsSet3 {
     private List<String> biomes = new ArrayList<>();
+    private List<TagKey<Biome>> customBiomes = new ArrayList<>();
 
     //Dims
     public BiomeConditionsSet3 isOverworld() {
@@ -496,6 +499,14 @@ public class BiomeConditionsSet3 {
         return this;
     }
 
+    //Custom
+    public BiomeConditionsSet3 addCustomBiomeTagKey(TagKey<Biome> tagKey) {
+        if (!customBiomes.contains(tagKey)) {
+            customBiomes.add(tagKey);
+        }
+        return this;
+    }
+
     public boolean get(BiomeModifications.BiomeContext ctx) {
         //Dims
         boolean inOverworldBiome = biomes.contains("Overworld") && ctx.hasTag(BiomeTags.IS_OVERWORLD);
@@ -574,11 +585,21 @@ public class BiomeConditionsSet3 {
         boolean allowsSurfaceSlimeSpawns = biomes.contains("AllowsSurfaceSlimeSpawns") && ctx.hasTag(BiomeTags.ALLOWS_SURFACE_SLIME_SPAWNS);
         boolean spawnsSnowFoxes = biomes.contains("SpawnsSnowFoxes") && ctx.hasTag(BiomeTags.SPAWNS_SNOW_FOXES);
 
-        return inOverworldBiome || inNetherBiome || inEndBiome || inDeepOcean || inOcean || inBeach
-                || inRiver || inMountain || inBadlands || inHill || inTaiga || inJungle || inForest
+        //Custom
+        boolean isCustomBiome = false;
+
+        for (TagKey<Biome> customBiome : customBiomes) {
+            if (ctx.hasTag(customBiome)) {//Tag found, so the biome is one of the custom ones
+                isCustomBiome = true;
+                break;
+            }
+        }
+
+        return isCustomBiome || inOverworldBiome || inNetherBiome || inEndBiome || inDeepOcean || inOcean
+                || inBeach || inRiver || inMountain || inBadlands || inHill || inTaiga || inJungle || inForest
                 || inSavanna || strongholdBiasedTo || hasBuriedTreasure || hasDesertPyramid || hasIgloo
                 || hasJungleTemple || hasMineshaft || hasMineshaftMesa || hasOceanMonument || hasOceanRuinCold
-                ||  hasOceanRuinWarm || hasPillagerOutpost || hasRuinedPortalDesert || hasRuinedPortalJungle
+                || hasOceanRuinWarm || hasPillagerOutpost || hasRuinedPortalDesert || hasRuinedPortalJungle
                 || hasRuinedPortalOcean || hasRuinedPortalSwamp || hasRuinedPortalMountain || hasRuinedPortalStandard
                 || hasShipwreckBeached || hasShipwreck || hasStronghold || hasSwampHut || hasVillageDesert
                 || hasVillagePlains || hasVillageSavanna || hasVillageSnowy || hasVillageTaiga || hasTrailRuins

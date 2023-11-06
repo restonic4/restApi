@@ -1,15 +1,18 @@
 package me.restonic4.restapi.template;
 
 import me.restonic4.restapi.RestApi;
+import me.restonic4.restapi.util.CustomArmorMaterial;
 import me.restonic4.restapi.util.CustomItemProperties;
 import me.restonic4.restapi.util.CustomToolTier;
 import me.restonic4.restapi.item.ItemRegistry;
 import me.restonic4.restapi.template.custom.CustomPickaxe;
 import net.minecraft.CrashReport;
 import net.minecraft.client.Minecraft;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import static me.restonic4.restapi.RestApiVariables.MOD_ID;
 
@@ -97,20 +100,29 @@ public class TestItems {
             )
     );
 
+    public static CustomArmorMaterial armorMat = new CustomArmorMaterial("slime", 26, new int[]{ 5, 7, 5, 4 }, 25,
+            SoundEvents.SLIME_SQUISH, 1f, 0f, () -> Ingredient.of(Items.SLIME_BALL));
+
+    public static Object SLIME_BOOTS = ItemRegistry.CreateCustom(
+            MOD_ID,
+            "slime_boots",
+            () -> new ArmorItem(
+                    armorMat,
+                    armorMat.boots(),
+                    new CustomItemProperties()
+                            .food(
+                                    1,
+                                    1,
+                                    ItemRegistry.CreateExistingEffect(MobEffects.POISON,20*6,1),
+                                    1
+                            )
+                            .tab(TestTabs.tab)
+                            .build()
+            )
+    );
+
     public static void register() {
         ItemRegistry.Register(MOD_ID);
-
-        if (AMETHYST_TIER.equals(AZURE_TIER)) {
-            RestApi.Log("SAME TOOL TIER");
-            Minecraft.crash(new CrashReport("pito", new Throwable("ñam")));
-        }
-        else {
-            RestApi.Log("NOT THE SAME TOOL TIER");
-        }
-
-        RestApi.Log(AMETHYST_TIER.getUses() + " - " + AZURE_TIER.getUses());
-        RestApi.Log(AMETHYST_TIER.getSpeed() + " - " + AZURE_TIER.getSpeed());
-        RestApi.Log(AMETHYST_TIER.getLevel() + " - " + AZURE_TIER.getLevel());
 
         RestApi.Log("Items added");
     }

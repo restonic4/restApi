@@ -4,7 +4,7 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
 import me.restonic4.restapi.sound.RestSoundType;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -24,7 +24,7 @@ public class SoundRegistrySet4 {
     static DeferredRegister<SoundEvent> DEFAULT;
 
     public static Object createRegistry(String ModId) {
-        DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ModId, Registry.SOUND_EVENT_REGISTRY);
+        DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ModId, Registries.SOUND_EVENT);
 
         REGISTRIES.add(SOUNDS);
 
@@ -36,11 +36,11 @@ public class SoundRegistrySet4 {
         DeferredRegister<SoundEvent> SOUNDS = null;
 
         for (int i = 0; i < REGISTRIES.size(); i++) {
-            if (Objects.equals(REGISTRIES.get(i).getRegistries().getModId(), ModId)) {
+            if (Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), ModId)) {
                 SOUNDS = REGISTRIES.get(i);
             }
 
-            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistries().getModId(), MOD_ID)) {
+            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), MOD_ID)) {
                 DEFAULT = REGISTRIES.get(i);
             }
         }
@@ -62,7 +62,7 @@ public class SoundRegistrySet4 {
 
     public static Object registerSound(String ModId, String SoundId) {
         ResourceLocation id = new ResourceLocation(ModId, SoundId);
-        return getModRegistry(ModId).register(SoundId, () -> new SoundEvent(id));
+        return getModRegistry(ModId).register(SoundId, () -> SoundEvent.createVariableRangeEvent(id));
     }
 
     public static void playSound(Player player, Object sound, Object source, float volume, float pitch) {
