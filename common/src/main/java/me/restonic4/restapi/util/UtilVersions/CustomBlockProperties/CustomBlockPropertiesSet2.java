@@ -1,9 +1,12 @@
 package me.restonic4.restapi.util.UtilVersions.CustomBlockProperties;
 
+import me.restonic4.restapi.RestApi;
+import me.restonic4.restapi.RestApiVariables;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.PushReaction;
 
 @SuppressWarnings({"UnstableApiUsage","unchecked"})
 public class CustomBlockPropertiesSet2 {
@@ -40,7 +43,7 @@ public class CustomBlockPropertiesSet2 {
     }
 
     public CustomBlockPropertiesSet2 ignitedByLava() {
-        properties = properties.ignitedByLava();
+        RestApi.Log(RestApiVariables.NOT_IMPLEMENTED_MC);
 
         return this;
     }
@@ -76,7 +79,7 @@ public class CustomBlockPropertiesSet2 {
     }
 
     public CustomBlockPropertiesSet2 forceSolidOn() {
-        properties = properties.forceSolidOn();
+        RestApi.Log(RestApiVariables.NOT_IMPLEMENTED_MC);
 
         return this;
     }
@@ -94,7 +97,7 @@ public class CustomBlockPropertiesSet2 {
     }
 
     public CustomBlockPropertiesSet2 liquid() {
-        properties = properties.liquid();
+        RestApi.Log(RestApiVariables.NOT_IMPLEMENTED_MC);
 
         return this;
     }
@@ -130,13 +133,19 @@ public class CustomBlockPropertiesSet2 {
     }
 
     public CustomBlockPropertiesSet2 replaceable() {
-        properties = properties.replaceable();
+        RestApi.Log(RestApiVariables.NOT_IMPLEMENTED_MC);
 
         return this;
     }
 
     public CustomBlockPropertiesSet2 speedFactor(float speedFactor) {
         properties = properties.speedFactor(speedFactor);
+
+        return this;
+    }
+
+    public CustomBlockPropertiesSet2 pushReaction(Object pushReaction) {
+        RestApi.Log(RestApiVariables.NOT_IMPLEMENTED_MC);
 
         return this;
     }

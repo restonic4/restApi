@@ -1,6 +1,7 @@
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "dev.architectury:architectury:${rootProject.architectury_version}"
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7.1'
 }
 
 String replaceIgnore(def name, def toIgnore, def fileData) {
@@ -16,7 +17,8 @@ String replaceIgnore(def name, def toIgnore, def fileData) {
 int getVersionIndex() {
     def versionSet3 = ["1.20.2"]
     def versionSet1 = ["1.20", "1.20.1"]
-    def versionSet2 = ["1.19.3", "1.19.4"]
+    def versionSet2 = ["1.19.4"]
+    def versionSet4 = ["1.19.3"]
 
     int versionIndex = 0
 
@@ -26,6 +28,8 @@ int getVersionIndex() {
         versionIndex = 2
     } else if (versionSet3.contains(rootProject.minecraft_version)) {
         versionIndex = 3
+    } else if (versionSet4.contains(rootProject.minecraft_version)) {
+        versionIndex = 4
     }
 
     return versionIndex
@@ -40,7 +44,7 @@ task FixRegistries {
 
             doFirst{
                 println("IN_FO. Compiling new data in ${project.name}: $apiVersion")
-                String apiVersion = project.rootProject.mod_version
+                String apiVersion = project.rootProject.mod_version + "-" + rootProject.minecraft_version
                 println "apiVersion in ${project.name}: $apiVersion"
 
                 def mainFile = file('../common/src/main/java/me/restonic4/restapi/RestApi.java')
@@ -67,81 +71,32 @@ task FixRegistries {
                     throw new GradleException("ERROR. MAIN FILE NOT FOUND in ${project.name}. CAN'T CHANGE VARIABLE TO ENABLE/DISABLE TESTING CLASSES.")
                 }
 
-                def blockRegistry = file('../common/src/main/java/me/restonic4/restapi/block/BlockRegistry.java')
+                def javaFilesToModify = [
+                        '../common/src/main/java/me/restonic4/restapi/block/BlockRegistry.java',
+                        '../common/src/main/java/me/restonic4/restapi/item/ItemRegistry.java',
+                        '../common/src/main/java/me/restonic4/restapi/creative_tab/CreativeTabRegistry.java',
+                        '../common/src/main/java/me/restonic4/restapi/sound/SoundRegistry.java',
+                        '../common/src/main/java/me/restonic4/restapi/util/CustomBlockProperties.java',
+                        '../common/src/main/java/me/restonic4/restapi/util/CustomItemProperties.java',
+                        '../common/src/main/java/me/restonic4/restapi/util/CustomToolTier.java',
+                        "../common/src/main/java/me/restonic4/restapi/worldgen/ore/OreGenerator.java",
+                        "../common/src/main/java/me/restonic4/restapi/util/BiomeConditions.java",
+                        "../common/src/main/java/me/restonic4/restapi/util/CustomBiomeTags.java",
+                        "../common/src/main/java/me/restonic4/restapi/util/CustomArmorMaterial.java"
+                ]
 
-                if (blockRegistry.exists()) {
-                    def blockRegistryCode = blockRegistry.text
-                    int versionIndex = getVersionIndex()
+                javaFilesToModify.each { filePath ->
+                    def javaFile = file(filePath)
 
-                    blockRegistryCode = replaceIgnore('BlockRegistrySet', versionIndex, blockRegistryCode)
+                    if (javaFile.exists()) {
+                        def javaCode = javaFile.text
+                        int versionIndex = getVersionIndex()
 
-                    blockRegistry.text = blockRegistryCode
-                }
+                        def className = filePath.tokenize('/').last().tokenize('.').first()
+                        javaCode = replaceIgnore("${className}Set", versionIndex, javaCode)
 
-                def itemRegistry = file('../common/src/main/java/me/restonic4/restapi/item/ItemRegistry.java')
-
-                if (itemRegistry.exists()) {
-                    def itemRegistryCode = itemRegistry.text
-                    int versionIndex = getVersionIndex()
-
-                    itemRegistryCode = replaceIgnore('ItemRegistrySet', versionIndex, itemRegistryCode)
-
-                    itemRegistry.text = itemRegistryCode
-                }
-
-                def creativeTabRegistry = file('../common/src/main/java/me/restonic4/restapi/creative_tab/CreativeTabRegistry.java')
-
-                if (creativeTabRegistry.exists()) {
-                    def creativeTabRegistryCode = creativeTabRegistry.text
-                    int versionIndex = getVersionIndex()
-
-                    creativeTabRegistryCode = replaceIgnore('CreativeTabRegistrySet', versionIndex, creativeTabRegistryCode)
-
-                    creativeTabRegistry.text = creativeTabRegistryCode
-                }
-
-                def soundRegistry = file('../common/src/main/java/me/restonic4/restapi/sound/SoundRegistry.java')
-
-                if (soundRegistry.exists()) {
-                    def soundRegistryCode = soundRegistry.text
-                    int versionIndex = getVersionIndex()
-
-                    soundRegistryCode = replaceIgnore('SoundRegistrySet', versionIndex, soundRegistryCode)
-
-                    soundRegistry.text = soundRegistryCode
-                }
-
-                def customBlockProperties = file('../common/src/main/java/me/restonic4/restapi/util/CustomBlockProperties.java')
-
-                if (customBlockProperties.exists()) {
-                    def customBlockPropertiesCode = customBlockProperties.text
-                    int versionIndex = getVersionIndex()
-
-                    customBlockPropertiesCode = replaceIgnore('CustomBlockPropertiesSet', versionIndex, customBlockPropertiesCode)
-
-                    customBlockProperties.text = customBlockPropertiesCode
-                }
-
-                def customItemProperties = file('../common/src/main/java/me/restonic4/restapi/util/CustomItemProperties.java')
-
-                if (customItemProperties.exists()) {
-                    def customItemPropertiesCode = customItemProperties.text
-                    int versionIndex = getVersionIndex()
-
-                    customItemPropertiesCode = replaceIgnore('CustomItemPropertiesSet', versionIndex, customItemPropertiesCode)
-
-                    customItemProperties.text = customItemPropertiesCode
-                }
-
-                def customToolTier = file('../common/src/main/java/me/restonic4/restapi/util/CustomToolTier.java')
-
-                if (customToolTier.exists()) {
-                    def customToolTierCode = customToolTier.text
-                    int versionIndex = getVersionIndex()
-
-                    customToolTierCode = replaceIgnore('CustomToolTierSet', versionIndex, customToolTierCode)
-
-                    customToolTier.text = customToolTierCode
+                        javaFile.text = javaCode
+                    }
                 }
             }
         }

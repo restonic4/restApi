@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import static me.restonic4.restapi.RestApiVariables.*;
+
 @SuppressWarnings({"UnstableApiUsage","unchecked"})
 public class ItemRegistrySet3 {//1.20 - 1.20.2
     static List<DeferredRegister<Item>> REGISTRIES = new ArrayList<>();
@@ -42,7 +44,7 @@ public class ItemRegistrySet3 {//1.20 - 1.20.2
                 ITEMS = REGISTRIES.get(i);
             }
 
-            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), RestApi.MOD_ID)) {
+            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), MOD_ID)) {
                 DEFAULT = REGISTRIES.get(i);
             }
         }
@@ -53,10 +55,10 @@ public class ItemRegistrySet3 {//1.20 - 1.20.2
             if (DEFAULT == null) {
                 RestApi.Log("Registry not found, try creating one with ItemRegistry.CreateRegistry(ModID).");
 
-                createRegistry(RestApi.MOD_ID);
+                createRegistry(MOD_ID);
             }
 
-            ITEMS = getModRegistry(RestApi.MOD_ID);
+            ITEMS = getModRegistry(MOD_ID);
         }
 
         return ITEMS;

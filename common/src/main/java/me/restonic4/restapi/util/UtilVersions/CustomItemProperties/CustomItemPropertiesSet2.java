@@ -1,6 +1,9 @@
 package me.restonic4.restapi.util.UtilVersions.CustomItemProperties;
 
-import dev.architectury.registry.registries.DeferredSupplier;
+import dev.architectury.registry.CreativeTabRegistry;
+import dev.architectury.registry.registries.RegistrySupplier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
@@ -13,7 +16,14 @@ public class CustomItemPropertiesSet2 {
 
     public CustomItemPropertiesSet2 tab(Object creativeTab) {
         if (creativeTab != null) {
-            properties = properties.arch$tab((DeferredSupplier<CreativeModeTab>) creativeTab);
+            if (creativeTab instanceof CreativeTabRegistry.TabSupplier) {
+                properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) creativeTab);
+            }
+            else if(creativeTab instanceof ResourceKey<?>) {
+                ResourceLocation rl = ((ResourceKey<CreativeModeTab>) creativeTab).location();
+
+                properties = properties.arch$tab(CreativeTabRegistry.defer(rl));
+            }
         }
 
         return this;
@@ -51,7 +61,7 @@ public class CustomItemPropertiesSet2 {
 
     public CustomItemPropertiesSet2 craftRemainder(Object item) {
         properties = properties.craftRemainder(
-                ((DeferredSupplier<Item>)item).get()
+                ((RegistrySupplier<Item>)item).get()
         );
 
         return this;

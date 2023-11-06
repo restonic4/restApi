@@ -1,3 +1,5 @@
+import groovy.transform.Field
+
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "1.1-SNAPSHOT" apply false
@@ -6,7 +8,7 @@ plugins {
 
 ext {
     mcVersion = rootProject.minecraft_version
-    apiVersion = rootProject.mod_version
+    apiVersion = rootProject.mod_version + "-" + mcVersion
 }
 
 architectury {
@@ -19,28 +21,28 @@ sourceSets {
     }
 }
 
+
+@Field static int totalSets = 4;
+def versionData = [
+        "1.20.2": 3,
+        "1.20": 1, "1.20.1": 1,
+        "1.19.4": 2,
+        "1.19.3": 4
+]
+
 static def addExclusionsForVersion(int version, Set<String> excludePatterns) {
-    for (int i = 1; i <= 3; i++) {
+    for (int i = 1; i <= totalSets; i++) {
         if (i != version) {
             for (String category : Arrays.asList(
                     "BlockRegistry", "CreativeTabRegistry", "SoundRegistry",
                     "ItemRegistry", "CustomBlockProperties", "CustomItemProperties",
-                    "CustomToolTier")) {
+                    "CustomToolTier", "OreGenerator", "BiomeConditions",
+                    "CustomBiomeTags", "CustomArmorMaterial")) {
                 excludePatterns.add(String.format("**/%sSet%d.java", category, i));
             }
         }
     }
 }
-
-def versionSet3 = ["1.20.2"]
-def versionSet1 = ["1.20", "1.20.1"]
-def versionSet2 = ["1.19.3", "1.19.4"]
-
-List<String[]> versionSets = new ArrayList<>()
-
-versionSets.add(versionSet3 as String[])
-versionSets.add(versionSet1 as String[])
-versionSets.add(versionSet2 as String[])
 
 subprojects {
     apply plugin: "dev.architectury.loom"
@@ -55,15 +57,12 @@ subprojects {
 
                 Set<String> excludePatterns = new HashSet<>()
 
-                for (int i = 0; i < versionSets.size(); i++) {
-                    String[] versionSet = versionSets.get(i)
-                    if (Arrays.asList(versionSet).contains(mcVersion)) {
-                        addExclusionsForVersion(i + 1, excludePatterns)
-                        break
-                    }
-                }
+                def versionNumber = versionData.find { mcVersion.contains(it.key) }?.value
 
-                excludePatterns.forEach(exclusion -> exclude(exclusion))
+                if (versionNumber) {
+                    addExclusionsForVersion(versionNumber, excludePatterns)
+                    excludePatterns.forEach(exclusion -> exclude(exclusion))
+                }
             }
         }
     }
@@ -84,7 +83,7 @@ allprojects {
     apply plugin: "maven-publish"
 
     archivesBaseName = rootProject.archives_base_name
-    version = rootProject.mod_version
+    version = rootProject.mod_version + "-" + rootProject.minecraft_version
     group = rootProject.maven_group
 
     repositories { }

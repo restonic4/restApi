@@ -2,28 +2,22 @@ package me.restonic4.restapi.block.RegistryVersions;
 
 import dev.architectury.platform.Platform;
 import dev.architectury.registry.registries.DeferredRegister;
-import dev.architectury.registry.registries.DeferredSupplier;
-import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
-import me.restonic4.restapi.block.BlockRegistry;
 import me.restonic4.restapi.item.ItemRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
+
+import static me.restonic4.restapi.RestApiVariables.*;
 
 public class BlockRegistrySet3 {
     static List<DeferredRegister<Block>> REGISTRIES = new ArrayList<>();
@@ -46,7 +40,7 @@ public class BlockRegistrySet3 {
                 BLOCKS = REGISTRIES.get(i);
             }
 
-            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), RestApi.MOD_ID)) {
+            if (DEFAULT == null && Objects.equals(REGISTRIES.get(i).getRegistrarManager().getModId(), MOD_ID)) {
                 DEFAULT = REGISTRIES.get(i);
             }
         }
@@ -57,10 +51,10 @@ public class BlockRegistrySet3 {
             if (DEFAULT == null) {
                 RestApi.Log("Registry not found, try creating one with BlockRegistry.CreateRegistry(ModID).");
 
-                createRegistry(RestApi.MOD_ID);
+                createRegistry(MOD_ID);
             }
 
-            BLOCKS = getModRegistry(RestApi.MOD_ID);
+            BLOCKS = getModRegistry(MOD_ID);
         }
 
         return BLOCKS;

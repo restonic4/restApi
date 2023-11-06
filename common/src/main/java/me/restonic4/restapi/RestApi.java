@@ -6,15 +6,11 @@ import me.restonic4.restapi.item.ItemRegistry;
 import me.restonic4.restapi.sound.SoundRegistry;
 import me.restonic4.restapi.template.Testing;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import static me.restonic4.restapi.RestApiVariables.*;
 
 public class RestApi
 {
-	public static final String MOD_ID = "restapi";
-	public static final Logger LOGGER = LogManager.getLogger("restApi");
-
-	//THIS VARIABLE IS MODIFIED BY BUILD.GRADLE
+	//VARIABLE GENERATED WITH BUILD.GRADLE
 	public static boolean isATestBuild = false;
 
 	/**

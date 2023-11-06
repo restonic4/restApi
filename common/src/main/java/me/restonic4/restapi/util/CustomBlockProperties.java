@@ -1,10 +1,10 @@
 package me.restonic4.restapi.util;
 
-import me.restonic4.restapi.util.UtilVersions.CustomBlockProperties.CustomBlockPropertiesSet3;
+import me.restonic4.restapi.util.UtilVersions.CustomBlockProperties.CustomBlockPropertiesSet4;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-public class CustomBlockProperties extends CustomBlockPropertiesSet3 {
+public class CustomBlockProperties extends CustomBlockPropertiesSet4 {
     public CustomBlockProperties copy(Block base) {
         super.copy(base);
         return this;
@@ -15,8 +15,8 @@ public class CustomBlockProperties extends CustomBlockPropertiesSet3 {
         return this;
     }
 
-    public CustomBlockProperties strength(float soundsStrength) {
-        super.strength(soundsStrength);
+    public CustomBlockProperties strength(float hardness) {
+        super.strength(hardness);
         return this;
     }
 
@@ -112,6 +112,11 @@ public class CustomBlockProperties extends CustomBlockPropertiesSet3 {
 
     public CustomBlockProperties speedFactor(float speedFactor) {
         super.speedFactor(speedFactor);
+        return this;
+    }
+
+    public CustomBlockProperties pushReaction(Object pushReaction) {
+        super.pushReaction(pushReaction);
         return this;
     }
 

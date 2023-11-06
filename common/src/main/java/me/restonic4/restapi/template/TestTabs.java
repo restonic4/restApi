@@ -5,15 +5,17 @@ import me.restonic4.restapi.RestApi;
 import me.restonic4.restapi.creative_tab.CreativeTabRegistry;
 import net.minecraft.world.item.CreativeModeTab;
 
+import static me.restonic4.restapi.RestApiVariables.MOD_ID;
+
 @SuppressWarnings("unchecked")
 public class TestTabs {
     public static final Object tab = CreativeTabRegistry.CreateCreativeTab(
-            RestApi.MOD_ID,
+            MOD_ID,
             "test_tab",
             "test_item");
 
     public static void register() {
-        CreativeTabRegistry.Register(RestApi.MOD_ID);
+        CreativeTabRegistry.Register(MOD_ID);
 
         RestApi.Log("Tabs added");
     }
