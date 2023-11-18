@@ -22,7 +22,7 @@ import java.util.function.Supplier;
 import static me.restonic4.restapi.RestApiVariables.MOD_ID;
 
 @SuppressWarnings({"UnstableApiUsage","unchecked"})
-public class ItemRegistrySet1 {//1.20 - 1.20.2
+public class ItemRegistrySet1 {
     static List<DeferredRegister<Item>> REGISTRIES = new ArrayList<>();
     static DeferredRegister<Item> DEFAULT;
 
