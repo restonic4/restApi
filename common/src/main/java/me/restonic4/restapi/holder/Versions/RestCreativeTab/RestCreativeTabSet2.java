@@ -1,18 +1,19 @@
 package me.restonic4.restapi.holder.Versions.RestCreativeTab;
 
+import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.world.item.CreativeModeTab;
 
 public class RestCreativeTabSet2 {
-    private RegistrySupplier<CreativeModeTab> itemHolder;
+    private CreativeTabRegistry.TabSupplier itemHolder;
 
     public RestCreativeTabSet2() {}
 
-    public void setItemHolder(RegistrySupplier<CreativeModeTab> itemHolder) {
+    public void setItemHolder(CreativeTabRegistry.TabSupplier itemHolder) {
         this.itemHolder = itemHolder;
     }
 
-    public RegistrySupplier<CreativeModeTab> get() {
+    public CreativeTabRegistry.TabSupplier get() {
         return itemHolder;
     }
 }

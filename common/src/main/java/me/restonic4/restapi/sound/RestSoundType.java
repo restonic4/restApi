@@ -1,4 +1,5 @@
 package me.restonic4.restapi.sound;
+import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.block.SoundType;
 import org.jetbrains.annotations.NotNull;
@@ -6,13 +7,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Supplier;
 
 public class RestSoundType extends SoundType {
-    private final Supplier<SoundEvent> breakSound;
-    private final Supplier<SoundEvent> stepSound;
-    private final Supplier<SoundEvent> placeSound;
-    private final Supplier<SoundEvent> hitSound;
-    private final Supplier<SoundEvent> fallSound;
+    private final RegistrySupplier<SoundEvent> breakSound;
+    private final RegistrySupplier<SoundEvent> stepSound;
+    private final RegistrySupplier<SoundEvent> placeSound;
+    private final RegistrySupplier<SoundEvent> hitSound;
+    private final RegistrySupplier<SoundEvent> fallSound;
 
-    public RestSoundType(float volumeIn, float pitchIn, Supplier<SoundEvent> breakSoundIn, Supplier<SoundEvent> stepSoundIn, Supplier<SoundEvent> placeSoundIn, Supplier<SoundEvent> hitSoundIn, Supplier<SoundEvent> fallSoundIn)
+    public RestSoundType(float volumeIn, float pitchIn, RegistrySupplier<SoundEvent> breakSoundIn, RegistrySupplier<SoundEvent> stepSoundIn, RegistrySupplier<SoundEvent> placeSoundIn, RegistrySupplier<SoundEvent> hitSoundIn, RegistrySupplier<SoundEvent> fallSoundIn)
     {
         super(volumeIn, pitchIn, null, null, null, null, null);
         this.breakSound = breakSoundIn;

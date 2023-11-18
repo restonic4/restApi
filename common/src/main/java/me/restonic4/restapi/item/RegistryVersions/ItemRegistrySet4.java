@@ -5,6 +5,7 @@ import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
+import me.restonic4.restapi.holder.RestCreativeTab;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
@@ -63,11 +64,11 @@ public class ItemRegistrySet4 {//1.20 - 1.20.2
         return ITEMS;
     }
 
-    public static RegistrySupplier<Item> createSimple(String ModId, String ItemId, Object CreativeTab) {
+    public static RegistrySupplier<Item> createSimple(String ModId, String ItemId, RestCreativeTab CreativeTab) {
         Item.Properties properties = new Item.Properties();
 
         if (CreativeTab != null) {
-            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) CreativeTab);
+            properties = properties.arch$tab(CreativeTab.get());
         }
 
         Item.Properties finalProperties = properties;
@@ -84,11 +85,11 @@ public class ItemRegistrySet4 {//1.20 - 1.20.2
         );
     }
 
-    public static <T extends Block> RegistrySupplier<Item> createBlockItem(String ModId, Object toReturn, String blockId, Object CreativeTab) {
+    public static <T extends Block> RegistrySupplier<Item> createBlockItem(String ModId, Object toReturn, String blockId, RestCreativeTab CreativeTab) {
         Item.Properties properties = new Item.Properties();
 
         if (CreativeTab != null) {
-            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) CreativeTab);
+            properties = properties.arch$tab(CreativeTab.get());
         }
 
         Item.Properties finalProperties = properties;
@@ -120,11 +121,11 @@ public class ItemRegistrySet4 {//1.20 - 1.20.2
         return foodBuilder.nutrition(Nutrition).saturationMod(SaturationMod).build();
     }
 
-    public static RegistrySupplier<Item> createFood(String ModId, String ItemId, Object CreativeTab, FoodProperties FoodProperties) {
+    public static RegistrySupplier<Item> createFood(String ModId, String ItemId, RestCreativeTab CreativeTab, FoodProperties FoodProperties) {
         Item.Properties properties = new Item.Properties().food(FoodProperties);
 
         if (CreativeTab != null) {
-            properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) CreativeTab);
+            properties = properties.arch$tab(CreativeTab.get());
         }
 
         Item.Properties finalProperties = properties;

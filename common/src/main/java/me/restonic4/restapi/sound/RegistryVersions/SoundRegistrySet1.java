@@ -3,6 +3,7 @@ package me.restonic4.restapi.sound.RegistryVersions;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
+import me.restonic4.restapi.holder.RestSound;
 import me.restonic4.restapi.sound.RestSoundType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -66,18 +67,18 @@ public class SoundRegistrySet1 {
     }
 
     public static void playSound(Player player, Object sound, Object source, float volume, float pitch) {
-        RegistrySupplier<SoundEvent> soundFixed = (RegistrySupplier<SoundEvent>) sound;
+        RegistrySupplier<SoundEvent> soundFixed = (sound instanceof RestSound) ? ((RestSound)sound).get() : (RegistrySupplier<SoundEvent>) sound;
         SoundSource soundSourceFixed = (SoundSource) source;
 
         player.level().playSound(player, player.getX(), player.getY(), player.getZ(), soundFixed.get(), soundSourceFixed, volume, pitch);
     }
 
     public static SoundType createCustomSoundType(float volume, float pitch, Object breakSound, Object stepSound, Object placeSound, Object hitSound, Object fallSound) {
-        Supplier<SoundEvent> fixedBreakSound = (Supplier<SoundEvent>) breakSound;
-        Supplier<SoundEvent> fixedStepSound = (Supplier<SoundEvent>) stepSound;
-        Supplier<SoundEvent> fixedPlaceSound = (Supplier<SoundEvent>) placeSound;
-        Supplier<SoundEvent> fixedHitSound = (Supplier<SoundEvent>) hitSound;
-        Supplier<SoundEvent> fixedFallSound = (Supplier<SoundEvent>) fallSound;
+        RegistrySupplier<SoundEvent> fixedBreakSound = (breakSound instanceof RestSound) ? ((RestSound)breakSound).get() : (RegistrySupplier<SoundEvent>) breakSound;
+        RegistrySupplier<SoundEvent> fixedStepSound = (stepSound instanceof RestSound) ? ((RestSound)stepSound).get() : (RegistrySupplier<SoundEvent>) stepSound;
+        RegistrySupplier<SoundEvent> fixedPlaceSound = (placeSound instanceof RestSound) ? ((RestSound)placeSound).get() : (RegistrySupplier<SoundEvent>) placeSound;
+        RegistrySupplier<SoundEvent> fixedHitSound = (hitSound instanceof RestSound) ? ((RestSound)hitSound).get() : (RegistrySupplier<SoundEvent>) hitSound;
+        RegistrySupplier<SoundEvent> fixedFallSound = (fallSound instanceof RestSound) ? ((RestSound)fallSound).get() : (RegistrySupplier<SoundEvent>) fallSound;
 
         return new RestSoundType(volume, pitch, fixedBreakSound, fixedStepSound, fixedPlaceSound, fixedHitSound, fixedFallSound);
     }

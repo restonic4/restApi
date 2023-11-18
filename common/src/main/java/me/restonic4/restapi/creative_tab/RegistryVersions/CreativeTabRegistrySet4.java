@@ -26,7 +26,7 @@ public class CreativeTabRegistrySet4 {
         return null;
     }
 
-    public static Object createCreativeTab(String ModId, String TabId, String ItemId) {
+    public static CreativeTabRegistry.TabSupplier createCreativeTab(String ModId, String TabId, String ItemId) {
         RegistrySupplier<Item> itemSupplier = ((DeferredRegister<Item>) ItemRegistry.GetRegistry(ModId)).getRegistrar().delegate(new ResourceLocation(ModId, ItemId));
 
         return CreativeTabRegistry.create(
