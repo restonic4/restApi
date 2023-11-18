@@ -4,6 +4,7 @@ import dev.architectury.platform.Platform;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import me.restonic4.restapi.RestApi;
+import me.restonic4.restapi.holder.RestCreativeTab;
 import me.restonic4.restapi.item.ItemRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -60,7 +61,7 @@ public class BlockRegistrySet2 {
         return BLOCKS;
     }
 
-    public static RegistrySupplier<Block> createBlock(String ModId, String blockId, BlockBehaviour.Properties properties, Object creativeTab) {
+    public static RegistrySupplier<Block> createBlock(String ModId, String blockId, BlockBehaviour.Properties properties, RestCreativeTab creativeTab) {
         return registerBlock(
                 ModId,
                 blockId,
@@ -69,7 +70,7 @@ public class BlockRegistrySet2 {
         );
     }
 
-    public static RegistrySupplier<Block> createExperienceBlock(String ModId, String blockId, BlockBehaviour.Properties properties, Object creativeTab, int minXP, int maxXP) {
+    public static RegistrySupplier<Block> createExperienceBlock(String ModId, String blockId, BlockBehaviour.Properties properties, RestCreativeTab creativeTab, int minXP, int maxXP) {
         return registerBlock(
                 ModId,
                 blockId,
@@ -78,7 +79,7 @@ public class BlockRegistrySet2 {
         );
     }
 
-    public static <T extends Block> RegistrySupplier<T> registerBlock(String ModId, String blockId, Supplier<T> block, Object creativeTab) {
+    public static <T extends Block> RegistrySupplier<T> registerBlock(String ModId, String blockId, Supplier<T> block, RestCreativeTab creativeTab) {
         RegistrySupplier<T> toReturn = registerInDesiredPlatform(ModId, new ResourceLocation(ModId, blockId), block);
         ItemRegistry.CreateBlockItem(ModId, toReturn, blockId, creativeTab);
 

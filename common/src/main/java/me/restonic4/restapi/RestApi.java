@@ -11,7 +11,7 @@ import static me.restonic4.restapi.RestApiVariables.*;
 public class RestApi
 {
 	//VARIABLE GENERATED WITH BUILD.GRADLE
-	public static boolean isATestBuild = false;
+	public static boolean isATestBuild = true;
 
 	/**
 	 * This logs a message in the console.

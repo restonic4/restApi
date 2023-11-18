@@ -82,7 +82,8 @@ task FixRegistries {
                         "../common/src/main/java/me/restonic4/restapi/worldgen/ore/OreGenerator.java",
                         "../common/src/main/java/me/restonic4/restapi/util/BiomeConditions.java",
                         "../common/src/main/java/me/restonic4/restapi/util/CustomBiomeTags.java",
-                        "../common/src/main/java/me/restonic4/restapi/util/CustomArmorMaterial.java"
+                        "../common/src/main/java/me/restonic4/restapi/util/CustomArmorMaterial.java",
+                        "../common/src/main/java/me/restonic4/restapi/holder/RestItem.java"
                 ]
 
                 javaFilesToModify.each { filePath ->

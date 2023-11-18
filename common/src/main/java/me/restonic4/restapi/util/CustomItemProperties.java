@@ -1,9 +1,9 @@
 package me.restonic4.restapi.util;
 
-import me.restonic4.restapi.util.UtilVersions.CustomItemProperties.CustomItemPropertiesSet4;
+import me.restonic4.restapi.util.UtilVersions.CustomItemProperties.CustomItemPropertiesSet1;
 import net.minecraft.world.item.Item;
 
-public class CustomItemProperties extends CustomItemPropertiesSet4 {
+public class CustomItemProperties extends CustomItemPropertiesSet1 {
     public CustomItemProperties tab(Object creativeTab) {
         super.tab(creativeTab);
         return this;

@@ -2,6 +2,7 @@ package me.restonic4.restapi.util.UtilVersions.CustomItemProperties;
 
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.RegistrySupplier;
+import me.restonic4.restapi.holder.RestCreativeTab;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -16,7 +17,10 @@ public class CustomItemPropertiesSet2 {
 
     public CustomItemPropertiesSet2 tab(Object creativeTab) {
         if (creativeTab != null) {
-            if (creativeTab instanceof CreativeTabRegistry.TabSupplier) {
+            if (creativeTab instanceof RestCreativeTab) {
+                properties = properties.arch$tab(((RestCreativeTab) creativeTab).get());
+            }
+            else if (creativeTab instanceof CreativeTabRegistry.TabSupplier) {
                 properties = properties.arch$tab((CreativeTabRegistry.TabSupplier) creativeTab);
             }
             else if(creativeTab instanceof ResourceKey<?>) {

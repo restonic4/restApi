@@ -1,7 +1,9 @@
 package me.restonic4.restapi.block;
 
 import me.restonic4.restapi.RestApi;
-import me.restonic4.restapi.block.RegistryVersions.BlockRegistrySet4;
+import me.restonic4.restapi.block.RegistryVersions.BlockRegistrySet1;
+import me.restonic4.restapi.holder.RestBlock;
+import me.restonic4.restapi.holder.RestCreativeTab;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 @SuppressWarnings("unchecked")
@@ -12,7 +14,7 @@ public class BlockRegistry {
      */
     public static Object CreateRegistry(String ModId) {
         RestApi.Log("Creating block registry", ModId);
-        return BlockRegistrySet4.createRegistry(ModId);
+        return BlockRegistrySet1.createRegistry(ModId);
     }
 
     /**
@@ -21,7 +23,7 @@ public class BlockRegistry {
      * @return Returns the registry as Object type.
      */
     public static Object GetRegistry(String ModId) {
-        return BlockRegistrySet4.getModRegistry(ModId);
+        return BlockRegistrySet1.getModRegistry(ModId);
     }
 
     /**
@@ -32,12 +34,18 @@ public class BlockRegistry {
      * @param CreativeTab The creative tab or null.
      * @return Returns the block.
      */
-    public static Object CreateBlock(String ModId, String BlockId, Object Properties, Object CreativeTab) {
-        return BlockRegistrySet4.createBlock(ModId, BlockId, (BlockBehaviour.Properties) Properties, CreativeTab);
+    public static RestBlock CreateBlock(String ModId, String BlockId, Object Properties, RestCreativeTab CreativeTab) {
+        RestBlock blockHolder = new RestBlock();
+        blockHolder.setItemHolder(BlockRegistrySet1.createBlock(ModId, BlockId, (BlockBehaviour.Properties) Properties, CreativeTab));
+
+        return blockHolder;
     }
 
-    public static Object CreateExperienceBlock(String ModId, String BlockId, Object Properties, Object CreativeTab, int MinXP, int MaxXP) {
-        return BlockRegistrySet4.createExperienceBlock(ModId, BlockId, (BlockBehaviour.Properties) Properties, CreativeTab, MinXP, MaxXP);
+    public static RestBlock CreateExperienceBlock(String ModId, String BlockId, Object Properties, RestCreativeTab CreativeTab, int MinXP, int MaxXP) {
+        RestBlock blockHolder = new RestBlock();
+        blockHolder.setItemHolder(BlockRegistrySet1.createExperienceBlock(ModId, BlockId, (BlockBehaviour.Properties) Properties, CreativeTab, MinXP, MaxXP));
+
+        return blockHolder;
     }
 
     /**
@@ -47,7 +55,7 @@ public class BlockRegistry {
     public static void Register(String ModId) {
         RestApi.Log("Trying to register blocks", ModId);
 
-        BlockRegistrySet4.register(ModId);
+        BlockRegistrySet1.register(ModId);
 
         RestApi.Log("Blocks registered", ModId);
     }

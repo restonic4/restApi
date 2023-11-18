@@ -1,11 +1,11 @@
 package me.restonic4.restapi.util;
 
 import dev.architectury.registry.level.biome.BiomeModifications;
-import me.restonic4.restapi.util.UtilVersions.BiomeConditions.BiomeConditionsSet4;
+import me.restonic4.restapi.util.UtilVersions.BiomeConditions.BiomeConditionsSet1;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 
-public class BiomeConditions extends BiomeConditionsSet4 {
+public class BiomeConditions extends BiomeConditionsSet1 {
     //Custom
     public BiomeConditions addCustomBiomeTagKey(TagKey<Biome> tagKey) {
         super.addCustomBiomeTagKey(tagKey);
