@@ -60,7 +60,7 @@ public class SoundRegistrySet1 {
         return SOUNDS;
     }
 
-    public static Object registerSound(String ModId, String SoundId) {
+    public static RegistrySupplier<SoundEvent> registerSound(String ModId, String SoundId) {
         ResourceLocation id = new ResourceLocation(ModId, SoundId);
         return getModRegistry(ModId).register(SoundId, () -> SoundEvent.createVariableRangeEvent(id));
     }

@@ -1,8 +1,10 @@
 package me.restonic4.restapi.sound;
 
 import me.restonic4.restapi.RestApi;
+import me.restonic4.restapi.holder.RestSound;
 import me.restonic4.restapi.sound.RegistryVersions.SoundRegistrySet1;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.SoundType;
 
 @SuppressWarnings("unchecked")
 public class SoundRegistry {
@@ -31,11 +33,13 @@ public class SoundRegistry {
      * This creates a creative tab.
      * @param ModId The mod id.
      * @param SoundId The sound id.
-     * @return Returns the sound event as Object type.
+     * @return Returns the sound event as RestSound type.
      */
-    public static Object RegisterSound(String ModId, String SoundId) {
-        //1.20 - 1.20.2
-        return SoundRegistrySet1.registerSound(ModId, SoundId);
+    public static RestSound RegisterSound(String ModId, String SoundId) {
+        RestSound soundHolder = new RestSound();
+        soundHolder.setItemHolder(SoundRegistrySet1.registerSound(ModId, SoundId));
+
+        return soundHolder;
     }
 
     /**
@@ -59,10 +63,9 @@ public class SoundRegistry {
      * @param PlaceSound The sound when you place it.
      * @param HitSound The sound when you start breaking it.
      * @param FallSound The sound when you fall on it.
-     * @return Returns the sound type as Object.
+     * @return Returns the sound type as SoundType.
      */
-    public static Object CreateCustomSoundType(float Volume, float Pitch, Object BreakSound, Object StepSound, Object PlaceSound, Object HitSound, Object FallSound) {
-        //1.20 -> 1.20.2
+    public static SoundType CreateCustomSoundType(float Volume, float Pitch, Object BreakSound, Object StepSound, Object PlaceSound, Object HitSound, Object FallSound) {
         return SoundRegistrySet1.createCustomSoundType(Volume, Pitch, BreakSound, StepSound, PlaceSound, HitSound, FallSound);
     }
 

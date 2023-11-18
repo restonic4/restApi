@@ -28,8 +28,8 @@ public class CustomBlockPropertiesSet1 {
         return this;
     }
 
-    public CustomBlockPropertiesSet1 sound(Object soundType) {
-        properties = properties.sound((SoundType) soundType);
+    public CustomBlockPropertiesSet1 sound(SoundType soundType) {
+        properties = properties.sound(soundType);
 
         return this;
     }

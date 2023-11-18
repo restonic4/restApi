@@ -83,7 +83,10 @@ task FixRegistries {
                         "../common/src/main/java/me/restonic4/restapi/util/BiomeConditions.java",
                         "../common/src/main/java/me/restonic4/restapi/util/CustomBiomeTags.java",
                         "../common/src/main/java/me/restonic4/restapi/util/CustomArmorMaterial.java",
-                        "../common/src/main/java/me/restonic4/restapi/holder/RestItem.java"
+                        "../common/src/main/java/me/restonic4/restapi/holder/RestItem.java",
+                        "../common/src/main/java/me/restonic4/restapi/holder/RestBlock.java",
+                        "../common/src/main/java/me/restonic4/restapi/holder/RestCreativeTab.java",
+                        "../common/src/main/java/me/restonic4/restapi/holder/RestSound.java"
                 ]
 
                 javaFilesToModify.each { filePath ->

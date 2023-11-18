@@ -2,6 +2,7 @@ package me.restonic4.restapi.util;
 
 import me.restonic4.restapi.util.UtilVersions.CustomBlockProperties.CustomBlockPropertiesSet1;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class CustomBlockProperties extends CustomBlockPropertiesSet1 {
@@ -20,7 +21,7 @@ public class CustomBlockProperties extends CustomBlockPropertiesSet1 {
         return this;
     }
 
-    public CustomBlockProperties sound(Object soundType) {
+    public CustomBlockProperties sound(SoundType soundType) {
         super.sound(soundType);
         return this;
     }
