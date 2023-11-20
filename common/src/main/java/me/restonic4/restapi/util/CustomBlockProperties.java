@@ -1,11 +1,11 @@
 package me.restonic4.restapi.util;
 
-import me.restonic4.restapi.util.UtilVersions.CustomBlockProperties.CustomBlockPropertiesSet4;
+import me.restonic4.restapi.util.UtilVersions.CustomBlockProperties.CustomBlockPropertiesSet3;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-public class CustomBlockProperties extends CustomBlockPropertiesSet4 {
+public class CustomBlockProperties extends CustomBlockPropertiesSet3 {
     public CustomBlockProperties copy(Block base) {
         super.copy(base);
         return this;

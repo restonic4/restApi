@@ -110,7 +110,7 @@ task FixRegistries {
 tasks.matching { it != FixRegistries }.all { it.dependsOn FixRegistries }
 
 architectury {
-    common("fabric", "forge")
+    common("fabric", "forge", "quilt")
 }
 
 publishing {
