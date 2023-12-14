@@ -38,7 +38,8 @@ static def addExclusionsForVersion(int version, Set<String> excludePatterns) {
                     "ItemRegistry", "CustomBlockProperties", "CustomItemProperties",
                     "CustomToolTier", "OreGenerator", "BiomeConditions",
                     "CustomBiomeTags", "CustomArmorMaterial", "RestItem",
-                    "RestBlock", "RestCreativeTab", "RestSound")) {
+                    "RestBlock", "RestCreativeTab", "RestSound",
+                    "InternalAdvancementTrigger", "AdvancementTrigger")) {
                 excludePatterns.add(String.format("**/%sSet%d.java", category, i));
             }
         }

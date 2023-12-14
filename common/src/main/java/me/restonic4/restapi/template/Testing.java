@@ -24,6 +24,7 @@ public class Testing {
         TestBlocks.register();
         TestTabs.register();
         TestSounds.register();
+        TestUtil.register();
 
         RestApi.Log("Testing things created");
 
