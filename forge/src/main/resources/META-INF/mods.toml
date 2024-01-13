@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[48,)"
+loaderVersion="[46,)"
 license="All Rights Reserved"
 issueTrackerURL="https://marco/restApi/issues"
 
@@ -16,13 +16,20 @@ description='''
 [[dependencies.restapi]]
    modId="forge"
    mandatory=true
-   versionRange="[48,)"
+   versionRange="[46,)"
    ordering="NONE"
    side="BOTH"
 
 [[dependencies.restapi]]
    modId="minecraft"
    mandatory=true
-   versionRange="[1.20.2,1.20.3)"
+   versionRange="[1.20]"
+   ordering="NONE"
+   side="BOTH"
+
+[[dependencies.restapi]]
+   modId="architectury"
+   mandatory=true
+   versionRange="[7.1.86)"
    ordering="NONE"
    side="BOTH"

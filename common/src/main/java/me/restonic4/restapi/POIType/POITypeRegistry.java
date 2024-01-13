@@ -21,6 +21,8 @@ public class POITypeRegistry {
     public static Object CreateRegistry(String ModId) {
         RestApi.Log("Creating POIType registry", ModId);
 
+        RestApi.NotImplementedError();
+
         return POITypesRegistrySet1.createRegistry(ModId);
     }
 
@@ -30,6 +32,8 @@ public class POITypeRegistry {
      * @return Returns the registry as Object type.
      */
     public static Object GetRegistry(String ModId) {
+        RestApi.NotImplementedError();
+
         return POITypesRegistrySet1.getModRegistry(ModId);
     }
 
@@ -45,6 +49,8 @@ public class POITypeRegistry {
     public static RestPOIType Create(String ModId, String POIType_id, Block block, int MaxTickets, int ValidRange) {
         RestApi.Log("Creating POIType", ModId);
 
+        RestApi.NotImplementedError();
+
         RestPOIType poiHolder = new RestPOIType();
         poiHolder.setPOITypeHolder(POITypesRegistrySet1.create(ModId, POIType_id, block, MaxTickets, ValidRange));
 
@@ -57,6 +63,8 @@ public class POITypeRegistry {
      */
     public static void Register(String ModId) {
         RestApi.Log("Trying to register items", ModId);
+
+        RestApi.NotImplementedError();
 
         ItemRegistrySet3.register(ModId);
 

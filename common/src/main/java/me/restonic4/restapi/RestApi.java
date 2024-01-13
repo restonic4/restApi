@@ -11,7 +11,7 @@ import static me.restonic4.restapi.RestApiVariables.*;
 public class RestApi
 {
 	//VARIABLE GENERATED WITH BUILD.GRADLE
-	public static boolean isATestBuild = false;
+	public static boolean isATestBuild = true;
 
 	/**
 	 * This logs a message in the console.
@@ -28,6 +28,10 @@ public class RestApi
 	 */
 	public static void Log(Object message, String mod) {
 		LOGGER.info("[restApi + " + mod + "] " + message);
+	}
+
+	public static void NotImplementedError() {
+		throw new UnsupportedOperationException("This is not implemented yet! Check the documentation!");
 	}
 
 	public static boolean CheckObject(Object object) {
