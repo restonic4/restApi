@@ -1,0 +1,33 @@
+modLoader = "javafml"
+loaderVersion = "*"
+issueTrackerURL = ""
+license = "${license}"
+
+[[mods]]
+modId = "restapi"
+version = "${version}"
+displayName = "${name}"
+authors = "${author}"
+description = "${description}"
+logoFile = "icon.png"
+
+[[dependencies.restapi]]
+    modId = "neoforge"
+    mandatory = true
+    versionRange = "[${neoforge_version},)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.restapi]]
+    modId = "minecraft"
+    mandatory = true
+    versionRange = "[${minecraft_version}]"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.restapi]]
+    modId = "architectury"
+    mandatory = true
+    versionRange = "[${architectury_version},)"
+    ordering = "AFTER"
+    side = "BOTH"

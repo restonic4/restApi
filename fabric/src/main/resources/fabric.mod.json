@@ -3,12 +3,12 @@
   "id": "restapi",
   "version": "${version}",
 
-  "name": "RestApi",
-  "description": "",
-  "authors": [],
+  "name": "${name}",
+  "description": "${description}",
+  "authors": ["${author}"],
   "contact": {},
 
-  "license": "All Rights Reserved",
+  "license": "${license}",
   "icon": "icon.png",
 
   "environment": "*",
@@ -18,8 +18,8 @@
     ]
   },
   "depends": {
-    "fabricloader": ">=0.14.22",
-    "minecraft": "=1.20",
-    "architectury": ">=7.1.86"
+    "fabricloader": ">=${fabric_loader_version}",
+    "minecraft": "=${minecraft_version}",
+    "architectury": ">=${architectury_version}"
   }
 }

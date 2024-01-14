@@ -12,7 +12,7 @@ public class InternalAdvancementTriggerSet2 extends SimpleCriterionTrigger<Inter
         this.resourceLocation = resourceLocation;
     }
 
-    public InternalAdvancementTriggerSet2.Instance createInstance(JsonObject jo, ContextAwarePredicate cap, DeserializationContext dc) {
+    public InternalAdvancementTriggerSet2.Instance createInstance(JsonObject jo, EntityPredicate.Composite cap, DeserializationContext dc) {
         return new InternalAdvancementTriggerSet2.Instance(cap, resourceLocation);
     }
 
@@ -30,12 +30,12 @@ public class InternalAdvancementTriggerSet2 extends SimpleCriterionTrigger<Inter
 
     public static class Instance extends AbstractCriterionTriggerInstance {
 
-        public Instance(ContextAwarePredicate cap, ResourceLocation res) {
+        public Instance(EntityPredicate.Composite cap, ResourceLocation res) {
             super(res, cap);
         }
 
         public static ConstructBeaconTrigger.TriggerInstance forLevel(MinMaxBounds.Ints mmbi) {
-            return new ConstructBeaconTrigger.TriggerInstance(ContextAwarePredicate.ANY, mmbi);
+            return new ConstructBeaconTrigger.TriggerInstance(EntityPredicate.Composite.ANY, mmbi);
         }
 
 

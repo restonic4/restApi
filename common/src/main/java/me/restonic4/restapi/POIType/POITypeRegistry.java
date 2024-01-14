@@ -2,13 +2,7 @@ package me.restonic4.restapi.POIType;
 
 import me.restonic4.restapi.POIType.RegistryVersions.POITypesRegistrySet1;
 import me.restonic4.restapi.RestApi;
-import me.restonic4.restapi.holder.RestCreativeTab;
-import me.restonic4.restapi.holder.RestItem;
 import me.restonic4.restapi.holder.RestPOIType;
-import me.restonic4.restapi.item.RegistryVersions.ItemRegistrySet3;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 import java.util.function.Supplier;
@@ -66,7 +60,7 @@ public class POITypeRegistry {
 
         RestApi.NotImplementedError();
 
-        ItemRegistrySet3.register(ModId);
+        POITypesRegistrySet1.register(ModId);
 
         RestApi.Log("Items registered", ModId);
     }

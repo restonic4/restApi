@@ -4,6 +4,28 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7.1'
 }
 
+/*tasks.withType(JavaCompile) {
+    doFirst {
+        def mcVersion = rootProject.minecraft_version
+        def mainAccesswidener = project.file("src/main/resources/restapi.accesswidener")
+        def lookingAccesswidener = project.file("src/main/resources/restapi_${mcVersion}_.accesswidener")
+
+        if (mainAccesswidener.exists()) {
+            println "INFO. Main accesswidener FOUND in ${project.name}"
+
+            if (lookingAccesswidener.exists()) {
+                println "INFO. accesswidener for ${mcVersion} FOUND in ${project.name}"
+
+                mainAccesswidener.text = lookingAccesswidener.text
+            } else {
+                throw new GradleException("ERROR. accesswidener for ${mcVersion} NOT FOUND in ${project.name}.")
+            }
+        } else {
+            throw new GradleException("ERROR. Main accesswidener NOT FOUND in ${project.name}.")
+        }
+    }
+}*/
+
 String replaceIgnore(def name, def toIgnore, def fileData) {
     for(int i = 1; i <= 5; i++) {
         if (i != toIgnore) {
@@ -43,7 +65,7 @@ task FixRegistries {
             dependsOn FixRegistries
 
             doFirst{
-                println("IN_FO. Compiling new data in ${project.name}: $apiVersion")
+                println("INFO. Compiling new data in ${project.name}: $apiVersion")
                 String apiVersion = project.rootProject.mod_version + "-" + rootProject.minecraft_version
                 println "apiVersion in ${project.name}: $apiVersion"
 
@@ -111,8 +133,12 @@ task FixRegistries {
 
 tasks.matching { it != FixRegistries }.all { it.dependsOn FixRegistries }
 
+loom {
+    accessWidenerPath = file("src/main/resources/restapi.accesswidener")
+}
+
 architectury {
-    common("fabric", "forge", "quilt")
+    common((rootProject.enabled_platforms.tokenize(',') as List<String>))
 }
 
 publishing {

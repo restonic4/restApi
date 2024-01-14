@@ -6,9 +6,11 @@
     "id": "restapi",
     "version": "${version}",
     "metadata": {
-      "name": "RestApi",
-      "description": "",
-      "contributors": {},
+      "name": "${name}",
+      "description": "${description}",
+      "contributors": {
+        "${author}": "Owner"
+      },
       "contact": {},
       "icon": "icon.png"
     },
@@ -22,19 +24,19 @@
     "depends": [
       {
         "id": "quilt_loader",
-        "versions": ">=0.18.10"
+        "versions": ">=${quilt_loader_version}"
       },
       {
         "id": "quilted_fabric_api",
-        "versions": ">=4.0.0"
+        "versions": ">=${quilt_fabric_api_version}"
       },
       {
         "id": "minecraft",
-        "versions": "=1.20.2"
+        "versions": "=${minecraft_version}"
       },
       {
         "id": "architectury",
-        "version": ">=7.1.86"
+        "version": ">=${architectury_version}"
       }
     ]
   }

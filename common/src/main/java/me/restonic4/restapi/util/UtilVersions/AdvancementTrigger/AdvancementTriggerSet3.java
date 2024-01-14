@@ -2,6 +2,7 @@ package me.restonic4.restapi.util.UtilVersions.AdvancementTrigger;
 
 import me.restonic4.restapi.util.InternalAdvancementTrigger;
 import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -18,7 +19,7 @@ public class AdvancementTriggerSet3 {
     }
 
     protected void registerCriteriaTriggers() {
-        CriteriaTriggers.register(advancement);
+        CriteriaTriggers.register(advancement_location.toString(), advancement);
     }
 
     public void register() {
@@ -26,13 +27,13 @@ public class AdvancementTriggerSet3 {
     }
 
     public void grant(ServerPlayer serverPlayer) {
-        Advancement advancementInstance = serverPlayer.server.getAdvancements().getAdvancement(this.advancement_location);
+        AdvancementHolder advancementInstance = getAdvancement(serverPlayer);
 
         serverPlayer.getAdvancements().award(advancementInstance, this.advancement_id);
     }
 
-    public Advancement getAdvancement(ServerPlayer serverPlayer) {
-        return serverPlayer.server.getAdvancements().getAdvancement(this.advancement_location);
+    public AdvancementHolder getAdvancement(ServerPlayer serverPlayer) {
+        return serverPlayer.server.getAdvancements().get(this.advancement_location);
     }
 
     public boolean hasAdvancement(ServerPlayer serverPlayer) {

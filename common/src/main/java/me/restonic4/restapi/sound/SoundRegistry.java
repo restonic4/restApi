@@ -2,7 +2,7 @@ package me.restonic4.restapi.sound;
 
 import me.restonic4.restapi.RestApi;
 import me.restonic4.restapi.holder.RestSound;
-import me.restonic4.restapi.sound.RegistryVersions.SoundRegistrySet1;
+import me.restonic4.restapi.sound.RegistryVersions.SoundRegistrySet4;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.SoundType;
 
@@ -16,7 +16,7 @@ public class SoundRegistry {
         RestApi.Log("Creating sound events registry", ModId);
 
         //1.20 - 1.20.2
-        return SoundRegistrySet1.createRegistry(ModId);
+        return SoundRegistrySet4.createRegistry(ModId);
     }
 
     /**
@@ -26,7 +26,7 @@ public class SoundRegistry {
      */
     public static Object GetRegistry(String ModId) {
         //1.20 -> 1.20.2
-        return SoundRegistrySet1.getModRegistry(ModId);
+        return SoundRegistrySet4.getModRegistry(ModId);
     }
 
     /**
@@ -37,7 +37,7 @@ public class SoundRegistry {
      */
     public static RestSound RegisterSound(String ModId, String SoundId) {
         RestSound soundHolder = new RestSound();
-        soundHolder.setItemHolder(SoundRegistrySet1.registerSound(ModId, SoundId));
+        soundHolder.setItemHolder(SoundRegistrySet4.registerSound(ModId, SoundId));
 
         return soundHolder;
     }
@@ -51,7 +51,7 @@ public class SoundRegistry {
      * @param pitch The pitch -1 to 1. 0 = normal.
      */
     public static void PlaySound(Player player, Object sound, Object source, float volume, float pitch) {
-        SoundRegistrySet1.playSound(player, sound, source, volume, pitch);
+        SoundRegistrySet4.playSound(player, sound, source, volume, pitch);
     }
 
     /**
@@ -66,7 +66,7 @@ public class SoundRegistry {
      * @return Returns the sound type as SoundType.
      */
     public static SoundType CreateCustomSoundType(float Volume, float Pitch, Object BreakSound, Object StepSound, Object PlaceSound, Object HitSound, Object FallSound) {
-        return SoundRegistrySet1.createCustomSoundType(Volume, Pitch, BreakSound, StepSound, PlaceSound, HitSound, FallSound);
+        return SoundRegistrySet4.createCustomSoundType(Volume, Pitch, BreakSound, StepSound, PlaceSound, HitSound, FallSound);
     }
 
     /**
@@ -77,7 +77,7 @@ public class SoundRegistry {
         RestApi.Log("Trying to register sound events", ModId);
 
         //1.20 - 1.20.2
-        SoundRegistrySet1.register(ModId);
+        SoundRegistrySet4.register(ModId);
 
         RestApi.Log("Sound events registered", ModId);
     }
