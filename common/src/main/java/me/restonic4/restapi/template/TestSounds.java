@@ -4,6 +4,7 @@ import me.restonic4.restapi.RestApi;
 import me.restonic4.restapi.holder.RestSound;
 import me.restonic4.restapi.sound.SoundRegistry;
 
+import static me.restonic4.restapi.RestApiVariables.API_LOGGER;
 import static me.restonic4.restapi.RestApiVariables.MOD_ID;
 
 public class TestSounds {
@@ -12,6 +13,6 @@ public class TestSounds {
     public static void register() {
         SoundRegistry.Register(MOD_ID);
 
-        RestApi.Log("Sounds added");
+        API_LOGGER.log("Sounds added");
     }
 }

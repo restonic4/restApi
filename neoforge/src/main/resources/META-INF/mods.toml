@@ -1,31 +1,30 @@
 modLoader = "javafml"
 loaderVersion = "*"
-issueTrackerURL = ""
 license = "${license}"
 
 [[mods]]
-modId = "restapi"
+modId = "${id}"
 version = "${version}"
 displayName = "${name}"
 authors = "${author}"
 description = "${description}"
 logoFile = "icon.png"
 
-[[dependencies.restapi]]
+[[dependencies.${id}]]
     modId = "neoforge"
     mandatory = true
     versionRange = "[${neoforge_version},)"
     ordering = "NONE"
     side = "BOTH"
 
-[[dependencies.restapi]]
+[[dependencies.${id}]]
     modId = "minecraft"
     mandatory = true
     versionRange = "[${minecraft_version}]"
     ordering = "NONE"
     side = "BOTH"
 
-[[dependencies.restapi]]
+[[dependencies.${id}]]
     modId = "architectury"
     mandatory = true
     versionRange = "[${architectury_version},)"

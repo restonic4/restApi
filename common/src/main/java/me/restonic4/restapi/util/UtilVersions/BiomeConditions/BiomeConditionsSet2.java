@@ -299,7 +299,7 @@ public class BiomeConditionsSet2 {
     }
 
     public BiomeConditionsSet2 hasTrailRuins() {
-        RestApi.Log(NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(NOT_IMPLEMENTED_MC);
         return this;
     }
 
@@ -396,12 +396,12 @@ public class BiomeConditionsSet2 {
     }
 
     public BiomeConditionsSet2 increasedFireBurnout() {
-        RestApi.Log(NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(NOT_IMPLEMENTED_MC);
         return this;
     }
 
     public BiomeConditionsSet2 snowGolemMelts() {
-        RestApi.Log(NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(NOT_IMPLEMENTED_MC);
         return this;
     }
 
@@ -441,12 +441,12 @@ public class BiomeConditionsSet2 {
     }
 
     public BiomeConditionsSet2 spawnsGoldRabbits() {
-        RestApi.Log(NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(NOT_IMPLEMENTED_MC);
         return this;
     }
 
     public BiomeConditionsSet2 spawnsWhiteRabbits() {
-        RestApi.Log(NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(NOT_IMPLEMENTED_MC);
         return this;
     }
 
@@ -486,7 +486,7 @@ public class BiomeConditionsSet2 {
     }
 
     public BiomeConditionsSet2 spawnsSnowFoxes() {
-        RestApi.Log(NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(NOT_IMPLEMENTED_MC);
         return this;
     }
 

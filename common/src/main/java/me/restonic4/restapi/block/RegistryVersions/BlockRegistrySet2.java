@@ -50,7 +50,7 @@ public class BlockRegistrySet2 {
         if (BLOCKS == null) {
             //If there is no default registry, then create it and get it.
             if (DEFAULT == null) {
-                RestApi.Log("Registry not found, try creating one with BlockRegistry.CreateRegistry(ModID).");
+                API_LOGGER.log("Registry not found, try creating one with BlockRegistry.CreateRegistry(ModID).");
 
                 createRegistry(MOD_ID);
             }

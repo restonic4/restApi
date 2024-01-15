@@ -13,6 +13,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import static me.restonic4.restapi.RestApiVariables.API_LOGGER;
 import static me.restonic4.restapi.RestApiVariables.MOD_ID;
 
 @SuppressWarnings("unchecked")
@@ -123,6 +124,6 @@ public class TestItems {
     public static void register() {
         ItemRegistry.Register(MOD_ID);
 
-        RestApi.Log("Items added");
+        API_LOGGER.log("Items added");
     }
 }

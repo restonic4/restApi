@@ -10,6 +10,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
 
+import static me.restonic4.restapi.RestApiVariables.API_LOGGER;
+
 public class CustomArmorMaterialSet4 implements ArmorMaterial {
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;
@@ -33,12 +35,12 @@ public class CustomArmorMaterialSet4 implements ArmorMaterial {
     }
 
     public int getDurabilityForType(ArmorMaterial pType) {
-        RestApi.Log(RestApiVariables.NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(RestApiVariables.NOT_IMPLEMENTED_MC);
         return 0;
     }
 
     public int getDefenseForType(ArmorMaterial pType) {
-        RestApi.Log(RestApiVariables.NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(RestApiVariables.NOT_IMPLEMENTED_MC);
         return 0;
     }
 

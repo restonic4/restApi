@@ -48,7 +48,7 @@ public class CreativeTabRegistrySet3 {
         if (TABS == null) {
             //If there is no default registry, then create it and get it.
             if (DEFAULT == null) {
-                RestApi.Log("Registry not found, try creating one with CreativeTabRegistry.CreateRegistry(ModID).");
+                API_LOGGER.log("Registry not found, try creating one with CreativeTabRegistry.CreateRegistry(ModID).");
 
                 createRegistry(MOD_ID);
             }

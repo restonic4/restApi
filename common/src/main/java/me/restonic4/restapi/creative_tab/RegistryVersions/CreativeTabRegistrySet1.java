@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static me.restonic4.restapi.RestApiVariables.API_LOGGER;
 import static me.restonic4.restapi.RestApiVariables.MOD_ID;
 
 @SuppressWarnings({"UnstableApiUsage","unchecked"})
@@ -48,7 +49,7 @@ public class CreativeTabRegistrySet1 {
         if (TABS == null) {
             //If there is no default registry, then create it and get it.
             if (DEFAULT == null) {
-                RestApi.Log("Registry not found, try creating one with CreativeTabRegistry.CreateRegistry(ModID).");
+                API_LOGGER.log("Registry not found, try creating one with CreativeTabRegistry.CreateRegistry(ModID).");
 
                 createRegistry(MOD_ID);
             }

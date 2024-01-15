@@ -6,12 +6,6 @@ plugins {
     id 'java'
 }
 
-wrapper {
-    gradleVersion = '8.3'
-    distributionType = Wrapper.DistributionType.ALL
-}
-
-
 ext {
     mcVersion = rootProject.minecraft_version
     apiVersion = rootProject.mod_version + "-" + mcVersion
@@ -28,8 +22,9 @@ sourceSets {
 }
 
 
-@Field static int totalSets = 4;
+@Field static int totalSets = 5;
 def versionData = [
+        "1.20.4": 5,
         "1.20.2": 3,
         "1.20": 1, "1.20.1": 1,
         "1.19.4": 2,
@@ -44,8 +39,8 @@ static def addExclusionsForVersion(int version, Set<String> excludePatterns) {
                     "ItemRegistry", "CustomBlockProperties", "CustomItemProperties",
                     "CustomToolTier", "OreGenerator", "BiomeConditions",
                     "CustomBiomeTags", "CustomArmorMaterial", "RestItem",
-                    "RestBlock", "RestCreativeTab", "RestSound",
-                    "InternalAdvancementTrigger", "AdvancementTrigger")) {
+                    "RestBlock", "RestCreativeTab", "RestSound", "RestAdvancement",
+                    "CriterionTriggerRegistry")) {
                 excludePatterns.add(String.format("**/%sSet%d.java", category, i));
             }
         }

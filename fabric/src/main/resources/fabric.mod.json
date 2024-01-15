@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "restapi",
+  "id": "${id}",
   "version": "${version}",
 
   "name": "${name}",
@@ -14,7 +14,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "me.restonic4.restapi.fabric.RestApiFabric"
+      "${fabric_main}"
     ]
   },
   "depends": {

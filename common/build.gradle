@@ -4,28 +4,6 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7.1'
 }
 
-/*tasks.withType(JavaCompile) {
-    doFirst {
-        def mcVersion = rootProject.minecraft_version
-        def mainAccesswidener = project.file("src/main/resources/restapi.accesswidener")
-        def lookingAccesswidener = project.file("src/main/resources/restapi_${mcVersion}_.accesswidener")
-
-        if (mainAccesswidener.exists()) {
-            println "INFO. Main accesswidener FOUND in ${project.name}"
-
-            if (lookingAccesswidener.exists()) {
-                println "INFO. accesswidener for ${mcVersion} FOUND in ${project.name}"
-
-                mainAccesswidener.text = lookingAccesswidener.text
-            } else {
-                throw new GradleException("ERROR. accesswidener for ${mcVersion} NOT FOUND in ${project.name}.")
-            }
-        } else {
-            throw new GradleException("ERROR. Main accesswidener NOT FOUND in ${project.name}.")
-        }
-    }
-}*/
-
 String replaceIgnore(def name, def toIgnore, def fileData) {
     for(int i = 1; i <= 5; i++) {
         if (i != toIgnore) {
@@ -37,12 +15,13 @@ String replaceIgnore(def name, def toIgnore, def fileData) {
 }
 
 int getVersionIndex() {
+    def versionSet5 = ["1.20.4"]
     def versionSet3 = ["1.20.2"]
     def versionSet1 = ["1.20", "1.20.1"]
     def versionSet2 = ["1.19.4"]
     def versionSet4 = ["1.19.3"]
 
-    int versionIndex = 0
+    int versionIndex = 1
 
     if (versionSet1.contains(rootProject.minecraft_version)) {
         versionIndex = 1
@@ -52,6 +31,8 @@ int getVersionIndex() {
         versionIndex = 3
     } else if (versionSet4.contains(rootProject.minecraft_version)) {
         versionIndex = 4
+    } else if (versionSet5.contains(rootProject.minecraft_version)) {
+        versionIndex = 5
     }
 
     return versionIndex
@@ -109,8 +90,8 @@ task FixRegistries {
                         "../common/src/main/java/me/restonic4/restapi/holder/RestBlock.java",
                         "../common/src/main/java/me/restonic4/restapi/holder/RestCreativeTab.java",
                         "../common/src/main/java/me/restonic4/restapi/holder/RestSound.java",
-                        "../common/src/main/java/me/restonic4/restapi/util/InternalAdvancementTrigger.java",
-                        "../common/src/main/java/me/restonic4/restapi/util/AdvancementTrigger.java"
+                        "../common/src/main/java/me/restonic4/restapi/holder/RestAdvancement.java",
+                        "../common/src/main/java/me/restonic4/restapi/advancement/criterion_trigger/CriterionTriggerRegistry.java"
                 ]
 
                 javaFilesToModify.each { filePath ->

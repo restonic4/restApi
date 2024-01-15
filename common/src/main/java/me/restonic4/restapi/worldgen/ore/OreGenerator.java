@@ -1,7 +1,7 @@
 package me.restonic4.restapi.worldgen.ore;
 
 import me.restonic4.restapi.util.BiomeConditions;
-import me.restonic4.restapi.worldgen.ore.Versions.OreGeneratorSet4;
+import me.restonic4.restapi.worldgen.ore.Versions.OreGeneratorSet5;
 
 public class OreGenerator {
     /**
@@ -11,6 +11,6 @@ public class OreGenerator {
      * @param BiomeConditions The conditions to generate.
      */
     public static void RegisterOreGeneration(String ModId, String FeatureName, BiomeConditions BiomeConditions) {
-        OreGeneratorSet4.registerOreGeneration(ModId, FeatureName, BiomeConditions);
+        OreGeneratorSet5.registerOreGeneration(ModId, FeatureName, BiomeConditions);
     }
 }

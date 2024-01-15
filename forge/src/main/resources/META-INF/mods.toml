@@ -1,32 +1,31 @@
 modLoader="javafml"
 loaderVersion="[${forge_mayor_version},)"
 license="${license}"
-issueTrackerURL="https://marco/restApi/issues"
 
 [[mods]]
 
-modId="restapi"
+modId="${id}"
 version="${version}"
 displayName="${name}"
 logoFile="icon.png"
 description="${description}"
 authors = "${author}"
 
-[[dependencies.restapi]]
+[[dependencies.${id}]]
    modId="forge"
    mandatory=true
    versionRange="[${forge_mayor_version},)"
    ordering="NONE"
    side="BOTH"
 
-[[dependencies.restapi]]
+[[dependencies.${id}]]
    modId="minecraft"
    mandatory=true
    versionRange="[${minecraft_version}]"
    ordering="NONE"
    side="BOTH"
 
-[[dependencies.restapi]]
+[[dependencies.${id}]]
    modId="architectury"
    mandatory=true
    versionRange="[${architectury_version},)"

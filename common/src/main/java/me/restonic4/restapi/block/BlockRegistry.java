@@ -1,10 +1,12 @@
 package me.restonic4.restapi.block;
 
 import me.restonic4.restapi.RestApi;
-import me.restonic4.restapi.block.RegistryVersions.BlockRegistrySet4;
+import me.restonic4.restapi.block.RegistryVersions.BlockRegistrySet5;
 import me.restonic4.restapi.holder.RestBlock;
 import me.restonic4.restapi.holder.RestCreativeTab;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+
+import static me.restonic4.restapi.RestApiVariables.API_LOGGER;
 
 @SuppressWarnings("unchecked")
 public class BlockRegistry {
@@ -13,8 +15,8 @@ public class BlockRegistry {
      * @param ModId Your mod id.
      */
     public static Object CreateRegistry(String ModId) {
-        RestApi.Log("Creating block registry", ModId);
-        return BlockRegistrySet4.createRegistry(ModId);
+        API_LOGGER.log("Creating block registry");
+        return BlockRegistrySet5.createRegistry(ModId);
     }
 
     /**
@@ -23,7 +25,7 @@ public class BlockRegistry {
      * @return Returns the registry as Object type.
      */
     public static Object GetRegistry(String ModId) {
-        return BlockRegistrySet4.getModRegistry(ModId);
+        return BlockRegistrySet5.getModRegistry(ModId);
     }
 
     /**
@@ -36,14 +38,14 @@ public class BlockRegistry {
      */
     public static RestBlock CreateBlock(String ModId, String BlockId, Object Properties, RestCreativeTab CreativeTab) {
         RestBlock blockHolder = new RestBlock();
-        blockHolder.setItemHolder(BlockRegistrySet4.createBlock(ModId, BlockId, (BlockBehaviour.Properties) Properties, CreativeTab));
+        blockHolder.setItemHolder(BlockRegistrySet5.createBlock(ModId, BlockId, (BlockBehaviour.Properties) Properties, CreativeTab));
 
         return blockHolder;
     }
 
     public static RestBlock CreateExperienceBlock(String ModId, String BlockId, Object Properties, RestCreativeTab CreativeTab, int MinXP, int MaxXP) {
         RestBlock blockHolder = new RestBlock();
-        blockHolder.setItemHolder(BlockRegistrySet4.createExperienceBlock(ModId, BlockId, (BlockBehaviour.Properties) Properties, CreativeTab, MinXP, MaxXP));
+        blockHolder.setItemHolder(BlockRegistrySet5.createExperienceBlock(ModId, BlockId, (BlockBehaviour.Properties) Properties, CreativeTab, MinXP, MaxXP));
 
         return blockHolder;
     }
@@ -53,10 +55,10 @@ public class BlockRegistry {
      * @param ModId Your mod id.
      */
     public static void Register(String ModId) {
-        RestApi.Log("Trying to register blocks", ModId);
+        API_LOGGER.log("Trying to register blocks");
 
-        BlockRegistrySet4.register(ModId);
+        BlockRegistrySet5.register(ModId);
 
-        RestApi.Log("Blocks registered", ModId);
+        API_LOGGER.log("Blocks registered");
     }
 }

@@ -50,7 +50,7 @@ public class BlockRegistrySet3 {
         if (BLOCKS == null) {
             //If there is no default registry, then create it and get it.
             if (DEFAULT == null) {
-                RestApi.Log("Registry not found, try creating one with BlockRegistry.CreateRegistry(ModID).");
+                API_LOGGER.log("Registry not found, try creating one with BlockRegistry.CreateRegistry(ModID).");
 
                 createRegistry(MOD_ID);
             }
@@ -87,7 +87,7 @@ public class BlockRegistrySet3 {
     }
 
     public static <T extends Block> RegistrySupplier<T> registerInDesiredPlatform(String ModId, ResourceLocation path, Supplier<T> block) {
-        if (Platform.isForge()) {
+        if (Platform.isForgeLike()) {
             return getModRegistry(ModId).register(path.getPath(), block);
         }
         return getModRegistry(ModId).getRegistrar().register(path, block);

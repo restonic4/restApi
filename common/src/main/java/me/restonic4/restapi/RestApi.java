@@ -1,9 +1,11 @@
 package me.restonic4.restapi;
 
+import me.restonic4.restapi.advancement.criterion_trigger.CriterionTriggerRegistry;
 import me.restonic4.restapi.block.BlockRegistry;
 import me.restonic4.restapi.creative_tab.CreativeTabRegistry;
 import me.restonic4.restapi.item.ItemRegistry;
 import me.restonic4.restapi.sound.SoundRegistry;
+import me.restonic4.restapi.template.TestUtil;
 import me.restonic4.restapi.template.Testing;
 
 import static me.restonic4.restapi.RestApiVariables.*;
@@ -11,23 +13,24 @@ import static me.restonic4.restapi.RestApiVariables.*;
 public class RestApi
 {
 	//VARIABLE GENERATED WITH BUILD.GRADLE
-	public static boolean isATestBuild = true;
+	public static boolean isATestBuild = false;
+
+	public static final String URL_NEW_LOGGER = "https://rest-studio.com/pages/rest_api/util.html#Logger";
 
 	/**
-	 * This logs a message in the console.
-	 * @param message Message shown in the console.
+	 * @deprecated New way to log messages into the console here: {@link #URL_NEW_LOGGER}.
 	 */
+	@Deprecated(since = "0.10", forRemoval = true)
 	public static void Log(Object message) {
-		LOGGER.info("[restApi] " + message);
+		API_LOGGER.log(message);
 	}
 
 	/**
-	 * This logs a message in the console.
-	 * @param message Message shown in the console.
-	 * @param mod This shows in the console your mod id.
+	 * @deprecated New way to log messages into the console here: {@link #URL_NEW_LOGGER}.
 	 */
+	@Deprecated(since = "0.10", forRemoval = true)
 	public static void Log(Object message, String mod) {
-		LOGGER.info("[restApi + " + mod + "] " + message);
+		API_LOGGER.log("[restApi + " + mod + "] " + message);
 	}
 
 	public static void NotImplementedError() {
@@ -49,6 +52,7 @@ public class RestApi
 		BlockRegistry.CreateRegistry(MOD_ID);
 		CreativeTabRegistry.CreateRegistry(MOD_ID);
 		SoundRegistry.CreateRegistry(MOD_ID);
+		CriterionTriggerRegistry.CreateRegistry(MOD_ID);
 
 		Log("Default registries created");
 

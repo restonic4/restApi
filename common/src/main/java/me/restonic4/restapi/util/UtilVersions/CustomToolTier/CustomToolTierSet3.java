@@ -9,6 +9,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.NotNull;
 
+import static me.restonic4.restapi.RestApiVariables.API_LOGGER;
+
 public class CustomToolTierSet3 implements Tier {
     private final int uses;
     private final float speed;
@@ -18,7 +20,7 @@ public class CustomToolTierSet3 implements Tier {
     private final Lazy<Ingredient> repairIngredient;
 
     public CustomToolTierSet3(int uses, float speed, float attackDamageBonus, int level, int enchantmentValue, Object repairIngredient) {
-        RestApi.Log(uses + " " + speed + " " + attackDamageBonus + " " + level + " " + enchantmentValue + " " + repairIngredient);
+        API_LOGGER.log(uses + " " + speed + " " + attackDamageBonus + " " + level + " " + enchantmentValue + " " + repairIngredient);
         this.uses = uses;
         this.speed = speed;
         this.attackDamageBonus = attackDamageBonus;

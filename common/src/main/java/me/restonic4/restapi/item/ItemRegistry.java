@@ -3,12 +3,14 @@ package me.restonic4.restapi.item;
 import me.restonic4.restapi.RestApi;
 import me.restonic4.restapi.holder.RestCreativeTab;
 import me.restonic4.restapi.holder.RestItem;
-import me.restonic4.restapi.item.RegistryVersions.ItemRegistrySet4;
+import me.restonic4.restapi.item.RegistryVersions.ItemRegistrySet5;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.Item;
 
 import java.util.function.Supplier;
+
+import static me.restonic4.restapi.RestApiVariables.API_LOGGER;
 
 @SuppressWarnings("unchecked")
 public class ItemRegistry {
@@ -17,9 +19,9 @@ public class ItemRegistry {
      * @param ModId Your mod id.
      */
     public static Object CreateRegistry(String ModId) {
-        RestApi.Log("Creating item registry", ModId);
+        API_LOGGER.log("Creating item registry");
 
-        return ItemRegistrySet4.createRegistry(ModId);
+        return ItemRegistrySet5.createRegistry(ModId);
     }
 
     /**
@@ -28,7 +30,7 @@ public class ItemRegistry {
      * @return Returns the registry as Object type.
      */
     public static Object GetRegistry(String ModId) {
-        return ItemRegistrySet4.getModRegistry(ModId);
+        return ItemRegistrySet5.getModRegistry(ModId);
     }
 
     /**
@@ -39,10 +41,10 @@ public class ItemRegistry {
      * @return Returns the item registered as RestItem type.
      */
     public static RestItem CreateSimple(String ModId, String ItemId, RestCreativeTab CreativeTab) {
-        RestApi.Log("Creating simple item", ModId);
+        API_LOGGER.log("Creating simple item");
 
         RestItem itemHolder = new RestItem();
-        itemHolder.setItemHolder(ItemRegistrySet4.createSimple(ModId, ItemId, CreativeTab));
+        itemHolder.setItemHolder(ItemRegistrySet5.createSimple(ModId, ItemId, CreativeTab));
 
         return itemHolder;
     }
@@ -57,16 +59,16 @@ public class ItemRegistry {
      */
     public static <T extends Item> RestItem CreateCustom(String ModId, String ItemId, Supplier<T> ItemClass) {
         RestItem itemHolder = new RestItem();
-        itemHolder.setItemHolder(ItemRegistrySet4.createCustom(ModId, ItemId, ItemClass));
+        itemHolder.setItemHolder(ItemRegistrySet5.createCustom(ModId, ItemId, ItemClass));
 
         return itemHolder;
     }
 
     public static RestItem CreateBlockItem(String ModId, Object Block, String BlockId, RestCreativeTab CreativeTab) {
-        RestApi.Log("Creating block item", ModId);
+        API_LOGGER.log("Creating block item");
 
         RestItem itemHolder = new RestItem();
-        itemHolder.setItemHolder(ItemRegistrySet4.createBlockItem(ModId, Block, BlockId, CreativeTab));
+        itemHolder.setItemHolder(ItemRegistrySet5.createBlockItem(ModId, Block, BlockId, CreativeTab));
 
         return itemHolder;
     }
@@ -81,10 +83,10 @@ public class ItemRegistry {
      * @return Returns the item registered as RestItem type.
      */
     public static RestItem CreateFood(String ModId, String ItemId, RestCreativeTab CreativeTab, int Nutrition, float SaturationMod) {
-        RestApi.Log("Creating food item", ModId);
+        API_LOGGER.log("Creating food item");
 
         RestItem itemHolder = new RestItem();
-        itemHolder.setItemHolder(ItemRegistrySet4.createFood(ModId, ItemId, CreativeTab, ItemRegistrySet4.createFoodProperties(Nutrition, SaturationMod, null, 0)));
+        itemHolder.setItemHolder(ItemRegistrySet5.createFood(ModId, ItemId, CreativeTab, ItemRegistrySet5.createFoodProperties(Nutrition, SaturationMod, null, 0)));
 
         return itemHolder;
     }
@@ -101,10 +103,10 @@ public class ItemRegistry {
      * @return Returns the item registered as RestItem type.
      */
     public static RestItem CreateFoodWithEffect(String ModId, String ItemId, RestCreativeTab CreativeTab, int Nutrition, float SaturationMod, Object Effect, float Chance) {
-        RestApi.Log("Creating food item with effect", ModId);
+        API_LOGGER.log("Creating food item with effect");
 
         RestItem itemHolder = new RestItem();
-        itemHolder.setItemHolder(ItemRegistrySet4.createFood(ModId, ItemId, CreativeTab, ItemRegistrySet4.createFoodProperties(Nutrition, SaturationMod, Effect, Chance)));
+        itemHolder.setItemHolder(ItemRegistrySet5.createFood(ModId, ItemId, CreativeTab, ItemRegistrySet5.createFoodProperties(Nutrition, SaturationMod, Effect, Chance)));
 
         return itemHolder;
     }
@@ -117,7 +119,7 @@ public class ItemRegistry {
      * @return Returns the effect as Object type.
      */
     public static MobEffectInstance CreateExistingEffect(Object EffectType, int Duration, int Level) {
-        return ItemRegistrySet4.createEffect((MobEffect) EffectType, Duration, Level);
+        return ItemRegistrySet5.createEffect((MobEffect) EffectType, Duration, Level);
     }
 
     /**
@@ -125,10 +127,10 @@ public class ItemRegistry {
      * @param ModId Your mod id.
      */
     public static void Register(String ModId) {
-        RestApi.Log("Trying to register items", ModId);
+        API_LOGGER.log("Trying to register items");
 
-        ItemRegistrySet4.register(ModId);
+        ItemRegistrySet5.register(ModId);
 
-        RestApi.Log("Items registered", ModId);
+        API_LOGGER.log("Items registered");
     }
 }

@@ -7,6 +7,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
+import static me.restonic4.restapi.RestApiVariables.API_LOGGER;
+
 @SuppressWarnings({"UnstableApiUsage","unchecked"})
 public class CustomBlockPropertiesSet4 {
     private BlockBehaviour.Properties properties = BlockBehaviour.Properties.copy(Blocks.STONE);
@@ -42,7 +44,7 @@ public class CustomBlockPropertiesSet4 {
     }
 
     public CustomBlockPropertiesSet4 ignitedByLava() {
-        RestApi.Log(RestApiVariables.NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(RestApiVariables.NOT_IMPLEMENTED_MC);
 
         return this;
     }
@@ -78,7 +80,7 @@ public class CustomBlockPropertiesSet4 {
     }
 
     public CustomBlockPropertiesSet4 forceSolidOn() {
-        RestApi.Log(RestApiVariables.NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(RestApiVariables.NOT_IMPLEMENTED_MC);
 
         return this;
     }
@@ -96,7 +98,7 @@ public class CustomBlockPropertiesSet4 {
     }
 
     public CustomBlockPropertiesSet4 liquid() {
-        RestApi.Log(RestApiVariables.NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(RestApiVariables.NOT_IMPLEMENTED_MC);
 
         return this;
     }
@@ -132,7 +134,7 @@ public class CustomBlockPropertiesSet4 {
     }
 
     public CustomBlockPropertiesSet4 replaceable() {
-        RestApi.Log(RestApiVariables.NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(RestApiVariables.NOT_IMPLEMENTED_MC);
 
         return this;
     }
@@ -144,7 +146,7 @@ public class CustomBlockPropertiesSet4 {
     }
 
     public CustomBlockPropertiesSet4 pushReaction(Object pushReaction) {
-        RestApi.Log(RestApiVariables.NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(RestApiVariables.NOT_IMPLEMENTED_MC);
 
         return this;
     }

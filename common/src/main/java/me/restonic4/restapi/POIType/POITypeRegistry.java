@@ -7,13 +7,15 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.function.Supplier;
 
+import static me.restonic4.restapi.RestApiVariables.API_LOGGER;
+
 public class POITypeRegistry {
     /**
      * This creates a registry for your mod
      * @param ModId Your mod id.
      */
     public static Object CreateRegistry(String ModId) {
-        RestApi.Log("Creating POIType registry", ModId);
+        API_LOGGER.log("Creating POIType registry");
 
         RestApi.NotImplementedError();
 
@@ -41,7 +43,7 @@ public class POITypeRegistry {
      * @return Returns the item registered as RestItem type.
      */
     public static RestPOIType Create(String ModId, String POIType_id, Block block, int MaxTickets, int ValidRange) {
-        RestApi.Log("Creating POIType", ModId);
+        API_LOGGER.log("Creating POIType");
 
         RestApi.NotImplementedError();
 
@@ -56,12 +58,12 @@ public class POITypeRegistry {
      * @param ModId Your mod id.
      */
     public static void Register(String ModId) {
-        RestApi.Log("Trying to register items", ModId);
+        API_LOGGER.log("Trying to register items");
 
         RestApi.NotImplementedError();
 
         POITypesRegistrySet1.register(ModId);
 
-        RestApi.Log("Items registered", ModId);
+        API_LOGGER.log("Items registered");
     }
 }

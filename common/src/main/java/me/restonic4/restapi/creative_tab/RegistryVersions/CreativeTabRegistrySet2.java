@@ -13,6 +13,8 @@ import net.minecraft.world.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
+import static me.restonic4.restapi.RestApiVariables.API_LOGGER;
+
 @SuppressWarnings({"UnstableApiUsage","unchecked"})
 public class CreativeTabRegistrySet2 {
     static List<DeferredRegister<CreativeModeTab>> REGISTRIES = new ArrayList<>();
@@ -36,6 +38,6 @@ public class CreativeTabRegistrySet2 {
     }
 
     public static void register(String ModId) {
-        RestApi.Log("Loaded");
+        API_LOGGER.log("Loaded");
     }
 }

@@ -9,6 +9,7 @@ import net.minecraft.world.level.biome.Biome;
 import java.util.ArrayList;
 import java.util.List;
 
+import static me.restonic4.restapi.RestApiVariables.API_LOGGER;
 import static me.restonic4.restapi.RestApiVariables.NOT_IMPLEMENTED_MC;
 
 public class BiomeConditionsSet4 {
@@ -299,7 +300,7 @@ public class BiomeConditionsSet4 {
     }
 
     public BiomeConditionsSet4 hasTrailRuins() {
-        RestApi.Log(NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(NOT_IMPLEMENTED_MC);
         return this;
     }
 
@@ -396,12 +397,12 @@ public class BiomeConditionsSet4 {
     }
 
     public BiomeConditionsSet4 increasedFireBurnout() {
-        RestApi.Log(NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(NOT_IMPLEMENTED_MC);
         return this;
     }
 
     public BiomeConditionsSet4 snowGolemMelts() {
-        RestApi.Log(NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(NOT_IMPLEMENTED_MC);
         return this;
     }
 
@@ -441,12 +442,12 @@ public class BiomeConditionsSet4 {
     }
 
     public BiomeConditionsSet4 spawnsGoldRabbits() {
-        RestApi.Log(NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(NOT_IMPLEMENTED_MC);
         return this;
     }
 
     public BiomeConditionsSet4 spawnsWhiteRabbits() {
-        RestApi.Log(NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(NOT_IMPLEMENTED_MC);
         return this;
     }
 
@@ -486,7 +487,7 @@ public class BiomeConditionsSet4 {
     }
 
     public BiomeConditionsSet4 spawnsSnowFoxes() {
-        RestApi.Log(NOT_IMPLEMENTED_MC);
+        API_LOGGER.log(NOT_IMPLEMENTED_MC);
         return this;
     }
 

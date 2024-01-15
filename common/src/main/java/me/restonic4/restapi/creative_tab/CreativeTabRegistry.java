@@ -1,8 +1,10 @@
 package me.restonic4.restapi.creative_tab;
 
 import me.restonic4.restapi.RestApi;
-import me.restonic4.restapi.creative_tab.RegistryVersions.CreativeTabRegistrySet4;
+import me.restonic4.restapi.creative_tab.RegistryVersions.CreativeTabRegistrySet5;
 import me.restonic4.restapi.holder.RestCreativeTab;
+
+import static me.restonic4.restapi.RestApiVariables.API_LOGGER;
 
 public class CreativeTabRegistry {
     /**
@@ -10,9 +12,9 @@ public class CreativeTabRegistry {
      * @param ModId The mod id.
      */
     public static Object CreateRegistry(String ModId) {
-        RestApi.Log("Creating creative tab registry", ModId);
+        API_LOGGER.log("Creating creative tab registry");
 
-        return CreativeTabRegistrySet4.createRegistry(ModId);
+        return CreativeTabRegistrySet5.createRegistry(ModId);
     }
 
     /**
@@ -21,7 +23,7 @@ public class CreativeTabRegistry {
      * @return Returns the registry as Object type.
      */
     public static Object GetRegistry(String ModId) {
-        return CreativeTabRegistrySet4.getModRegistry(ModId);
+        return CreativeTabRegistrySet5.getModRegistry(ModId);
     }
 
     /**
@@ -33,7 +35,7 @@ public class CreativeTabRegistry {
      */
     public static RestCreativeTab CreateCreativeTab(String ModId, String TabId, String ItemId) {
         RestCreativeTab creativeTabHolder = new RestCreativeTab();
-        creativeTabHolder.setItemHolder(CreativeTabRegistrySet4.createCreativeTab(ModId, TabId, ItemId));
+        creativeTabHolder.setItemHolder(CreativeTabRegistrySet5.createCreativeTab(ModId, TabId, ItemId));
 
         return creativeTabHolder;
     }
@@ -43,10 +45,10 @@ public class CreativeTabRegistry {
      * @param ModId The mod id.
      */
     public static void Register(String ModId) {
-        RestApi.Log("Trying to register creative tabs", ModId);
+        API_LOGGER.log("Trying to register creative tabs");
 
-        CreativeTabRegistrySet4.register(ModId);
+        CreativeTabRegistrySet5.register(ModId);
 
-        RestApi.Log("Creative tabs registered", ModId);
+        API_LOGGER.log("Creative tabs registered");
     }
 }

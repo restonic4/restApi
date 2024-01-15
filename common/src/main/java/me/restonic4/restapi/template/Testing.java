@@ -16,9 +16,11 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
+import static me.restonic4.restapi.RestApiVariables.API_LOGGER;
+
 public class Testing {
     public static void init() {
-        RestApi.Log("Testing class started");
+        API_LOGGER.log("Testing class started");
 
         TestItems.register();
         TestBlocks.register();
@@ -26,7 +28,7 @@ public class Testing {
         TestSounds.register();
         TestUtil.register();
 
-        RestApi.Log("Testing things created");
+        API_LOGGER.log("Testing things created");
 
         InteractionEvent.CLIENT_RIGHT_CLICK_AIR.register((Player player, InteractionHand hand) -> {
             SoundRegistry.PlaySound(player, TestSounds.sound, SoundSource.PLAYERS, 1, 1);

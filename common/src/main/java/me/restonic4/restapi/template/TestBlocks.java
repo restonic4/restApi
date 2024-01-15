@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
+import static me.restonic4.restapi.RestApiVariables.API_LOGGER;
 import static me.restonic4.restapi.RestApiVariables.MOD_ID;
 
 public class TestBlocks {
@@ -42,6 +43,6 @@ public class TestBlocks {
                 new BiomeConditions().isOverworld().isNether()
         );
 
-        RestApi.Log("Blocks added");
+        API_LOGGER.log("Blocks added");
     }
 }
