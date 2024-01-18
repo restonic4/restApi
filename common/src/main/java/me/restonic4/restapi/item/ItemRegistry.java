@@ -3,7 +3,7 @@ package me.restonic4.restapi.item;
 import me.restonic4.restapi.RestApi;
 import me.restonic4.restapi.holder.RestCreativeTab;
 import me.restonic4.restapi.holder.RestItem;
-import me.restonic4.restapi.item.RegistryVersions.ItemRegistrySet5;
+import me.restonic4.restapi.item.RegistryVersions.ItemRegistrySet3;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.Item;
@@ -21,7 +21,7 @@ public class ItemRegistry {
     public static Object CreateRegistry(String ModId) {
         API_LOGGER.log("Creating item registry");
 
-        return ItemRegistrySet5.createRegistry(ModId);
+        return ItemRegistrySet3.createRegistry(ModId);
     }
 
     /**
@@ -30,7 +30,7 @@ public class ItemRegistry {
      * @return Returns the registry as Object type.
      */
     public static Object GetRegistry(String ModId) {
-        return ItemRegistrySet5.getModRegistry(ModId);
+        return ItemRegistrySet3.getModRegistry(ModId);
     }
 
     /**
@@ -44,7 +44,7 @@ public class ItemRegistry {
         API_LOGGER.log("Creating simple item");
 
         RestItem itemHolder = new RestItem();
-        itemHolder.setItemHolder(ItemRegistrySet5.createSimple(ModId, ItemId, CreativeTab));
+        itemHolder.setItemHolder(ItemRegistrySet3.createSimple(ModId, ItemId, CreativeTab));
 
         return itemHolder;
     }
@@ -59,7 +59,7 @@ public class ItemRegistry {
      */
     public static <T extends Item> RestItem CreateCustom(String ModId, String ItemId, Supplier<T> ItemClass) {
         RestItem itemHolder = new RestItem();
-        itemHolder.setItemHolder(ItemRegistrySet5.createCustom(ModId, ItemId, ItemClass));
+        itemHolder.setItemHolder(ItemRegistrySet3.createCustom(ModId, ItemId, ItemClass));
 
         return itemHolder;
     }
@@ -68,7 +68,7 @@ public class ItemRegistry {
         API_LOGGER.log("Creating block item");
 
         RestItem itemHolder = new RestItem();
-        itemHolder.setItemHolder(ItemRegistrySet5.createBlockItem(ModId, Block, BlockId, CreativeTab));
+        itemHolder.setItemHolder(ItemRegistrySet3.createBlockItem(ModId, Block, BlockId, CreativeTab));
 
         return itemHolder;
     }
@@ -86,7 +86,7 @@ public class ItemRegistry {
         API_LOGGER.log("Creating food item");
 
         RestItem itemHolder = new RestItem();
-        itemHolder.setItemHolder(ItemRegistrySet5.createFood(ModId, ItemId, CreativeTab, ItemRegistrySet5.createFoodProperties(Nutrition, SaturationMod, null, 0)));
+        itemHolder.setItemHolder(ItemRegistrySet3.createFood(ModId, ItemId, CreativeTab, ItemRegistrySet3.createFoodProperties(Nutrition, SaturationMod, null, 0)));
 
         return itemHolder;
     }
@@ -106,7 +106,7 @@ public class ItemRegistry {
         API_LOGGER.log("Creating food item with effect");
 
         RestItem itemHolder = new RestItem();
-        itemHolder.setItemHolder(ItemRegistrySet5.createFood(ModId, ItemId, CreativeTab, ItemRegistrySet5.createFoodProperties(Nutrition, SaturationMod, Effect, Chance)));
+        itemHolder.setItemHolder(ItemRegistrySet3.createFood(ModId, ItemId, CreativeTab, ItemRegistrySet3.createFoodProperties(Nutrition, SaturationMod, Effect, Chance)));
 
         return itemHolder;
     }
@@ -119,7 +119,7 @@ public class ItemRegistry {
      * @return Returns the effect as Object type.
      */
     public static MobEffectInstance CreateExistingEffect(Object EffectType, int Duration, int Level) {
-        return ItemRegistrySet5.createEffect((MobEffect) EffectType, Duration, Level);
+        return ItemRegistrySet3.createEffect((MobEffect) EffectType, Duration, Level);
     }
 
     /**
@@ -129,7 +129,7 @@ public class ItemRegistry {
     public static void Register(String ModId) {
         API_LOGGER.log("Trying to register items");
 
-        ItemRegistrySet5.register(ModId);
+        ItemRegistrySet3.register(ModId);
 
         API_LOGGER.log("Items registered");
     }

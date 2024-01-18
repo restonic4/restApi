@@ -1,7 +1,7 @@
 package me.restonic4.restapi.creative_tab;
 
 import me.restonic4.restapi.RestApi;
-import me.restonic4.restapi.creative_tab.RegistryVersions.CreativeTabRegistrySet5;
+import me.restonic4.restapi.creative_tab.RegistryVersions.CreativeTabRegistrySet3;
 import me.restonic4.restapi.holder.RestCreativeTab;
 
 import static me.restonic4.restapi.RestApiVariables.API_LOGGER;
@@ -14,7 +14,7 @@ public class CreativeTabRegistry {
     public static Object CreateRegistry(String ModId) {
         API_LOGGER.log("Creating creative tab registry");
 
-        return CreativeTabRegistrySet5.createRegistry(ModId);
+        return CreativeTabRegistrySet3.createRegistry(ModId);
     }
 
     /**
@@ -23,7 +23,7 @@ public class CreativeTabRegistry {
      * @return Returns the registry as Object type.
      */
     public static Object GetRegistry(String ModId) {
-        return CreativeTabRegistrySet5.getModRegistry(ModId);
+        return CreativeTabRegistrySet3.getModRegistry(ModId);
     }
 
     /**
@@ -35,7 +35,7 @@ public class CreativeTabRegistry {
      */
     public static RestCreativeTab CreateCreativeTab(String ModId, String TabId, String ItemId) {
         RestCreativeTab creativeTabHolder = new RestCreativeTab();
-        creativeTabHolder.setItemHolder(CreativeTabRegistrySet5.createCreativeTab(ModId, TabId, ItemId));
+        creativeTabHolder.setItemHolder(CreativeTabRegistrySet3.createCreativeTab(ModId, TabId, ItemId));
 
         return creativeTabHolder;
     }
@@ -47,7 +47,7 @@ public class CreativeTabRegistry {
     public static void Register(String ModId) {
         API_LOGGER.log("Trying to register creative tabs");
 
-        CreativeTabRegistrySet5.register(ModId);
+        CreativeTabRegistrySet3.register(ModId);
 
         API_LOGGER.log("Creative tabs registered");
     }

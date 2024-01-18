@@ -1,7 +1,7 @@
 package me.restonic4.restapi.advancement.criterion_trigger;
 
 import me.restonic4.restapi.RestApi;
-import me.restonic4.restapi.advancement.criterion_trigger.RegistryVersions.CriterionTriggerRegistrySet5;
+import me.restonic4.restapi.advancement.criterion_trigger.RegistryVersions.CriterionTriggerRegistrySet3;
 import me.restonic4.restapi.holder.RestAdvancement;
 import net.minecraft.resources.ResourceLocation;
 
@@ -15,7 +15,7 @@ public class CriterionTriggerRegistry {
     public static Object CreateRegistry(String ModId) {
         API_LOGGER.log("Creating criterion_trigger registry");
 
-        return CriterionTriggerRegistrySet5.createRegistry(ModId);
+        return CriterionTriggerRegistrySet3.createRegistry(ModId);
     }
 
     /**
@@ -24,7 +24,7 @@ public class CriterionTriggerRegistry {
      * @return Returns the registry as Object type.
      */
     public static Object GetRegistry(String ModId) {
-        return CriterionTriggerRegistrySet5.getModRegistry(ModId);
+        return CriterionTriggerRegistrySet3.getModRegistry(ModId);
     }
 
     /**
@@ -36,7 +36,7 @@ public class CriterionTriggerRegistry {
     public static RestAdvancement CreateAdvancementTrigger(String ModId, String AdvancementId) {
         RestAdvancement advancementHolder = new RestAdvancement();
 
-        advancementHolder.setCriterionHolder(CriterionTriggerRegistrySet5.create(ModId, AdvancementId));
+        advancementHolder.setCriterionHolder(CriterionTriggerRegistrySet3.create(ModId, AdvancementId));
         advancementHolder.setResourceLocation(new ResourceLocation(ModId, AdvancementId));
 
         return advancementHolder;
@@ -49,7 +49,7 @@ public class CriterionTriggerRegistry {
     public static void Register(String ModId) {
         API_LOGGER.log("Trying to register advancement triggers");
 
-        CriterionTriggerRegistrySet5.register(ModId);
+        CriterionTriggerRegistrySet3.register(ModId);
 
         API_LOGGER.log("Advancement triggers registered");
     }

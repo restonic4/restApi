@@ -1,7 +1,7 @@
 package me.restonic4.restapi.holder;
 
-import me.restonic4.restapi.holder.Versions.RestBlock.RestBlockSet5;
+import me.restonic4.restapi.holder.Versions.RestBlock.RestBlockSet3;
 
-public class RestBlock extends RestBlockSet5 {
+public class RestBlock extends RestBlockSet3 {
     public RestBlock() {}
 }

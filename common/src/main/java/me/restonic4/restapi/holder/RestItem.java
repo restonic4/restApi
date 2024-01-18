@@ -1,7 +1,7 @@
 package me.restonic4.restapi.holder;
 
-import me.restonic4.restapi.holder.Versions.RestItem.RestItemSet5;
+import me.restonic4.restapi.holder.Versions.RestItem.RestItemSet3;
 
-public class RestItem extends RestItemSet5 {
+public class RestItem extends RestItemSet3 {
     public RestItem() {}
 }
